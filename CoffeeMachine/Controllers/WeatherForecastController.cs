@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace CoffeeMachine.Controllers
 {
@@ -15,11 +16,16 @@ namespace CoffeeMachine.Controllers
 
             private Dictionary<int, int> availableNotes = new Dictionary<int, int>
             {
+                { 100, 10 },
+                { 200, 10 },
                 { 500, 10 },
                 { 1000, 10 },
                 { 2000, 10 },
                 { 5000, 10 }
             };
+
+            private List<int> banknotes = new List<int>() { 5000, 2000, 1000, 500 };
+
 
             private Dictionary<string, int> coffeeBalances = new Dictionary<string, int>
             {
@@ -36,6 +42,11 @@ namespace CoffeeMachine.Controllers
                 if (!coffeePrices.ContainsKey(coffeeType))
                 {
                     return BadRequest("Invalid coffee type");
+                }
+
+                if (!banknotes.Contains(orderRequest.Amount))
+                {
+                    return BadRequest("Invalid banknotes type");
                 }
 
                 var coffeePrice = coffeePrices[coffeeType];
