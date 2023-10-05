@@ -19,7 +19,6 @@ namespace CoffeMachine.Services
             {
                 //return BadRequest("Invalid banknotes type");
             }
-
         }
     }
 }
