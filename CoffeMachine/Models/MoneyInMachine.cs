@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-
-namespace CoffeMachine.Models
+﻿namespace CoffeMachine.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class MoneyInMachine
     {
+        public uint Count { get; set; }
+
         [Key]
-        public uint Nominal {  get; set; }
-        public uint Count {  get; set; }
+        public uint Nominal { get; set; }
     }
 }

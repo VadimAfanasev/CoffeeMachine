@@ -1,12 +1,12 @@
-﻿using CoffeMachine.Common.Interfaces;
-using CoffeMachine.Models;
-using CoffeMachine.Models.Data;
-
-namespace CoffeMachine.Common
+﻿namespace CoffeMachine.Common
 {
+    using CoffeMachine.Common.Interfaces;
+    using CoffeMachine.Models.Data;
+
     public class CalculateChange : ICalculateChange
     {
         private readonly CoffeeContext _db;
+
         public CalculateChange(CoffeeContext db)
         {
             _db = db;

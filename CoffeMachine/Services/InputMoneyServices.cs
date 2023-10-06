@@ -1,24 +1,27 @@
-﻿using CoffeMachine.Dto;
-using CoffeMachine.Models.Data;
-using CoffeMachine.Services.Interfaces;
-using System.Linq;
-
-namespace CoffeMachine.Services
+﻿namespace CoffeMachine.Services
 {
-    public class InputMoneyServices: IInputMoneyServices
+    using CoffeMachine.Common.Interfaces;
+    using CoffeMachine.Dto;
+    using CoffeMachine.Services.Interfaces;
+
+    public class InputMoneyServices : IInputMoneyServices
     {
-        private CoffeeContext _db;
-        private uint[] banknotes = new uint[] { 5000, 2000, 1000, 500 };
-        public InputMoneyServices(CoffeeContext db)
+        private readonly List<int> _banknotes = new List<int> { 5000, 2000, 1000, 500 };
+        private readonly IIncrementMoneyInMachine _incrementMoneyInMachine;
+
+        public InputMoneyServices(IIncrementMoneyInMachine incrementMoneyInMachine)
         {
-            _db = db;
+            _incrementMoneyInMachine = incrementMoneyInMachine;
         }
-        public List<uint> InputingMoney(List<InputMoneyDto> inputMoney)
+
+        public void Inputing(List<InputMoneyDto> inputMoney)
         {
-            if (!inputMoney.All(c => banknotes.Contains(c.Nominal)));
+            if (!inputMoney.All(c => _banknotes.Contains(c.Nominal)))
             {
-                //return BadRequest("Invalid banknotes type");
+                throw new ArgumentException("Invalid banknotes type");
             }
+
+            _incrementMoneyInMachine.IncrementMoney(inputMoney);
         }
     }
 }

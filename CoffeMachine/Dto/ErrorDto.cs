@@ -1,11 +1,11 @@
-﻿using System.Text.Json;
-
-namespace CoffeMachine.Dto
+﻿namespace CoffeMachine.Dto
 {
+    using System.Text.Json;
+
     public class ErrorDto
     {
+        public string? Message { get; set; }
         public int StatusCode { get; set; }
-        public string Message { get; set; }
 
         public override string ToString()
         {

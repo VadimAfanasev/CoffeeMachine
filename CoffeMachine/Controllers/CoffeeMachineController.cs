@@ -1,37 +1,53 @@
-﻿using CoffeMachine.Common.Order;
-using Microsoft.AspNetCore.Mvc;
-using CoffeMachine.Services.Interfaces;
-using CoffeMachine.Dto;
-
-namespace CoffeMachine.Controllers
+﻿namespace CoffeMachine.Controllers
 {
+    using CoffeMachine.Dto;
+    using CoffeMachine.Services.Interfaces;
+
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("api/[controller]")]
     [ApiController]
     public class CoffeeMachineController : ControllerBase
     {
-        private ICoffeeBuyServices _service;
-        private IInputMoneyServices _moneyService;
-        public CoffeeMachineController(ICoffeeBuyServices service, IInputMoneyServices moneyService)
+        private readonly ICoffeeBuyServices _coffeeBuyService;
+        private readonly ICoffeeMachineStatusServices _coffeeMachineStatusService;
+        private readonly IInputMoneyServices _inputMoneyService;
+
+        public CoffeeMachineController(ICoffeeBuyServices coffeeBuyService, IInputMoneyServices inputMoneyService,
+            ICoffeeMachineStatusServices coffeeMachineStatusService)
         {
-            _service = service;
-            _moneyService = moneyService;
+            _coffeeBuyService = coffeeBuyService;
+            _inputMoneyService = inputMoneyService;
+            _coffeeMachineStatusService = coffeeMachineStatusService;
         }
 
-        [HttpPost("order/{coffeeType}")]
-        public ActionResult<OrderCoffeeDto> PlaceOrder(string coffeeType, [FromBody] uint[] moneys)
+        [HttpGet("coffeebalance")]
+        public IActionResult GetCoffeeBalance()
         {
-            var change= _service.BuyingCoffee(coffeeType, moneys);
+            var coffeeBalance = _coffeeMachineStatusService.GetBalanceCoffee();
+            return Ok(coffeeBalance);
+        }
 
-            return new OrderCoffeeDto
-            {
-                Change = change
-            };
+        [HttpGet("moneyinmachine")]
+        public IActionResult GetMoneyInMachine()
+        {
+            var moneyInMachine = _coffeeMachineStatusService.GetBalanceMoney();
+            return Ok(moneyInMachine);
         }
 
         [HttpPut("inputing/")]
         public ActionResult<List<InputMoneyDto>> InputMoney([FromBody] List<InputMoneyDto> inputMoney)
         {
-            var input = _moneyService.InputingMoney(inputMoney);
+            _inputMoneyService.Inputing(inputMoney);
+            return Ok();
+        }
+
+        [HttpPost("order/{coffeeType}")]
+        public ActionResult<OrderCoffeeDto> PlaceOrder(string coffeeType, [FromBody] uint[] moneys)
+        {
+            var change = _coffeeBuyService.BuyingCoffee(coffeeType, moneys);
+
+            return Ok(change);
         }
     }
 }

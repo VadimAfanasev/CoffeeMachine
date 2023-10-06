@@ -4,7 +4,6 @@ using CoffeMachine.Middlewares;
 using CoffeMachine.Models.Data;
 using CoffeMachine.Services;
 using CoffeMachine.Services.Interfaces;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string connection = builder.Configuration.GetConnectionString("DefaultConnection");
+var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<CoffeeContext>(options => options.UseNpgsql(connection));
 
 builder.Services.AddScoped<ICoffeeBuyServices, CoffeeBuyServices>();
@@ -24,6 +23,10 @@ builder.Services.AddScoped<ICalculateChange, CalculateChange>();
 builder.Services.AddScoped<IDecrementAvailableNotes, DecrementAvailableNotes>();
 builder.Services.AddScoped<IIncrementAvailableNotes, IncrementAvailableNotes>();
 builder.Services.AddScoped<IIncrementCoffeeBalances, IncrementCoffeeBalances>();
+builder.Services.AddScoped<IInputMoneyServices, InputMoneyServices>();
+builder.Services.AddScoped<IIncrementMoneyInMachine, IncrementMoneyInMachine>();
+builder.Services.AddScoped<ICoffeeMachineStatusServices, CoffeeMachineStatusServices>();
+
 
 var app = builder.Build();
 
@@ -35,8 +38,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
-//app.UseExceptionHandlerMiddleware();
-//app.UseExceptionHandler(ExceptionHandlerMiddleware);
 
 app.UseHttpsRedirection();
 

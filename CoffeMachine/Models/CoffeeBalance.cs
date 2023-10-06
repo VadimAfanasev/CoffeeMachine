@@ -1,12 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
-
-namespace CoffeMachine.Models
+﻿namespace CoffeMachine.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class CoffeeBalance
     {
+        public uint Balance { get; set; }
+
         [Key]
         public string Name { get; set; }
-        public uint Balance { get; set; }
     }
 }

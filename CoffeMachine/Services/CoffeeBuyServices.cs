@@ -1,21 +1,21 @@
-﻿using CoffeMachine.Common.Interfaces;
-using CoffeMachine.Models.Data;
-using CoffeMachine.Services.Interfaces;
-using Newtonsoft.Json;
-using System.Net;
-
-namespace CoffeMachine.Services
+﻿namespace CoffeMachine.Services
 {
-    public class CoffeeBuyServices: ICoffeeBuyServices
-    {
-        private CoffeeContext _db;
-        private ICalculateChange _calculateChange;
-        private IDecrementAvailableNotes _decrementAvailableNote;
-        private IIncrementAvailableNotes _incrementAvailableNote;
-        private IIncrementCoffeeBalances _incrementCoffeeBalances;
+    using CoffeMachine.Common.Interfaces;
+    using CoffeMachine.Dto;
+    using CoffeMachine.Models.Data;
+    using CoffeMachine.Services.Interfaces;
 
-        private uint[] banknotes = new uint[] { 5000, 2000, 1000, 500 };
-        public CoffeeBuyServices(CoffeeContext db, ICalculateChange calculateChange, IDecrementAvailableNotes decrementAvailableNotes, 
+    public class CoffeeBuyServices : ICoffeeBuyServices
+    {
+        private readonly uint[] _banknotes = { 5000, 2000, 1000, 500 };
+        private readonly ICalculateChange _calculateChange;
+        private readonly CoffeeContext _db;
+        private readonly IDecrementAvailableNotes _decrementAvailableNote;
+        private readonly IIncrementAvailableNotes _incrementAvailableNote;
+        private readonly IIncrementCoffeeBalances _incrementCoffeeBalances;
+
+        public CoffeeBuyServices(CoffeeContext db, ICalculateChange calculateChange,
+            IDecrementAvailableNotes decrementAvailableNotes,
             IIncrementAvailableNotes incrementAvailableNotes, IIncrementCoffeeBalances incrementCoffeeBalances)
         {
             _db = db;
@@ -25,51 +25,61 @@ namespace CoffeMachine.Services
             _incrementCoffeeBalances = incrementCoffeeBalances;
         }
 
-        public List<uint> BuyingCoffee(string coffeeType, uint[] moneys)
+        public OrderCoffeeDto BuyingCoffee(string coffeeType, uint[] moneys)
         {
             if (!_db.Coffees.Any(c => c.Name == coffeeType))
+                throw new InvalidDataException("Invalid coffee type");
+
+            if (!moneys.All(c => _banknotes.Contains(c)))
             {
-                throw new ArgumentException("Неверно выбран кофе", nameof(coffeeType));
+                throw new InvalidDataException("Invalid banknotes type");
             }
 
-            if (!moneys.All(c => banknotes.Contains(c)))
-            {
-                //return BadRequest("Invalid banknotes type");
-            }
-
-            uint moneysUint = SumUintArray(moneys);
-            uint coffeePrice = GetCoffeePrice(coffeeType);
+            var moneysUint = SumUintArray(moneys);
+            var coffeePrice = GetCoffeePrice(coffeeType);
 
             if (moneysUint < coffeePrice)
             {
-                //return BadRequest("Insufficient amount");
+                throw new ArgumentException("The amount deposited is less than required");
             }
 
             var changeAmount = moneysUint - coffeePrice;
-
-            _incrementAvailableNote.IncrementAvailableNote(moneys);
 
             var change = _calculateChange.Calculate(changeAmount);
 
             if (change == null)
             {
-                //return BadRequest("Cannot provide change");
+                throw new ArgumentException("Cannot provide change");
             }
+
+            _incrementAvailableNote.IncrementAvailableNote(moneys);
 
             _decrementAvailableNote.DecrementAvailableNote(change);
 
             _incrementCoffeeBalances.IncrementCoffeeBalance(coffeeType, coffeePrice);
 
-            return change;
+            var changeDto = ChangeToDto(change);
+
+            return changeDto;
         }
 
         public uint SumUintArray(uint[] moneys)
         {
-            long sum = moneys.Sum(n => (long)n);
+            var sum = moneys.Sum(n => n);
             return (uint)sum;
         }
 
-        public uint GetCoffeePrice(string coffeeType)
+        private static OrderCoffeeDto ChangeToDto(List<uint> change)
+        {
+            var changeDto = new OrderCoffeeDto
+            {
+                Change = change
+            };
+
+            return changeDto;
+        }
+
+        private uint GetCoffeePrice(string coffeeType)
         {
             var coffeePrice = _db.Coffees
                 .Where(c => c.Name == coffeeType)

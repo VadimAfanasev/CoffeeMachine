@@ -1,8 +1,10 @@
 ﻿namespace CoffeMachine.Services.Interfaces
 {
+    using CoffeMachine.Dto;
+
     public interface ICoffeeBuyServices
     {
-        List<uint> BuyingCoffee(string coffeeType, uint[] moneys);
+        OrderCoffeeDto BuyingCoffee(string coffeeType, uint[] moneys);
         uint SumUintArray(uint[] moneys);
     }
 }

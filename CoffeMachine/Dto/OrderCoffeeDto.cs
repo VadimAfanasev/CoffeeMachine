@@ -2,6 +2,6 @@
 {
     public class OrderCoffeeDto
     {
-        public List<uint> Change { get; set; }
+        public List<uint>? Change { get; set; }
     }
 }

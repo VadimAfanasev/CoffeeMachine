@@ -1,9 +1,12 @@
-﻿using System.Net;
-using System.Text.Json;
-using CoffeMachine.Dto;
-
-namespace CoffeMachine.Middlewares
+﻿namespace CoffeMachine.Middlewares
 {
+    using System.Net;
+    using System.Text.Json;
+
+    using CoffeMachine.Dto;
+
+    using Microsoft.AspNetCore.Mvc.TagHelpers;
+
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;
@@ -19,20 +22,29 @@ namespace CoffeMachine.Middlewares
             {
                 await _next(httpContext);
             }
+            catch (ArgumentException ex)
+            {
+                await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest, ex.Message);
+            }
+            catch (InvalidDataException ex)
+            {
+                await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest, ex.Message);
+            }
             catch (Exception ex)
             {
-                await HandleExceptionAsync(httpContext, HttpStatusCode.InternalServerError, "Invalid data");
+                await HandleExceptionAsync(httpContext, HttpStatusCode.NotFound, ex.Message);
             }
         }
 
-        private async Task HandleExceptionAsync(HttpContext context, HttpStatusCode httpStatusCode, string message)
+        private static async Task HandleExceptionAsync(HttpContext context, HttpStatusCode httpStatusCode,
+            string message)
         {
             var response = context.Response;
 
             response.ContentType = "application/json";
             response.StatusCode = (int)httpStatusCode;
 
-            var errorDto = new ErrorDto()
+            var errorDto = new ErrorDto
             {
                 Message = message,
                 StatusCode = (int)httpStatusCode
@@ -41,31 +53,5 @@ namespace CoffeMachine.Middlewares
             var result = JsonSerializer.Serialize(errorDto);
             await response.WriteAsJsonAsync(result);
         }
-
-        //public async Task Invoke(HttpContext context)
-        //{
-        //    try
-        //    {
-        //        await _next(context);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await HandleExceptionMessageAsync(context, ex).ConfigureAwait(false);
-        //    }
-        //}
-
-        //private static Task HandleExceptionMessageAsync(HttpContext context, Exception exception)
-        //{
-        //    context.Response.ContentType = "application/json";
-        //    int statusCode = (int)HttpStatusCode.InternalServerError;
-        //    var result = JsonConvert.SerializeObject(new
-        //    {
-        //        StatusCode = statusCode,
-        //        ErrorMessage = exception.Message
-        //    });
-        //    context.Response.ContentType = "application/json";
-        //    context.Response.StatusCode = statusCode;
-        //    return context.Response.WriteAsync(result);
-        //}
     }
 }

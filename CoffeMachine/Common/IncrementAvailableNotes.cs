@@ -1,12 +1,12 @@
-﻿using CoffeMachine.Common.Interfaces;
-using CoffeMachine.Models;
-using CoffeMachine.Models.Data;
-
-namespace CoffeMachine.Common
+﻿namespace CoffeMachine.Common
 {
-    public class IncrementAvailableNotes: IIncrementAvailableNotes
+    using CoffeMachine.Common.Interfaces;
+    using CoffeMachine.Models.Data;
+
+    public class IncrementAvailableNotes : IIncrementAvailableNotes
     {
         private readonly CoffeeContext _db;
+
         public IncrementAvailableNotes(CoffeeContext db)
         {
             _db = db;
@@ -16,12 +16,11 @@ namespace CoffeMachine.Common
         {
             foreach (var note in inputMoney)
             {
-                var money = _db.MoneyInMachines.FirstOrDefault(c=>c.Nominal == note);
+                var money = _db.MoneyInMachines.FirstOrDefault(c => c.Nominal == note);
                 if (money != null)
-                {
                     money.Count++;
-                }
             }
+
             _db.SaveChanges();
         }
     }

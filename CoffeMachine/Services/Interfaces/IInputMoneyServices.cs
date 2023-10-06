@@ -1,9 +1,9 @@
-﻿using CoffeMachine.Dto;
-
-namespace CoffeMachine.Services.Interfaces
+﻿namespace CoffeMachine.Services.Interfaces
 {
+    using CoffeMachine.Dto;
+
     public interface IInputMoneyServices
     {
-        List<uint> InputingMoney(List<InputMoneyDto> inputMoney);
+        void Inputing(List<InputMoneyDto> inputMoney);
     }
 }

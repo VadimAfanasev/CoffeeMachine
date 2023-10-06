@@ -1,8 +1,8 @@
 ﻿namespace CoffeMachine.Dto
 {
-    public class InputMoneyDto
+    public class BalanceMoneyDto
     {
         public uint Count { get; set; }
-        public int Nominal { get; set; }
+        public uint Nominal { get; set; }
     }
 }
