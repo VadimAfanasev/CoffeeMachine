@@ -13,7 +13,6 @@
         {
             _incrementMoneyInMachine = incrementMoneyInMachine;
         }
-
         public void Inputing(List<InputMoneyDto> inputMoney)
         {
             if (!inputMoney.All(c => _banknotes.Contains(c.Nominal)))
