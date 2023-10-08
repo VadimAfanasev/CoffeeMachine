@@ -1,9 +1,9 @@
-﻿namespace CoffeMachine.Common.Interfaces
-{
-    using CoffeMachine.Dto;
+﻿using CoffeeMachine.Dto;
 
+namespace CoffeeMachine.Common.Interfaces
+{
     public interface IIncrementMoneyInMachine
     {
-        void IncrementMoney(List<InputMoneyDto> inputMoney);
+        Task IncrementMoneyAsync(List<InputMoneyDto> inputMoney);
     }
 }

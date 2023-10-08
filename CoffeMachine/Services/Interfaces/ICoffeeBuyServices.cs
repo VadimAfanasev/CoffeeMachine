@@ -1,10 +1,10 @@
-﻿namespace CoffeMachine.Services.Interfaces
-{
-    using CoffeMachine.Dto;
+﻿using CoffeeMachine.Dto;
 
+namespace CoffeeMachine.Services.Interfaces
+{
     public interface ICoffeeBuyServices
     {
-        OrderCoffeeDto BuyingCoffee(string coffeeType, uint[] moneys);
+        Task<OrderCoffeeDto> BuyingCoffeeAsync(string coffeeType, uint[] moneys);
         uint SumUintArray(uint[] moneys);
     }
 }

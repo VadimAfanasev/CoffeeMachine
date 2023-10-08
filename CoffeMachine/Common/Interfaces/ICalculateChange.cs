@@ -1,7 +1,7 @@
-﻿namespace CoffeMachine.Common.Interfaces
+﻿namespace CoffeeMachine.Common.Interfaces
 {
     public interface ICalculateChange
     {
-        List<uint> Calculate(uint amount);
+        Task<List<uint>> CalculateAsync(uint amount);
     }
 }

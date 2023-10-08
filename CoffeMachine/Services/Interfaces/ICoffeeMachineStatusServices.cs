@@ -1,10 +1,10 @@
-﻿namespace CoffeMachine.Services.Interfaces
-{
-    using CoffeMachine.Dto;
+﻿using CoffeeMachine.Dto;
 
+namespace CoffeeMachine.Services.Interfaces
+{
     public interface ICoffeeMachineStatusServices
     {
-        List<BalanceCoffeeDto> GetBalanceCoffee();
-        List<BalanceMoneyDto> GetBalanceMoney();
+        Task<List<BalanceCoffeeDto>> GetBalanceCoffeeAsync();
+        Task<List<BalanceMoneyDto>> GetBalanceMoneyAsync();
     }
 }

@@ -1,12 +1,9 @@
-﻿namespace CoffeMachine.Middlewares
+﻿using System.Net;
+using System.Text.Json;
+using CoffeeMachine.Dto;
+
+namespace CoffeeMachine.Middlewares
 {
-    using System.Net;
-    using System.Text.Json;
-
-    using CoffeMachine.Dto;
-
-    using Microsoft.AspNetCore.Mvc.TagHelpers;
-
     public class ExceptionHandlingMiddleware
     {
         private readonly RequestDelegate _next;

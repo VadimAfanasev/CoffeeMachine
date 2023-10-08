@@ -1,4 +1,4 @@
-﻿namespace CoffeMachine.Dto
+﻿namespace CoffeeMachine.Dto
 {
     public class BalanceMoneyDto
     {

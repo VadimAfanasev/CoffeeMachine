@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace CoffeMachine.Migrations
+namespace CoffeeMachine.Migrations
 {
     /// <inheritdoc />
     public partial class FixedExPt2 : Migration

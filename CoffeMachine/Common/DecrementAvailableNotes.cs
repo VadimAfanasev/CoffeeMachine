@@ -1,8 +1,9 @@
-﻿namespace CoffeMachine.Common
-{
-    using CoffeMachine.Common.Interfaces;
-    using CoffeMachine.Models.Data;
+﻿using CoffeeMachine.Common.Interfaces;
+using CoffeeMachine.Models.Data;
+using Microsoft.EntityFrameworkCore;
 
+namespace CoffeeMachine.Common
+{
     public class DecrementAvailableNotes : IDecrementAvailableNotes
     {
         private readonly CoffeeContext _db;
@@ -12,16 +13,16 @@
             _db = db;
         }
 
-        public void DecrementAvailableNote(List<uint> change)
+        public async Task DecrementAvailableNoteAsync(List<uint> change)
         {
             foreach (var note in change)
             {
-                var money = _db.MoneyInMachines.FirstOrDefault(c => c.Nominal == note);
+                var money = await _db.MoneyInMachines.FirstOrDefaultAsync(c => c.Nominal == note);
                 if (money != null)
                     money.Count--;
             }
 
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
     }
 }

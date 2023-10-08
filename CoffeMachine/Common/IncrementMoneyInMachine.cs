@@ -1,9 +1,10 @@
-﻿namespace CoffeMachine.Common
-{
-    using CoffeMachine.Common.Interfaces;
-    using CoffeMachine.Dto;
-    using CoffeMachine.Models.Data;
+﻿using CoffeeMachine.Common.Interfaces;
+using CoffeeMachine.Dto;
+using CoffeeMachine.Models.Data;
+using Microsoft.EntityFrameworkCore;
 
+namespace CoffeeMachine.Common
+{
     public class IncrementMoneyInMachine : IIncrementMoneyInMachine
     {
         private readonly CoffeeContext _db;
@@ -13,16 +14,18 @@
             _db = db;
         }
 
-        public void IncrementMoney(List<InputMoneyDto> inputMoney)
+        public async Task IncrementMoneyAsync(List<InputMoneyDto> inputMoney)
         {
-            foreach (var banknote in inputMoney)
+            var updateTasks = inputMoney.Select(async banknote =>
             {
-                var money = _db.MoneyInMachines.FirstOrDefault(c => c.Nominal == banknote.Nominal);
+                var money = await _db.MoneyInMachines.FirstOrDefaultAsync(c => c.Nominal == banknote.Nominal);
                 if (money != null)
-                    money.Count = money.Count + banknote.Count;
-            }
+                    money.Count += banknote.Count;
+            });
 
-            _db.SaveChanges();
+            await Task.WhenAll(updateTasks);
+
+            await _db.SaveChangesAsync();
         }
     }
 }

@@ -3501,11 +3501,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeMachine.csproj",
-      "projectName": "CoffeMachine",
-      "projectPath": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeMachine.csproj",
+      "projectUniqueName": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+      "projectName": "CoffeeMachine",
+      "projectPath": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
       "packagesPath": "C:\\Users\\Вадим\\.nuget\\packages\\",
-      "outputPath": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\obj\\",
+      "outputPath": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
-﻿namespace CoffeMachine.Controllers
-{
-    using CoffeMachine.Dto;
-    using CoffeMachine.Services.Interfaces;
+﻿using CoffeeMachine.Dto;
+using CoffeeMachine.Services.Interfaces;
 
+namespace CoffeeMachine.Controllers
+{
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
@@ -22,30 +22,30 @@
         }
 
         [HttpGet("coffeebalance")]
-        public IActionResult GetCoffeeBalance()
+        public async Task<IActionResult> GetCoffeeBalanceAsync()
         {
-            var coffeeBalance = _coffeeMachineStatusService.GetBalanceCoffee();
+            var coffeeBalance = await _coffeeMachineStatusService.GetBalanceCoffeeAsync();
             return Ok(coffeeBalance);
         }
 
         [HttpGet("moneyinmachine")]
-        public IActionResult GetMoneyInMachine()
+        public async Task<IActionResult> GetMoneyInMachineAsync()
         {
-            var moneyInMachine = _coffeeMachineStatusService.GetBalanceMoney();
+            var moneyInMachine = await _coffeeMachineStatusService.GetBalanceMoneyAsync();
             return Ok(moneyInMachine);
         }
 
         [HttpPut("inputing/")]
-        public ActionResult<List<InputMoneyDto>> InputMoney([FromBody] List<InputMoneyDto> inputMoney)
+        public async Task<ActionResult<List<InputMoneyDto>>> InputMoneyAsync([FromBody] List<InputMoneyDto> inputMoney)
         {
-            _inputMoneyService.Inputing(inputMoney);
+            await _inputMoneyService.InputingAsync(inputMoney);
             return Ok();
         }
 
         [HttpPost("order/{coffeeType}")]
-        public ActionResult<OrderCoffeeDto> PlaceOrder(string coffeeType, [FromBody] uint[] moneys)
+        public async Task<ActionResult<OrderCoffeeDto>> PlaceOrder(string coffeeType, [FromBody] uint[] moneys)
         {
-            var change = _coffeeBuyService.BuyingCoffee(coffeeType, moneys);
+            var change = await _coffeeBuyService.BuyingCoffeeAsync(coffeeType, moneys);
 
             return Ok(change);
         }

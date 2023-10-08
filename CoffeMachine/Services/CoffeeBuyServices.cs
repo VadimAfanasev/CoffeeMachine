@@ -1,10 +1,10 @@
-﻿namespace CoffeMachine.Services
-{
-    using CoffeMachine.Common.Interfaces;
-    using CoffeMachine.Dto;
-    using CoffeMachine.Models.Data;
-    using CoffeMachine.Services.Interfaces;
+﻿using CoffeeMachine.Common.Interfaces;
+using CoffeeMachine.Dto;
+using CoffeeMachine.Models.Data;
+using CoffeeMachine.Services.Interfaces;
 
+namespace CoffeeMachine.Services
+{
     public class CoffeeBuyServices : ICoffeeBuyServices
     {
         private readonly uint[] _banknotes = { 5000, 2000, 1000, 500 };
@@ -25,7 +25,7 @@
             _incrementCoffeeBalances = incrementCoffeeBalances;
         }
 
-        public OrderCoffeeDto BuyingCoffee(string coffeeType, uint[] moneys)
+        public async Task<OrderCoffeeDto> BuyingCoffeeAsync(string coffeeType, uint[] moneys)
         {
             if (!_db.Coffees.Any(c => c.Name == coffeeType))
                 throw new InvalidDataException("Invalid coffee type");
@@ -45,18 +45,18 @@
 
             var changeAmount = moneysUint - coffeePrice;
 
-            var change = _calculateChange.Calculate(changeAmount);
+            var change = await _calculateChange.CalculateAsync(changeAmount);
 
             if (change == null)
             {
                 throw new ArgumentException("Cannot provide change");
             }
 
-            _incrementAvailableNote.IncrementAvailableNote(moneys);
+            await _incrementAvailableNote.IncrementAvailableNoteAsync(moneys);
 
-            _decrementAvailableNote.DecrementAvailableNote(change);
+            await _decrementAvailableNote.DecrementAvailableNoteAsync(change);
 
-            _incrementCoffeeBalances.IncrementCoffeeBalance(coffeeType, coffeePrice);
+            await _incrementCoffeeBalances.IncrementCoffeeBalanceAsync(coffeeType, coffeePrice);
 
             var changeDto = ChangeToDto(change);
 

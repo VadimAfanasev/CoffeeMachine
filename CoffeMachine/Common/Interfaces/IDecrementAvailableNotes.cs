@@ -1,7 +1,7 @@
-﻿namespace CoffeMachine.Common.Interfaces
+﻿namespace CoffeeMachine.Common.Interfaces
 {
     public interface IDecrementAvailableNotes
     {
-        void DecrementAvailableNote(List<uint> change);
+        Task DecrementAvailableNoteAsync(List<uint> change);
     }
 }

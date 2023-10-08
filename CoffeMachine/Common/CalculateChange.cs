@@ -1,8 +1,8 @@
-﻿namespace CoffeMachine.Common
-{
-    using CoffeMachine.Common.Interfaces;
-    using CoffeMachine.Models.Data;
+﻿using CoffeeMachine.Common.Interfaces;
+using CoffeeMachine.Models.Data;
 
+namespace CoffeeMachine.Common
+{
     public class CalculateChange : ICalculateChange
     {
         private readonly CoffeeContext _db;
@@ -12,7 +12,7 @@
             _db = db;
         }
 
-        public List<uint> Calculate(uint amount)
+        public async Task<List<uint>> CalculateAsync(uint amount)
         {
             var change = new List<uint>();
 

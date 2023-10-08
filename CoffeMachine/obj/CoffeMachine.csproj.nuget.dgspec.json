@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeMachine.csproj": {}
+    "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeMachine.csproj": {}
   },
   "projects": {
-    "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeMachine.csproj": {
+    "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeMachine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeMachine.csproj",
+        "projectUniqueName": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeMachine.csproj",
         "projectName": "CoffeMachine",
-        "projectPath": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeMachine.csproj",
+        "projectPath": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeMachine.csproj",
         "packagesPath": "C:\\Users\\Вадим\\.nuget\\packages\\",
-        "outputPath": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\obj\\",
+        "outputPath": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 
-namespace CoffeMachine.Models.Data
+namespace CoffeeMachine.Models.Data
 {
     public class CoffeeContext : DbContext
     {
         public virtual DbSet<MoneyInMachine> MoneyInMachines { get; set; }
         public virtual DbSet<Coffee> Coffees { get; set; }
-        public virtual DbSet<CoffeeBalance> CoffeeBalances { get; set; }
 
         public CoffeeContext(DbContextOptions<CoffeeContext> options) : base(options)
         {
@@ -23,7 +21,8 @@ namespace CoffeMachine.Models.Data
                 }; 
                 Coffees.AddRange(coffeePrice.Select(s => new Coffee() {
                     Name = s.Key,
-                    Price = s.Value
+                    Price = s.Value,
+                    Balance = 0
                 }));
             }
 
@@ -46,20 +45,6 @@ namespace CoffeMachine.Models.Data
                 }));
             }
 
-            if (!CoffeeBalances.Any())
-            {
-                var coffee = new Dictionary<string, uint>
-                {
-                    { "Cappuccino", 0 },
-                    { "Latte", 0 },
-                    { "Americano", 0 }
-                };
-                CoffeeBalances.AddRange(coffee.Select(c => new CoffeeBalance()
-                {
-                    Name = c.Key,
-                    Balance = c.Value
-                }));
-            }
             SaveChanges();
         }
     }

@@ -1,7 +1,7 @@
-﻿namespace CoffeMachine.Models
-{
-    using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
+namespace CoffeeMachine.Models
+{
     public class MoneyInMachine
     {
         public uint Count { get; set; }

@@ -1,9 +1,9 @@
-using CoffeMachine.Common;
-using CoffeMachine.Common.Interfaces;
-using CoffeMachine.Middlewares;
-using CoffeMachine.Models.Data;
-using CoffeMachine.Services;
-using CoffeMachine.Services.Interfaces;
+using CoffeeMachine.Common;
+using CoffeeMachine.Common.Interfaces;
+using CoffeeMachine.Middlewares;
+using CoffeeMachine.Models.Data;
+using CoffeeMachine.Services;
+using CoffeeMachine.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
