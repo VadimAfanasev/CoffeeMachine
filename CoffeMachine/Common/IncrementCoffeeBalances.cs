@@ -13,6 +13,7 @@ namespace CoffeeMachine.Common
             _db = db;
         }
 
+        //Добавляем купленный пользователем кофе в таблицу
         public async Task IncrementCoffeeBalanceAsync(string coffeeType, uint coffeePrice)
         {
             var coffeeName = await _db.Coffees.FirstOrDefaultAsync(c => c.Name == coffeeType);

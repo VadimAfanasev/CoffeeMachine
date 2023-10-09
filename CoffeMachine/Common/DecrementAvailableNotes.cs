@@ -13,6 +13,7 @@ namespace CoffeeMachine.Common
             _db = db;
         }
 
+        // Удаляем деньги, выданные пользователю в качестве сдачи, из таблицы
         public async Task DecrementAvailableNoteAsync(List<uint> change)
         {
             foreach (var note in change)

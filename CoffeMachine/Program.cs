@@ -1,3 +1,5 @@
+using System.Reflection;
+
 using CoffeeMachine.Common;
 using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Middlewares;
@@ -5,15 +7,28 @@ using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services;
 using CoffeeMachine.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
 // Add services to the container.
+builder.Logging.ClearProviders();
+builder.Logging.AddSerilog(logger);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(config =>
+{
+    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+    config.IncludeXmlComments(xmlPath);
+});
 
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<CoffeeContext>(options => options.UseNpgsql(connection));

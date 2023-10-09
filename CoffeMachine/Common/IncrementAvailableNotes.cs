@@ -13,6 +13,7 @@ namespace CoffeeMachine.Common
             _db = db;
         }
 
+        // Добавляем внесенные пользователем деньги в таблицу
         public async Task IncrementAvailableNoteAsync(uint[] inputMoney)
         {
             foreach (var note in inputMoney)

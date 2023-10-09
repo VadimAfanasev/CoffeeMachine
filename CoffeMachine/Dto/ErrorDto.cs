@@ -1,7 +1,7 @@
-﻿using System.Text.Json;
-
-namespace CoffeeMachine.Dto
+﻿namespace CoffeeMachine.Dto
 {
+    using System.Text.Json;
+
     public class ErrorDto
     {
         public string? Message { get; set; }

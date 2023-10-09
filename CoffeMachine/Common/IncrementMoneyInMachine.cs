@@ -14,6 +14,7 @@ namespace CoffeeMachine.Common
             _db = db;
         }
 
+        // Самостоятельно добавляем деньги в автомат. 
         public async Task IncrementMoneyAsync(List<InputMoneyDto> inputMoney)
         {
             var updateTasks = inputMoney.Select(async banknote =>

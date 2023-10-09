@@ -1,10 +1,11 @@
-﻿using CoffeeMachine.Dto;
-using CoffeeMachine.Models.Data;
-using CoffeeMachine.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
-
-namespace CoffeeMachine.Services
+﻿namespace CoffeeMachine.Services
 {
+    using CoffeeMachine.Dto;
+    using CoffeeMachine.Models.Data;
+    using CoffeeMachine.Services.Interfaces;
+
+    using Microsoft.EntityFrameworkCore;
+
     public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     {
         private readonly CoffeeContext _db;
@@ -14,6 +15,7 @@ namespace CoffeeMachine.Services
             _db = db;
         }
 
+        // Получаем баланс кофе в автомате
         public async Task<List<BalanceCoffeeDto>> GetBalanceCoffeeAsync()
         {
             var balanceCoffee = new List<BalanceCoffeeDto>();
@@ -41,13 +43,12 @@ namespace CoffeeMachine.Services
             balanceCoffee.Add(totalBalanceDto);
 
             if (balanceCoffee == null)
-            {
                 throw new Exception("Entity not found in the system");
-            }
 
             return balanceCoffee;
         }
 
+        // Получаем список доступных в автомате денежных средств
         public async Task<List<BalanceMoneyDto>> GetBalanceMoneyAsync()
         {
             var balanceMoney = new List<BalanceMoneyDto>();
@@ -66,9 +67,7 @@ namespace CoffeeMachine.Services
             var sortedBalanceMoney = balanceMoney.OrderByDescending(n => n.Nominal).ToList();
 
             if (sortedBalanceMoney == null)
-            {
                 throw new Exception("Entity not found in the system");
-            }
 
             return sortedBalanceMoney;
         }

@@ -1,0 +1,152 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CoffeeMachine</name>
+    </assembly>
+    <members>
+        <member name="M:CoffeeMachine.Controllers.CoffeeMachineController.GetCoffeeBalanceAsync">
+            <summary>
+            Get the amount of purchased coffee from the coffee machine
+            </summary>
+            <response code="200">Success</response>
+            <response code="404">Entity not found in the system</response>
+        </member>
+        <member name="M:CoffeeMachine.Controllers.CoffeeMachineController.GetMoneyInMachineAsync">
+            <summary>
+            Get the amount of money from the coffee machine
+            </summary>
+            <response code="200">Success</response>
+            <response code="404">Entity not found in the system</response>
+        </member>
+        <member name="M:CoffeeMachine.Controllers.CoffeeMachineController.InputMoneyAsync(System.Collections.Generic.List{CoffeeMachine.Dto.InputMoneyDto})">
+            <summary>
+            Deposit money into the coffee machine
+            </summary>
+            <remarks>
+            Sample request:
+            Put /note
+            {
+                title: "money deposited"
+            }
+            </remarks>
+            <param name="inputMoney">InputMoneyDto object</param>
+            <returns>Returns NoContent</returns>
+            <response code="200">Success</response>
+            <response code="400">Invalid banknotes type</response>
+        </member>
+        <member name="M:CoffeeMachine.Controllers.CoffeeMachineController.PlaceOrder(System.String,System.UInt32[])">
+            <summary>
+            Buying coffee
+            </summary>
+            <remarks>
+            Sample request:
+            Post /note
+            {
+                title: "coffee bought"
+            }
+            </remarks>
+            <param name="coffeeType">CoffeeType object</param>
+            <param name="moneys">Moneys object</param>
+            <returns>Returns change (guid)</returns>
+            <response code="200">Success</response>
+            <response code="400">Incorrect data entered</response>
+            <response code="404">Entity not found in the system</response>
+        </member>
+        <member name="T:CoffeeMachine.Migrations.initial">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CoffeeMachine.Migrations.FixedName">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.FixedName.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.FixedName.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.FixedName.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CoffeeMachine.Migrations.FixedEx">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.FixedEx.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.FixedEx.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.FixedEx.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CoffeeMachine.Migrations.FixedExPt2">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.FixedExPt2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.FixedExPt2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.FixedExPt2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_CoffeeName">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_CoffeeName.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_CoffeeName.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_CoffeeName.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_Name">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_Name.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_Name.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_Name.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balance">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balance.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balance.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balance.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balances">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balances.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balances.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balances.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
