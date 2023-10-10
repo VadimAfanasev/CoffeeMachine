@@ -7,14 +7,35 @@ using CoffeeMachine.Dto;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services.Interfaces;
 
+/// <summary>
+/// The class in which the purchase of coffee is implemented
+/// </summary>
 public class CoffeeBuyServices : ICoffeeBuyServices
 {
+    /// <summary>
+    /// Injecting of change calculation methods
+    /// </summary>
     private readonly ICalculateChange _calculateChange;
+    /// <summary>
+    /// Injecting the database context CoffeeContext
+    /// </summary>
     private readonly CoffeeContext _db;
+    /// <summary>
+    /// Implementation of methods for deducting change from the database
+    /// </summary>
     private readonly IDecrementAvailableNotes _decrementAvailableNote;
+    /// <summary>
+    /// Implementation of methods for entering change into the database
+    /// </summary>
     private readonly IIncrementAvailableNotes _incrementAvailableNote;
+    /// <summary>
+    /// Implementation of methods for entering purchased coffee into the database
+    /// </summary>
     private readonly IIncrementCoffeeBalances _incrementCoffeeBalances;
 
+    /// <summary>
+    /// Constructor of the class in which coffee is purchased
+    /// </summary>
     public CoffeeBuyServices(CoffeeContext db, ICalculateChange calculateChange,
         IDecrementAvailableNotes decrementAvailableNotes,
         IIncrementAvailableNotes incrementAvailableNotes, IIncrementCoffeeBalances incrementCoffeeBalances)
@@ -26,14 +47,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         _incrementCoffeeBalances = incrementCoffeeBalances;
     }
 
-    /// <summary>
-    /// The method by which coffee is purchased
-    /// </summary>
-    /// <param name="coffeeType"></param>
-    /// <param name="moneys"></param>
-    /// <returns></returns>
-    /// <exception cref="InvalidDataException"></exception>
-    /// <exception cref="ArgumentException"></exception>
+    /// <inheritdoc />
     public async Task<OrderCoffeeDto> BuyingCoffeeAsync(string coffeeType, uint[] moneys)
     {
         if (!_db.Coffees.Any(c => c.Name == coffeeType))
@@ -66,11 +80,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         return changeDto;
     }
 
-    /// <summary>
-    /// We calculate the amount of deposited funds to calculate the change
-    /// </summary>
-    /// <param name="moneys"></param>
-    /// <returns></returns>
+    /// <inheritdoc />
     public uint SumUintArray(uint[] moneys)
     {
         var sum = moneys.Sum(n => n);
@@ -81,7 +91,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     /// Transfer the user's change to the Dto
     /// </summary>
     /// <param name="change"></param>
-    /// <returns></returns>
+    /// <returns>OrderCoffeeDto</returns>
     private static OrderCoffeeDto ChangeToDto(List<uint> change)
     {
         var changeDto = new OrderCoffeeDto
@@ -96,7 +106,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     /// Calculating the cost of coffee
     /// </summary>
     /// <param name="coffeeType"></param>
-    /// <returns></returns>
+    /// <returns>uint</returns>
     private uint GetCoffeePrice(string coffeeType)
     {
         var coffeePrice = _db.Coffees

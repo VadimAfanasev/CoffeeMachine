@@ -181,3 +181,4 @@ F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\D
 F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.Sinks.File.dll
 F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\obj\Debug\net7.0\CoffeeMachine.xml
 E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

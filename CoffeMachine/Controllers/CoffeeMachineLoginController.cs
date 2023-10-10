@@ -20,30 +20,10 @@ public class CoffeeMachineLoginController : ControllerBase
     }
 
     [HttpPost("login")]
-    public ActionResult Login([FromBody] UserModel userModel)
+    public async Task<ActionResult> Login([FromBody] UserModel userModel)
     {
-        var token = _getTokenService.GetTokenAsync(userModel);
+        var token = await _getTokenService.GetTokenAsync(userModel);
 
-        return Ok(token.Result);
+        return Ok(token);
     }
-
-    //public ActionResult Login([FromBody] UserModel userModel)
-    //{
-    //    UserModel userModelNew = new UserModel()
-    //    {
-    //        UserName = userModel.UserName,
-    //        Password = userModel.Password
-    //    };
-
-    //    var userDto = _userRepository.GetUser(userModelNew);
-
-    //    if (userDto == null)
-    //        throw new UnauthorizedAccessException("Invalid User");
-
-    //    var token = _tokenService.BuildToken(HttpContext.RequestServices.GetService<IConfiguration>()["Jwt:Key"],
-    //        HttpContext.RequestServices.GetService<IConfiguration>()["Jwt:Issuer"],
-    //        userDto);
-
-    //    return Ok(token);
-    //}
 }

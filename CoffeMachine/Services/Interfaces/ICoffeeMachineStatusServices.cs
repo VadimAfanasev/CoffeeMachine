@@ -2,6 +2,9 @@
 
 using CoffeeMachine.Dto;
 
+/// <summary>
+/// An interface that describes methods for obtaining information about a coffee machine
+/// </summary>
 public interface ICoffeeMachineStatusServices
 {
     /// <summary>
@@ -10,5 +13,10 @@ public interface ICoffeeMachineStatusServices
     /// <returns></returns>
     /// <exception cref="Exception"></exception>
     Task<List<BalanceCoffeeDto>> GetBalanceCoffeeAsync();
+    /// <summary>
+    /// We get a list of funds available in the machine
+    /// </summary>
+    /// <returns></returns>
+    /// <exception cref="Exception"></exception>
     Task<List<BalanceMoneyDto>> GetBalanceMoneyAsync();
 }

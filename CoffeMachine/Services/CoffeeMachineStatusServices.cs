@@ -6,10 +6,19 @@ using CoffeeMachine.Services.Interfaces;
 
 using Microsoft.EntityFrameworkCore;
 
+/// <summary>
+/// The class in which we get information about the coffee machine
+/// </summary>
 public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
 {
+    /// <summary>
+    /// Injecting the database context CoffeeContext
+    /// </summary>
     private readonly CoffeeContext _db;
 
+    /// <summary>
+    /// Constructor of a class in which we get information about the coffee machine
+    /// </summary>
     public CoffeeMachineStatusServices(CoffeeContext db)
     {
         _db = db;
@@ -48,11 +57,7 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
         return balanceCoffee;
     }
 
-    /// <summary>
-    /// We get a list of funds available in the machine
-    /// </summary>
-    /// <returns></returns>
-    /// <exception cref="Exception"></exception>
+    /// <inheritdoc />
     public async Task<List<BalanceMoneyDto>> GetBalanceMoneyAsync()
     {
         var balanceMoney = new List<BalanceMoneyDto>();

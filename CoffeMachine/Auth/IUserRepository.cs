@@ -2,5 +2,5 @@
 
 public interface IUserRepository
 {
-    User.UserDto GetUser(User.UserModel userModel);
+    Task<User.UserDto> GetUserAsync(User.UserModel userModel);
 }
