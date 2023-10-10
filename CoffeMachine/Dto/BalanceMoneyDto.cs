@@ -1,12 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CoffeeMachine.Dto
+namespace CoffeeMachine.Dto;
+
+public class BalanceMoneyDto
 {
-    public class BalanceMoneyDto
-    {
-        [Required]
-        public uint Count { get; set; }
-        [Required]
-        public uint Nominal { get; set; }
-    }
+    [Required]
+    public uint Count { get; set; }
+    [Required]
+    public uint Nominal { get; set; }
 }

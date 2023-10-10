@@ -1,9 +1,8 @@
 ﻿using CoffeeMachine.Dto;
 
-namespace CoffeeMachine.Common.Interfaces
+namespace CoffeeMachine.Common.Interfaces;
+
+public interface IIncrementMoneyInMachine
 {
-    public interface IIncrementMoneyInMachine
-    {
-        Task IncrementMoneyAsync(List<InputMoneyDto> inputMoney);
-    }
+    Task IncrementMoneyAsync(List<InputMoneyDto> inputMoney);
 }

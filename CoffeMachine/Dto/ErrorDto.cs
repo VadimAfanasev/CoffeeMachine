@@ -1,15 +1,14 @@
-﻿namespace CoffeeMachine.Dto
+﻿namespace CoffeeMachine.Dto;
+
+using System.Text.Json;
+
+public class ErrorDto
 {
-    using System.Text.Json;
+    public string? Message { get; set; }
+    public int StatusCode { get; set; }
 
-    public class ErrorDto
+    public override string ToString()
     {
-        public string? Message { get; set; }
-        public int StatusCode { get; set; }
-
-        public override string ToString()
-        {
-            return JsonSerializer.Serialize(this);
-        }
+        return JsonSerializer.Serialize(this);
     }
 }

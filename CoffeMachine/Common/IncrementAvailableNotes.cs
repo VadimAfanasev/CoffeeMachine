@@ -2,28 +2,32 @@
 using CoffeeMachine.Models.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace CoffeeMachine.Common
+namespace CoffeeMachine.Common;
+
+public class IncrementAvailableNotes : IIncrementAvailableNotes
 {
-    public class IncrementAvailableNotes : IIncrementAvailableNotes
+    private readonly CoffeeContext _db;
+
+    public IncrementAvailableNotes(CoffeeContext db)
     {
-        private readonly CoffeeContext _db;
+        _db = db;
+    }
 
-        public IncrementAvailableNotes(CoffeeContext db)
+    /// <summary>
+    /// Adding money contributed by the user to the table
+    /// </summary>
+    /// <param name="inputMoney"></param>
+    /// <exception cref="Exception"></exception>
+    public async Task IncrementAvailableNoteAsync(uint[] inputMoney)
+    {
+        foreach (var note in inputMoney)
         {
-            _db = db;
+            var money = await _db.MoneyInMachines.FirstOrDefaultAsync(c => c.Nominal == note);
+            if (money != null)
+                money.Count++;
+            else throw new Exception("Entity not found in the system");
         }
 
-        // Добавляем внесенные пользователем деньги в таблицу
-        public async Task IncrementAvailableNoteAsync(uint[] inputMoney)
-        {
-            foreach (var note in inputMoney)
-            {
-                var money = await _db.MoneyInMachines.FirstOrDefaultAsync(c => c.Nominal == note);
-                if (money != null)
-                    money.Count++;
-            }
-
-            await _db.SaveChangesAsync();
-        }
+        await _db.SaveChangesAsync();
     }
 }

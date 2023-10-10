@@ -1,37 +1,39 @@
 ﻿using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Models.Data;
 
-namespace CoffeeMachine.Common
+namespace CoffeeMachine.Common;
+
+using Microsoft.EntityFrameworkCore;
+
+public class CalculateChange : ICalculateChange
 {
-    using Microsoft.EntityFrameworkCore;
+    private readonly CoffeeContext _db;
 
-    public class CalculateChange : ICalculateChange
+    public CalculateChange(CoffeeContext db)
     {
-        private readonly CoffeeContext _db;
+        _db = db;
+    }
 
-        public CalculateChange(CoffeeContext db)
+    /// <summary>
+    /// Method for calculating change
+    /// </summary>
+    /// <param name="amount"></param>
+    /// <returns></returns>
+    public async Task<List<uint>> CalculateAsync(uint amount)
+    {
+        var change = new List<uint>();
+
+        var sortedNotes = await _db.MoneyInMachines.OrderByDescending(n => n.Nominal).ToListAsync();
+
+        foreach (var note in sortedNotes)
         {
-            _db = db;
-        }
-
-        // Метод для вычисления сдачи
-        public async Task<List<uint>> CalculateAsync(uint amount)
-        {
-            var change = new List<uint>();
-
-            var sortedNotes = await _db.MoneyInMachines.OrderByDescending(n => n.Nominal).ToListAsync();
-
-            // цикл в котором реализован жадный алгоритм для вычисления оптимальной сдачи
-            foreach (var note in sortedNotes)
+            while (amount >= note.Nominal && note.Count > 0)
             {
-                while (amount >= note.Nominal && note.Count > 0)
-                {
-                    change.Add(note.Nominal);
-                    amount -= note.Nominal;
-                }
+                change.Add(note.Nominal);
+                amount -= note.Nominal;
             }
-
-            return amount == 0 ? change : null;
         }
+
+        return amount == 0 ? change : null;
     }
 }

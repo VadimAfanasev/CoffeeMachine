@@ -1,7 +1,6 @@
-﻿namespace CoffeeMachine.Common.Interfaces
+﻿namespace CoffeeMachine.Common.Interfaces;
+
+public interface IIncrementCoffeeBalances
 {
-    public interface IIncrementCoffeeBalances
-    {
-        Task IncrementCoffeeBalanceAsync(string coffeeType, uint coffeePrice);
-    }
+    Task IncrementCoffeeBalanceAsync(string coffeeType, uint coffeePrice);
 }

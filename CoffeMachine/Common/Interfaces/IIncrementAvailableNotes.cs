@@ -1,7 +1,6 @@
-﻿namespace CoffeeMachine.Common.Interfaces
+﻿namespace CoffeeMachine.Common.Interfaces;
+
+public interface IIncrementAvailableNotes
 {
-    public interface IIncrementAvailableNotes
-    {
-        Task IncrementAvailableNoteAsync(uint[] inputMoney);
-    }
+    Task IncrementAvailableNoteAsync(uint[] inputMoney);
 }

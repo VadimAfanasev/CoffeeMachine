@@ -1,12 +1,11 @@
-﻿namespace CoffeeMachine.Dto
-{
-    using System.ComponentModel.DataAnnotations;
+﻿namespace CoffeeMachine.Dto;
 
-    public class InputMoneyDto
-    {
-        [Required]
-        public uint Count { get; set; }
-        [Required]
-        public uint Nominal { get; set; }
-    }
+using System.ComponentModel.DataAnnotations;
+
+public class InputMoneyDto
+{
+    [Required]
+    public uint Count { get; set; }
+    [Required]
+    public uint Nominal { get; set; }
 }

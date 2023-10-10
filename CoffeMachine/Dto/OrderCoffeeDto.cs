@@ -1,7 +1,6 @@
-﻿namespace CoffeeMachine.Dto
+﻿namespace CoffeeMachine.Dto;
+
+public class OrderCoffeeDto
 {
-    public class OrderCoffeeDto
-    {
-        public List<uint>? Change { get; set; }
-    }
+    public List<uint>? Change { get; set; }
 }

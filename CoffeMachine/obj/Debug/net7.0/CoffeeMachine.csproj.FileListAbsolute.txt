@@ -169,3 +169,15 @@ E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\D
 E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.Sinks.File.dll
 E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\CoffeeMachine.xml
 E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\obj\Debug\net7.0\CoffeeMachine.xml
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\CoffeeMachine.xml
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.AspNetCore.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.Extensions.Hosting.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.Extensions.Logging.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.Formatting.Compact.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.Settings.Configuration.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.Sinks.Console.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.Sinks.Debug.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Serilog.Sinks.File.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\obj\Debug\net7.0\CoffeeMachine.xml
+E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

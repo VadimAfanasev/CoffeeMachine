@@ -1,12 +1,11 @@
-﻿namespace CoffeeMachine.Models
+﻿namespace CoffeeMachine.Models;
+
+using System.ComponentModel.DataAnnotations;
+
+public class MoneyInMachine
 {
-    using System.ComponentModel.DataAnnotations;
+    public uint Count { get; set; }
 
-    public class MoneyInMachine
-    {
-        public uint Count { get; set; }
-
-        [Key]
-        public uint Nominal { get; set; }
-    }
+    [Key]
+    public uint Nominal { get; set; }
 }

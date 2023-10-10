@@ -4,21 +4,62 @@
         <name>CoffeeMachine</name>
     </assembly>
     <members>
-        <member name="M:CoffeeMachine.Controllers.CoffeeMachineController.GetCoffeeBalanceAsync">
+        <member name="M:CoffeeMachine.Common.CalculateChange.CalculateAsync(System.UInt32)">
+            <summary>
+            Method for calculating change
+            </summary>
+            <param name="amount"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoffeeMachine.Common.DecrementAvailableNotes.DecrementAvailableNoteAsync(System.Collections.Generic.List{System.UInt32})">
+            <summary>
+            We remove money given to the user as change from the table
+            </summary>
+            <param name="change"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:CoffeeMachine.Common.EnumBanknotes.Banknotes">
+            <summary>
+            List of banknote denominations available for calculation
+            </summary>
+        </member>
+        <member name="M:CoffeeMachine.Common.IncrementAvailableNotes.IncrementAvailableNoteAsync(System.UInt32[])">
+            <summary>
+            Adding money contributed by the user to the table
+            </summary>
+            <param name="inputMoney"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:CoffeeMachine.Common.IncrementCoffeeBalances.IncrementCoffeeBalanceAsync(System.String,System.UInt32)">
+            <summary>
+            Adding coffee purchased by the user to the table
+            </summary>
+            <param name="coffeeType"></param>
+            <param name="coffeePrice"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:CoffeeMachine.Common.IncrementMoneyInMachine.IncrementMoneyAsync(System.Collections.Generic.List{CoffeeMachine.Dto.InputMoneyDto})">
+            <summary>
+            Add money to the machine yourself
+            </summary>
+            <param name="inputMoney"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetCoffeeBalanceAsync">
             <summary>
             Get the amount of purchased coffee from the coffee machine
             </summary>
             <response code="200">Success</response>
             <response code="404">Entity not found in the system</response>
         </member>
-        <member name="M:CoffeeMachine.Controllers.CoffeeMachineController.GetMoneyInMachineAsync">
+        <member name="M:CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync">
             <summary>
             Get the amount of money from the coffee machine
             </summary>
             <response code="200">Success</response>
             <response code="404">Entity not found in the system</response>
         </member>
-        <member name="M:CoffeeMachine.Controllers.CoffeeMachineController.InputMoneyAsync(System.Collections.Generic.List{CoffeeMachine.Dto.InputMoneyDto})">
+        <member name="M:CoffeeMachine.Controllers.CoffeeMachineAdministratorController.InputMoneyAsync(System.Collections.Generic.List{CoffeeMachine.Dto.InputMoneyDto})">
             <summary>
             Deposit money into the coffee machine
             </summary>
@@ -34,7 +75,7 @@
             <response code="200">Success</response>
             <response code="400">Invalid banknotes type</response>
         </member>
-        <member name="M:CoffeeMachine.Controllers.CoffeeMachineController.PlaceOrder(System.String,System.UInt32[])">
+        <member name="M:CoffeeMachine.Controllers.CoffeeMachineBuyController.PlaceOrder(System.String,System.UInt32[])">
             <summary>
             Buying coffee
             </summary>
@@ -51,6 +92,11 @@
             <response code="200">Success</response>
             <response code="400">Incorrect data entered</response>
             <response code="404">Entity not found in the system</response>
+        </member>
+        <member name="P:CoffeeMachine.Dto.BalanceCoffeeDto.Balance">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:CoffeeMachine.Migrations.initial">
             <inheritdoc />
@@ -147,6 +193,61 @@
         </member>
         <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balances.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Services.CoffeeBuyServices.BuyingCoffeeAsync(System.String,System.UInt32[])">
+            <summary>
+            The method by which coffee is purchased
+            </summary>
+            <param name="coffeeType"></param>
+            <param name="moneys"></param>
+            <returns></returns>
+            <exception cref="T:System.IO.InvalidDataException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:CoffeeMachine.Services.CoffeeBuyServices.SumUintArray(System.UInt32[])">
+            <summary>
+            We calculate the amount of deposited funds to calculate the change
+            </summary>
+            <param name="moneys"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoffeeMachine.Services.CoffeeBuyServices.ChangeToDto(System.Collections.Generic.List{System.UInt32})">
+            <summary>
+            Transfer the user's change to the Dto
+            </summary>
+            <param name="change"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoffeeMachine.Services.CoffeeBuyServices.GetCoffeePrice(System.String)">
+            <summary>
+            Calculating the cost of coffee
+            </summary>
+            <param name="coffeeType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CoffeeMachine.Services.CoffeeMachineStatusServices.GetBalanceCoffeeAsync">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Services.CoffeeMachineStatusServices.GetBalanceMoneyAsync">
+            <summary>
+            We get a list of funds available in the machine
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:CoffeeMachine.Services.InputMoneyServices.InputingAsync(System.Collections.Generic.List{CoffeeMachine.Dto.InputMoneyDto})">
+            <summary>
+            Depositing money into the machine yourself
+            </summary>
+            <param name="inputMoney"></param>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:CoffeeMachine.Services.Interfaces.ICoffeeMachineStatusServices.GetBalanceCoffeeAsync">
+            <summary>
+            Getting the coffee balance from the machine
+            </summary>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
         </member>
     </members>
 </doc>

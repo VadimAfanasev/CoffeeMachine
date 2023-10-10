@@ -2,28 +2,32 @@
 using CoffeeMachine.Models.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace CoffeeMachine.Common
+namespace CoffeeMachine.Common;
+
+public class DecrementAvailableNotes : IDecrementAvailableNotes
 {
-    public class DecrementAvailableNotes : IDecrementAvailableNotes
+    private readonly CoffeeContext _db;
+
+    public DecrementAvailableNotes(CoffeeContext db)
     {
-        private readonly CoffeeContext _db;
+        _db = db;
+    }
 
-        public DecrementAvailableNotes(CoffeeContext db)
+    /// <summary>
+    /// We remove money given to the user as change from the table
+    /// </summary>
+    /// <param name="change"></param>
+    /// <exception cref="Exception"></exception>
+    public async Task DecrementAvailableNoteAsync(List<uint> change)
+    {
+        foreach (var note in change)
         {
-            _db = db;
+            var money = await _db.MoneyInMachines.FirstOrDefaultAsync(c => c.Nominal == note);
+            if (money != null)
+                money.Count--;
+            else throw new Exception("Entity not found in the system");
         }
 
-        // Удаляем деньги, выданные пользователю в качестве сдачи, из таблицы
-        public async Task DecrementAvailableNoteAsync(List<uint> change)
-        {
-            foreach (var note in change)
-            {
-                var money = await _db.MoneyInMachines.FirstOrDefaultAsync(c => c.Nominal == note);
-                if (money != null)
-                    money.Count--;
-            }
-
-            await _db.SaveChangesAsync();
-        }
+        await _db.SaveChangesAsync();
     }
 }
