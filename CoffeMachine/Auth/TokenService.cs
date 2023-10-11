@@ -1,14 +1,22 @@
-﻿namespace CoffeeMachine.Auth;
-
-using System.IdentityModel.Tokens.Jwt;
+﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
 using Microsoft.IdentityModel.Tokens;
 
+namespace CoffeeMachine.Auth;
+
+/// <summary>
+/// The class in which the token creation method is implemented
+/// </summary>
 public class TokenService : ITokenService
 {
-    private TimeSpan ExpiryDuration = new TimeSpan(0, 30, 0);
+    /// <summary>
+    /// Token lifetime
+    /// </summary>
+    private readonly TimeSpan _expiryDuration = new TimeSpan(0, 30, 0);
+
+    /// <inheritdoc />
     public string BuildToken(string key, string issuer, User.UserDto user)
     {
         var claims = new[]
@@ -21,7 +29,7 @@ public class TokenService : ITokenService
         var credentials = new SigningCredentials(securityKey,
             SecurityAlgorithms.HmacSha256Signature);
         var tokenDescriptor = new JwtSecurityToken(issuer, issuer, claims,
-            expires: DateTime.UtcNow.Add(ExpiryDuration), signingCredentials: credentials);
+            expires: DateTime.UtcNow.Add(_expiryDuration), signingCredentials: credentials);
         return new JwtSecurityTokenHandler().WriteToken(tokenDescriptor);
     }
 }

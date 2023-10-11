@@ -1,14 +1,22 @@
 ﻿namespace CoffeeMachine.Auth;
 
+/// <summary>
+/// The class in which we implement obtaining a valid user for authentication
+/// </summary>
 public class UserRepository : IUserRepository
 {
-    private List<User.UserDto> users => new()
+    /// <summary>
+    /// List of valid users
+    /// </summary>
+    private static List<User.UserDto> users => new()
     {
         new User.UserDto("Admin", "Admin")
     };
 
-    public async Task<User.UserDto> GetUserAsync(User.UserModel userModel) =>
-        await Task.Run(() =>
+    /// <inheritdoc />
+    public async Task<User.UserDto> GetUserAsync(User.UserModel userModel)
+    {
+        return await Task.Run(() =>
         {
             var userDto = users.FirstOrDefault(u =>
                 string.Equals(u.UserName, userModel.UserName) &&
@@ -19,4 +27,5 @@ public class UserRepository : IUserRepository
 
             return userDto;
         });
+    }
 }

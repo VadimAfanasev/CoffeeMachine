@@ -1,8 +1,8 @@
-﻿namespace CoffeeMachine.Services;
-
-using CoffeeMachine.Common.Interfaces;
+﻿using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Dto;
 using CoffeeMachine.Services.Interfaces;
+
+namespace CoffeeMachine.Services;
 
 /// <summary>
 /// The class that implements depositing funds into a coffee machine
@@ -13,6 +13,7 @@ public class InputMoneyServices : IInputMoneyServices
     /// Array of banknotes available for depositing
     /// </summary>
     private readonly uint[] _banknotes = { 5000, 2000, 1000, 500, 200, 100, 50 };
+
     /// <summary>
     /// Injecting money depositing methods
     /// </summary>
@@ -27,7 +28,7 @@ public class InputMoneyServices : IInputMoneyServices
     }
 
     /// <inheritdoc />
-    public async Task InputingAsync(List<InputMoneyDto> inputMoney)
+    public async Task InputingAsync(List<MoneyDto> inputMoney)
     {
         if (!inputMoney.All(c => _banknotes.Contains(c.Nominal)))
             throw new ArgumentException("Invalid banknotes type");

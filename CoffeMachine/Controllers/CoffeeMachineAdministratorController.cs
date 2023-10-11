@@ -1,20 +1,33 @@
 ﻿using CoffeeMachine.Dto;
 using CoffeeMachine.Services.Interfaces;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeMachine.Controllers;
 
-using CoffeeMachine.Auth;
-using Microsoft.AspNetCore.Authorization;
-using static CoffeeMachine.Auth.User;
-
+/// <summary>
+/// The class that implements the requests for obtaining the status of the coffee machine
+/// </summary>
 [Route("api/")]
 [ApiController]
 public class CoffeeMachineAdministratorController : ControllerBase
 {
+    /// <summary>
+    /// Coffee status service dependency injection
+    /// </summary>
     private readonly ICoffeeMachineStatusServices _coffeeMachineStatusService;
+
+    /// <summary>
+    /// Input money service dependency injection
+    /// </summary>
     private readonly IInputMoneyServices _inputMoneyService;
 
+    /// <summary>
+    /// Constructor of the class that obtaining the status of the coffee machine
+    /// </summary>
+    /// <param name="inputMoneyService"> </param>
+    /// <param name="coffeeMachineStatusService"> </param>
     public CoffeeMachineAdministratorController(IInputMoneyServices inputMoneyService,
         ICoffeeMachineStatusServices coffeeMachineStatusService)
     {
@@ -25,8 +38,8 @@ public class CoffeeMachineAdministratorController : ControllerBase
     /// <summary>
     /// Get the amount of purchased coffee from the coffee machine
     /// </summary>
-    /// <response code="200">Success</response>
-    /// <response code="404">Entity not found in the system</response>
+    /// <response code="200"> Success </response>
+    /// <response code="404"> Entity not found in the system </response>
     [Authorize]
     [HttpGet("coffeebalance")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -40,8 +53,8 @@ public class CoffeeMachineAdministratorController : ControllerBase
     /// <summary>
     /// Get the amount of money from the coffee machine
     /// </summary>
-    /// <response code="200">Success</response>
-    /// <response code="404">Entity not found in the system</response>
+    /// <response code="200"> Success </response>
+    /// <response code="404"> Entity not found in the system </response>
     [Authorize]
     [HttpGet("moneyinmachine")]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -59,21 +72,20 @@ public class CoffeeMachineAdministratorController : ControllerBase
     /// Sample request:
     /// Put /note
     /// {
-    ///     title: "money deposited"
+    /// title: "money deposited"
     /// }
     /// </remarks>
-    /// <param name="inputMoney">InputMoneyDto object</param>
-    /// <returns>Returns NoContent</returns>
-    /// <response code="200">Success</response>
-    /// <response code="400">Invalid banknotes type</response>
+    /// <param name="inputMoney"> InputMoneyDto object </param>
+    /// <returns> Returns NoContent </returns>
+    /// <response code="200"> Success </response>
+    /// <response code="400"> Invalid banknotes type </response>
     [Authorize]
     [HttpPut("inputing/")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<List<InputMoneyDto>>> InputMoneyAsync([FromBody] List<InputMoneyDto> inputMoney)
+    public async Task<ActionResult<List<MoneyDto>>> InputMoneyAsync([FromBody] List<MoneyDto> inputMoney)
     {
         await _inputMoneyService.InputingAsync(inputMoney);
         return Ok();
     }
-        
 }

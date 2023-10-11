@@ -1,20 +1,39 @@
 ﻿using System.Net;
 using System.Text.Json;
+
 using CoffeeMachine.Dto;
 
 namespace CoffeeMachine.Middlewares;
 
+/// <summary>
+/// A class that defines custom Middleware for exception handling
+/// </summary>
 public class ExceptionHandlingMiddleware
 {
-    private readonly RequestDelegate _next;
+    /// <summary>
+    /// Defining logging
+    /// </summary>
     private readonly ILogger<ExceptionHandlingMiddleware> _logger;
 
+    /// <summary>
+    /// Defining RequestDelegate
+    /// </summary>
+    private readonly RequestDelegate _next;
+
+    /// <summary>
+    /// Constructor of the class in which we implement custom error handling
+    /// </summary>
     public ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
     {
         _next = next;
         _logger = logger;
     }
 
+
+    /// <summary>
+    /// Implementing an error handler
+    /// </summary>
+    /// <param name="httpContext"> </param>
     public async Task InvokeAsync(HttpContext httpContext)
     {
         try
@@ -39,6 +58,12 @@ public class ExceptionHandlingMiddleware
         }
     }
 
+    /// <summary>
+    /// Method to which control is transferred after an error occurs
+    /// </summary>
+    /// <param name="context"> </param>
+    /// <param name="httpStatusCode"> </param>
+    /// <param name="message"> </param>
     private async Task HandleExceptionAsync(HttpContext context, HttpStatusCode httpStatusCode,
         string message)
     {

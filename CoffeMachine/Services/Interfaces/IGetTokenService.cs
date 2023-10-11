@@ -7,12 +7,11 @@ namespace CoffeeMachine.Services.Interfaces;
 /// </summary>
 public interface IGetTokenService
 {
-
     /// <summary>
     /// Method that implements receiving a token
     /// </summary>
-    /// <param name="userModel"></param>
-    /// <returns>string</returns>
-    /// <response code="401">Invalid User</response> 
+    /// <param name="userModel"> </param>
+    /// <returns> string </returns>
+    /// <response code="401"> Invalid User </response>
     Task<string> GetTokenAsync(UserModel userModel);
 }

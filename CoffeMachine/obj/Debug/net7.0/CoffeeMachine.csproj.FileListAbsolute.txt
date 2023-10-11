@@ -182,3 +182,17 @@ F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\D
 F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\obj\Debug\net7.0\CoffeeMachine.xml
 E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\NUnit3.TestAdapter.dll
+E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\NUnit3.TestAdapter.pdb
+E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\nunit.engine.dll
+E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\nunit.engine.api.dll
+E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\nunit.engine.core.dll
+E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\testcentric.engine.metadata.dll
+E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\nunit.framework.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\NUnit3.TestAdapter.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\NUnit3.TestAdapter.pdb
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\nunit.engine.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\nunit.engine.api.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\nunit.engine.core.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\testcentric.engine.metadata.dll
+F:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\nunit.framework.dll

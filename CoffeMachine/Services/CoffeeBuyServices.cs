@@ -1,11 +1,11 @@
-﻿using static CoffeeMachine.Common.EnumBanknotes;
-
-namespace CoffeeMachine.Services;
-
-using CoffeeMachine.Common.Interfaces;
+﻿using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Dto;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services.Interfaces;
+
+using static CoffeeMachine.Common.EnumBanknotes;
+
+namespace CoffeeMachine.Services;
 
 /// <summary>
 /// The class in which the purchase of coffee is implemented
@@ -16,18 +16,22 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     /// Injecting of change calculation methods
     /// </summary>
     private readonly ICalculateChange _calculateChange;
+
     /// <summary>
     /// Injecting the database context CoffeeContext
     /// </summary>
     private readonly CoffeeContext _db;
+
     /// <summary>
     /// Implementation of methods for deducting change from the database
     /// </summary>
     private readonly IDecrementAvailableNotes _decrementAvailableNote;
+
     /// <summary>
     /// Implementation of methods for entering change into the database
     /// </summary>
     private readonly IIncrementAvailableNotes _incrementAvailableNote;
+
     /// <summary>
     /// Implementation of methods for entering purchased coffee into the database
     /// </summary>
@@ -40,7 +44,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         IDecrementAvailableNotes decrementAvailableNotes,
         IIncrementAvailableNotes incrementAvailableNotes, IIncrementCoffeeBalances incrementCoffeeBalances)
     {
-        _db = db;
+        _db = db; 
         _calculateChange = calculateChange;
         _decrementAvailableNote = decrementAvailableNotes;
         _incrementAvailableNote = incrementAvailableNotes;
@@ -87,12 +91,8 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         return (uint)sum;
     }
 
-    /// <summary>
-    /// Transfer the user's change to the Dto
-    /// </summary>
-    /// <param name="change"></param>
-    /// <returns>OrderCoffeeDto</returns>
-    private static OrderCoffeeDto ChangeToDto(List<uint> change)
+    /// <inheritdoc />
+    public OrderCoffeeDto ChangeToDto(List<uint> change)
     {
         var changeDto = new OrderCoffeeDto
         {
@@ -102,12 +102,8 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         return changeDto;
     }
 
-    /// <summary>
-    /// Calculating the cost of coffee
-    /// </summary>
-    /// <param name="coffeeType"></param>
-    /// <returns>uint</returns>
-    private uint GetCoffeePrice(string coffeeType)
+    /// <inheritdoc />
+    public uint GetCoffeePrice(string coffeeType)
     {
         var coffeePrice = _db.Coffees
             .Where(c => c.Name == coffeeType)

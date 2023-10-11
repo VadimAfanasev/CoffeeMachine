@@ -1,5 +1,8 @@
 ﻿namespace CoffeeMachine.Common;
 
+/// <summary>
+/// Class listing banknotes available for insertion into the machine
+/// </summary>
 public class EnumBanknotes
 {
     /// <summary>

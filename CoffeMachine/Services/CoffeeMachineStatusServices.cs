@@ -1,10 +1,10 @@
-﻿namespace CoffeeMachine.Services;
-
-using CoffeeMachine.Dto;
+﻿using CoffeeMachine.Dto;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services.Interfaces;
 
 using Microsoft.EntityFrameworkCore;
+
+namespace CoffeeMachine.Services;
 
 /// <summary>
 /// The class in which we get information about the coffee machine
@@ -58,14 +58,14 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     }
 
     /// <inheritdoc />
-    public async Task<List<BalanceMoneyDto>> GetBalanceMoneyAsync()
+    public async Task<List<MoneyDto>> GetBalanceMoneyAsync()
     {
-        var balanceMoney = new List<BalanceMoneyDto>();
+        var balanceMoney = new List<MoneyDto>();
         var moneyBalances = await _db.MoneyInMachines.ToListAsync();
 
         foreach (var balance in moneyBalances)
         {
-            var balanceDto = new BalanceMoneyDto
+            var balanceDto = new MoneyDto
             {
                 Nominal = balance.Nominal,
                 Count = balance.Count

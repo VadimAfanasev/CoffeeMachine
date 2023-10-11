@@ -1,13 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-
 namespace CoffeeMachine.Models.Data;
 
+/// <summary>
+/// The class in which we add the database context
+/// </summary>
 public class CoffeeContext : DbContext
 {
-    public virtual DbSet<MoneyInMachine> MoneyInMachines { get; set; }
-    public virtual DbSet<Coffee> Coffees { get; set; }
-
+    /// <summary>
+    /// Create a class constructor with parameters
+    /// </summary>
     public CoffeeContext(DbContextOptions<CoffeeContext> options) : base(options)
     {
         Database.EnsureCreated();
@@ -18,8 +20,9 @@ public class CoffeeContext : DbContext
                 { "Cappuccino", 600 },
                 { "Latte", 850 },
                 { "Americano", 900 }
-            }; 
-            Coffees.AddRange(coffeePrice.Select(s => new Coffee() {
+            };
+            Coffees.AddRange(coffeePrice.Select(s => new Coffee
+            {
                 Name = s.Key,
                 Price = s.Value,
                 Balance = 0
@@ -38,7 +41,7 @@ public class CoffeeContext : DbContext
                 { 2000, 10 },
                 { 5000, 10 }
             };
-            MoneyInMachines.AddRange(availableNotes.Select(c => new MoneyInMachine()
+            MoneyInMachines.AddRange(availableNotes.Select(c => new MoneyInMachine
             {
                 Nominal = c.Key,
                 Count = c.Value
@@ -47,4 +50,14 @@ public class CoffeeContext : DbContext
 
         SaveChanges();
     }
+
+    /// <summary>
+    /// Creating a coffee table in a coffee machine
+    /// </summary>
+    public virtual DbSet<Coffee> Coffees { get; set; }
+
+    /// <summary>
+    /// Creating a money table in a coffee machine
+    /// </summary>
+    public virtual DbSet<MoneyInMachine> MoneyInMachines { get; set; }
 }

@@ -1,24 +1,30 @@
 ﻿using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Models.Data;
 
-namespace CoffeeMachine.Common;
-
 using Microsoft.EntityFrameworkCore;
 
+namespace CoffeeMachine.Common;
+
+/// <summary>
+/// A class that implements methods for calculating change after buying coffee
+/// </summary>
 public class CalculateChange : ICalculateChange
 {
+    /// <summary>
+    /// Injecting the database context CoffeeContext
+    /// </summary>
     private readonly CoffeeContext _db;
 
+    /// <summary>
+    /// Constructor of the class in which we calculate change
+    /// </summary>
+    /// <param name="db"> </param>
     public CalculateChange(CoffeeContext db)
     {
         _db = db;
     }
 
-    /// <summary>
-    /// Method for calculating change
-    /// </summary>
-    /// <param name="amount"></param>
-    /// <returns></returns>
+    /// <inheritdoc />
     public async Task<List<uint>> CalculateAsync(uint amount)
     {
         var change = new List<uint>();
