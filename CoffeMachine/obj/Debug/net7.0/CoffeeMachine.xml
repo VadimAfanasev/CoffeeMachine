@@ -188,6 +188,11 @@
             The class in which we implement adding money to the coffee machine by the administrator
             </summary>
         </member>
+        <member name="F:CoffeeMachine.Common.IncrementMoneyInMachine._db">
+            <summary>
+            Injecting database context
+            </summary>
+        </member>
         <member name="M:CoffeeMachine.Common.IncrementMoneyInMachine.#ctor(CoffeeMachine.Models.Data.CoffeeContext)">
             <summary>
             Constructor of the class in which we implement adding money to the coffee machine
@@ -691,9 +696,9 @@
             The class that implements obtaining a token
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Services.GetTokenService._httpContextAccessor">
+        <member name="F:CoffeeMachine.Services.GetTokenService._jwtOptions">
             <summary>
-            Implementing context Http
+            Implementing Jwt configurations
             </summary>
         </member>
         <member name="F:CoffeeMachine.Services.GetTokenService._tokenService">
@@ -706,7 +711,7 @@
             Implementing a list of users available for authentication
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Services.GetTokenService.#ctor(CoffeeMachine.Auth.ITokenService,CoffeeMachine.Auth.IUserRepository,Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+        <member name="M:CoffeeMachine.Services.GetTokenService.#ctor(CoffeeMachine.Auth.ITokenService,CoffeeMachine.Auth.IUserRepository,Microsoft.Extensions.Options.IOptions{CoffeeMachine.Settings.Jwt})">
             <summary>
             Constructor of the class in which we receive the token
             </summary>
@@ -719,9 +724,9 @@
             The class that implements depositing funds into a coffee machine
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Services.InputMoneyServices._banknotes">
+        <member name="F:CoffeeMachine.Services.InputMoneyServices._db">
             <summary>
-            Array of banknotes available for depositing
+            Injecting the database context CoffeeContext
             </summary>
         </member>
         <member name="F:CoffeeMachine.Services.InputMoneyServices._incrementMoneyInMachine">
@@ -729,7 +734,7 @@
             Injecting money depositing methods
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Services.InputMoneyServices.#ctor(CoffeeMachine.Common.Interfaces.IIncrementMoneyInMachine)">
+        <member name="M:CoffeeMachine.Services.InputMoneyServices.#ctor(CoffeeMachine.Models.Data.CoffeeContext,CoffeeMachine.Common.Interfaces.IIncrementMoneyInMachine)">
             <summary>
             Constructor of the class in which we deposit money into the coffee machine
             </summary>

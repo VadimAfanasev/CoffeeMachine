@@ -1,5 +1,6 @@
 ﻿using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Dto;
+using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services.Interfaces;
 
 namespace CoffeeMachine.Services;
@@ -10,9 +11,9 @@ namespace CoffeeMachine.Services;
 public class InputMoneyServices : IInputMoneyServices
 {
     /// <summary>
-    /// Array of banknotes available for depositing
+    /// Injecting the database context CoffeeContext
     /// </summary>
-    private readonly uint[] _banknotes = { 5000, 2000, 1000, 500, 200, 100, 50 };
+    private readonly CoffeeContext _db;
 
     /// <summary>
     /// Injecting money depositing methods
@@ -22,17 +23,26 @@ public class InputMoneyServices : IInputMoneyServices
     /// <summary>
     /// Constructor of the class in which we deposit money into the coffee machine
     /// </summary>
-    public InputMoneyServices(IIncrementMoneyInMachine incrementMoneyInMachine)
+    public InputMoneyServices(CoffeeContext db, IIncrementMoneyInMachine incrementMoneyInMachine)
     {
+        _db = db;
         _incrementMoneyInMachine = incrementMoneyInMachine;
     }
 
     /// <inheritdoc />
-    public async Task InputingAsync(List<MoneyDto> inputMoney)
+    public async Task<string> InputingAsync(List<MoneyDto> inputMoney)
     {
-        if (!inputMoney.All(c => _banknotes.Contains(c.Nominal)))
-            throw new ArgumentException("Invalid banknotes type");
+        //if (!inputMoney.All(c => _banknotes.Contains(c.Nominal)))
+        //    throw new ArgumentException("Invalid banknotes type");
 
-        await _incrementMoneyInMachine.IncrementMoneyAsync(inputMoney);
+        foreach (var money in inputMoney)
+        {
+            if (!_db.MoneyInMachines.Any(m => m.Nominal == money.Nominal))
+                throw new ArgumentException("Invalid banknotes type");
+        }
+
+        var result = await _incrementMoneyInMachine.IncrementMoneyAsync(inputMoney);
+
+        return result;
     }
 }

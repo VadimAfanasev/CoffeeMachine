@@ -8,9 +8,11 @@ using CoffeeMachine.Middlewares;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services;
 using CoffeeMachine.Services.Interfaces;
+using CoffeeMachine.Settings;
 
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -28,6 +30,14 @@ builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
 
 builder.Services.AddControllers();
+
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddOptions<Jwt>()
+    .Bind(builder.Configuration.GetSection(nameof(Jwt)))
+    .ValidateDataAnnotations();
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(config =>
@@ -72,11 +82,11 @@ builder.Services.AddScoped<IIncrementCoffeeBalances, IncrementCoffeeBalances>();
 builder.Services.AddScoped<IInputMoneyServices, InputMoneyServices>();
 builder.Services.AddScoped<IIncrementMoneyInMachine, IncrementMoneyInMachine>();
 builder.Services.AddScoped<ICoffeeMachineStatusServices, CoffeeMachineStatusServices>();
-builder.Services.AddSingleton<IGetTokenService, GetTokenService>();
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddSingleton<ITokenService>(new TokenService());
-builder.Services.AddSingleton<IUserRepository>(new UserRepository());
+builder.Services.AddSingleton<ITokenService, TokenService>();
+builder.Services.AddSingleton<IUserRepository, UserRepository>();
+builder.Services.AddSingleton<IGetTokenService, GetTokenService>();
 builder.Services.AddAuthorization();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

@@ -1,5 +1,8 @@
 ﻿using CoffeeMachine.Auth;
 using CoffeeMachine.Services.Interfaces;
+using CoffeeMachine.Settings;
+
+using Microsoft.Extensions.Options;
 
 using static CoffeeMachine.Auth.User;
 
@@ -11,9 +14,9 @@ namespace CoffeeMachine.Services;
 public class GetTokenService : IGetTokenService
 {
     /// <summary>
-    /// Implementing context Http
+    /// Implementing Jwt configurations
     /// </summary>
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly IOptions<Jwt> _jwtOptions;
 
     /// <summary>
     /// Injecting token creation methods
@@ -29,11 +32,11 @@ public class GetTokenService : IGetTokenService
     /// Constructor of the class in which we receive the token
     /// </summary>
     public GetTokenService(ITokenService tokenService, IUserRepository userRepository,
-        IHttpContextAccessor httpContextAccessor)
+        IOptions<Jwt> jwtOptions)
     {
         _tokenService = tokenService;
         _userRepository = userRepository;
-        _httpContextAccessor = httpContextAccessor;
+        _jwtOptions = jwtOptions;
     }
 
     /// <inheritdoc />
@@ -44,9 +47,7 @@ public class GetTokenService : IGetTokenService
         if (userDto == null)
             throw new UnauthorizedAccessException("Invalid User");
 
-        var token = _tokenService.BuildToken(
-            _httpContextAccessor.HttpContext.RequestServices.GetService<IConfiguration>()["Jwt:Key"],
-            _httpContextAccessor.HttpContext.RequestServices.GetService<IConfiguration>()["Jwt:Issuer"], userDto);
+        var token = _tokenService.BuildToken(_jwtOptions.Value.Key, _jwtOptions.Value.Issuer, userDto);
 
         return token;
     }

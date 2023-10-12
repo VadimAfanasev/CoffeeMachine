@@ -12,5 +12,5 @@ public interface IIncrementMoneyInMachine
     /// </summary>
     /// <param name="inputMoney"> </param>
     /// <exception cref="Exception"> </exception>
-    Task IncrementMoneyAsync(List<MoneyDto> inputMoney);
+    Task<string> IncrementMoneyAsync(List<MoneyDto> inputMoney);
 }

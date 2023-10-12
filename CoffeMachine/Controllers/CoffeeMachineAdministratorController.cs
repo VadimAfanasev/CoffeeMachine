@@ -83,9 +83,9 @@ public class CoffeeMachineAdministratorController : ControllerBase
     [HttpPut("inputing/")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<List<MoneyDto>>> InputMoneyAsync([FromBody] List<MoneyDto> inputMoney)
+    public async Task<ActionResult> InputMoneyAsync([FromBody] List<MoneyDto> inputMoney)
     {
-        await _inputMoneyService.InputingAsync(inputMoney);
-        return Ok();
+        var answer = await _inputMoneyService.InputingAsync(inputMoney);
+        return Ok(answer);
     }
 }

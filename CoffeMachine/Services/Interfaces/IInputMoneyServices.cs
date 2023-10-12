@@ -1,5 +1,7 @@
 ﻿using CoffeeMachine.Dto;
 
+using Microsoft.AspNetCore.Mvc;
+
 namespace CoffeeMachine.Services.Interfaces;
 
 /// <summary>
@@ -12,5 +14,5 @@ public interface IInputMoneyServices
     /// </summary>
     /// <param name="inputMoney"> </param>
     /// <response code="400"> Incorrect data entered </response>
-    Task InputingAsync(List<MoneyDto> inputMoney);
+    Task<string> InputingAsync(List<MoneyDto> inputMoney);
 }

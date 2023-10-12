@@ -11,6 +11,9 @@ namespace CoffeeMachine.Common;
 /// </summary>
 public class IncrementMoneyInMachine : IIncrementMoneyInMachine
 {
+    /// <summary>
+    /// Injecting database context
+    /// </summary>
     private readonly CoffeeContext _db;
 
     /// <summary>
@@ -23,7 +26,7 @@ public class IncrementMoneyInMachine : IIncrementMoneyInMachine
     }
 
     /// <inheritdoc />
-    public async Task IncrementMoneyAsync(List<MoneyDto> inputMoney)
+    public async Task<string> IncrementMoneyAsync(List<MoneyDto> inputMoney)
     {
         var updateTasks = inputMoney.Select(async banknote =>
         {
@@ -37,5 +40,8 @@ public class IncrementMoneyInMachine : IIncrementMoneyInMachine
         await Task.WhenAll(updateTasks);
 
         await _db.SaveChangesAsync();
+
+        const string answer = "Money deposited";
+        return answer;
     }
 }
