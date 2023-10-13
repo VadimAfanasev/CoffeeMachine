@@ -1,6 +1,3 @@
-using System.Reflection;
-using System.Text;
-
 using CoffeeMachine.Auth;
 using CoffeeMachine.Common;
 using CoffeeMachine.Common.Interfaces;
@@ -9,14 +6,13 @@ using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services;
 using CoffeeMachine.Services.Interfaces;
 using CoffeeMachine.Settings;
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-
 using Serilog;
+using System.Reflection;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 

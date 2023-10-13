@@ -3994,11 +3994,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+      "projectUniqueName": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
       "projectName": "CoffeeMachine",
-      "projectPath": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+      "projectPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
       "packagesPath": "C:\\Users\\AfanasievVA\\.nuget\\packages\\",
-      "outputPath": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\obj\\",
+      "outputPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeMachine\\CoffeMachine\\CoffeMachine\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

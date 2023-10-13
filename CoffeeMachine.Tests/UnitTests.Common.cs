@@ -4,13 +4,14 @@ namespace CoffeeMachine.Tests;
 public class UnitTestsCommon
 {
     [Test]
+    [SetUp]
     public async Task CalculateAsyncTest_ReturnsChangeList_WhenAmountIsExact()
     {
         // Arrange
         const uint amount = 2500;
         var expected = new List<uint> { 2000u, 500u };
 
-        var appContext = GetTestApplicationContext();
+        var appContext = GetTestApplicationContextNew();
         var calculateChange = new CalculateChange(appContext);
 
         // Act
@@ -21,74 +22,36 @@ public class UnitTestsCommon
     }
 
     [Test]
-    public async Task DecrementAvailableNoteAsync_NothingReturns_WhenCountMoneyNotEqual()
+    [SetUp]
+    public async Task IncrementMoneyAsync_ReturnsString_WhenBalanceMoneyNotEqual()
     {
         // Arrange
-        var money = new List<uint> { 2000u, 500u };
 
-        var appContext = GetTestApplicationContext();
-        var appContextOld = GetTestApplicationContextForNothingReturnsMethods();
-        var decrementAvailableNotes = new DecrementAvailableNotes(appContext);
+        const string expected = "Money deposited";
+        var inputMoney = new List<MoneyDto>
+        {
+            new MoneyDto() { Nominal = 50, Count = 2 },
+            new MoneyDto() { Nominal = 100, Count = 2 },
+        };
 
-        // Act
-        await decrementAvailableNotes.DecrementAvailableNoteAsync(money);
-
-        // Assert
-        var before—hange = appContextOld.MoneyInMachines.Sum(c => c.Count);
-        var after—hange = appContext.MoneyInMachines.Sum(c => c.Count);
-
-
-        Assert.That(before—hange, Is.Not.EqualTo(after—hange));
-        Assert.That(before—hange - after—hange, Is.EqualTo(2));
-    }
-
-    [Test]
-    public async Task IncrementAvailableNoteAsync_NothingReturns_WhenCountMoneyNotEqual()
-    {
-        // Arrange
-        var money = new uint[] { 2000u, 1000u, 500u };
-
-        var appContext = GetTestApplicationContext();
-        var appContextOld = GetTestApplicationContextForNothingReturnsMethods();
-        var incrementAvailableNotes = new IncrementAvailableNotes(appContext);
+        var appContext = GetTestApplicationContextNew();
+        var incrementMoneyInMachine = new IncrementMoneyInMachine(appContext);
 
         // Act
-        await incrementAvailableNotes.IncrementAvailableNoteAsync(money);
+        var result = await incrementMoneyInMachine.IncrementMoneyAsync(inputMoney);
 
         // Assert
-        var before—hange = appContextOld.MoneyInMachines.Sum(c => c.Count);
-        var after—hange = appContext.MoneyInMachines.Sum(c => c.Count);
-
-
-        Assert.That(before—hange, Is.Not.EqualTo(after—hange));
-        Assert.That(after—hange - before—hange, Is.EqualTo(3));
+        expected.Should().BeEquivalentTo(result);
     }
 
-
-
-
-
-
-
-
-
-
-
-    private static CoffeeContext GetTestApplicationContext()
+    private static CoffeeContext GetTestApplicationContextNew()
     {
         var contextOptions = new DbContextOptionsBuilder<CoffeeContext>()
-            .UseInMemoryDatabase("CoffeeMachineTest")
+            .UseInMemoryDatabase("CoffeeMachineUnitTestServices" + Guid.NewGuid().ToString())
             .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
             .Options;
-        return new CoffeeContext(contextOptions);
-    }
+        var coffee—ontext = new CoffeeContext(contextOptions);
 
-    private static CoffeeContext GetTestApplicationContextForNothingReturnsMethods()
-    {
-        var contextOptions = new DbContextOptionsBuilder<CoffeeContext>()
-            .UseInMemoryDatabase("CoffeeMachineTestForNothingReturnsMethods")
-            .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
-            .Options;
-        return new CoffeeContext(contextOptions);
+        return coffee—ontext;
     }
 }

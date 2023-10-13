@@ -8,7 +8,7 @@ public class UserRepository : IUserRepository
     /// <summary>
     /// List of valid users
     /// </summary>
-    private static List<User.UserDto> users => new()
+    private static List<User.UserDto> Users => new()
     {
         new User.UserDto("Admin", "Admin")
     };
@@ -18,7 +18,7 @@ public class UserRepository : IUserRepository
     {
         return await Task.Run(() =>
         {
-            var userDto = users.FirstOrDefault(u =>
+            var userDto = Users.FirstOrDefault(u =>
                 string.Equals(u.UserName, userModel.UserName) &&
                 string.Equals(u.Password, userModel.Password));
 

@@ -89,7 +89,7 @@
             The class in which we implement obtaining a valid user for authentication
             </summary>
         </member>
-        <member name="P:CoffeeMachine.Auth.UserRepository.users">
+        <member name="P:CoffeeMachine.Auth.UserRepository.Users">
             <summary>
             List of valid users
             </summary>

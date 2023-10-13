@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C6pXeIlE/qmgGW6V+atu8TI2v+Aoj7hWDtvNgdaXrGetHc67jk7CM1c1XQsd4PqoTxVJfohAWry6XnhkY4OK9A==",
+  "dgSpecHash": "ar0iLWd2TGRVF+hMhD8ZLyyw8bfRqwsG2QovlkJ27rAA1LqerGFTYQsr9VC49hO0trlNNQ6kUtsg9e0TE1QZWw==",
   "success": true,
-  "projectFilePath": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+  "projectFilePath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\autofac\\7.1.0\\autofac.7.1.0.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",

@@ -4,9 +4,10 @@ namespace CoffeeMachine.Tests;
 public class UnitTestsServices
 {
     [Test]
+    [SetUp]
     public async Task BuyingCoffeeAsync_ReturnsOrderCoffeeDto_WhenAmountIsExact()
     {
-        // Arrange
+        // Arrange 
         var moneys = new uint[] { 2000, 500 };
         const string coffeeType = "Cappuccino";
         var expected = new OrderCoffeeDto
@@ -14,7 +15,7 @@ public class UnitTestsServices
             Change = new List<uint> { 1000, 500, 200, 200 }
         };
 
-        var appContext = GetTestApplicationContext();
+        var appContext = GetTestApplicationContextNew();
 
 
         var calculateChange = new CalculateChange(appContext);
@@ -35,6 +36,7 @@ public class UnitTestsServices
 
 
     [Test]
+    [SetUp]
     public async Task GetBalanceCoffeeAsync_ReturnsBalanceCoffeeDto_WhenAmountIsExact()
     {
         // Arrange
@@ -46,7 +48,7 @@ public class UnitTestsServices
             new BalanceCoffeeDto { Name = "Total", Balance = 0 }
         };
 
-        var appContext = GetTestApplicationContext();
+        var appContext = GetTestApplicationContextNew();
 
         var balanceCoffeeService = new CoffeeMachineStatusServices(appContext);
 
@@ -58,6 +60,7 @@ public class UnitTestsServices
     }
 
     [Test]
+    [SetUp]
     public async Task GetBalanceMoneyAsync_ReturnsMoneyDto_WhenAmountIsExact()
     {
         // Arrange
@@ -72,7 +75,7 @@ public class UnitTestsServices
             new MoneyDto() { Nominal = 5000, Count = 10 }
         };
 
-        var appContext = GetTestApplicationContext();
+        var appContext = GetTestApplicationContextNew();
 
         var balanceCoffeeService = new CoffeeMachineStatusServices(appContext);
 
@@ -84,17 +87,18 @@ public class UnitTestsServices
     }
 
     [Test]
+    [SetUp]
     public async Task InputingAsync_ReturnsString_WhenContentAreEqual()
     {
         // Arrange
-        var expected = "Money deposited";
+        const string expected = "Money deposited";
         var inputMoney = new List<MoneyDto>
         {
             new MoneyDto() { Nominal = 50, Count = 2 },
             new MoneyDto() { Nominal = 100, Count = 2 },
         };
 
-        var appContext = GetTestApplicationContext();
+        var appContext = GetTestApplicationContextNew();
         var incrementMoneyInMachine = new IncrementMoneyInMachine(appContext);
 
         var balanceCoffeeService = new InputMoneyServices(appContext, incrementMoneyInMachine);
@@ -107,16 +111,16 @@ public class UnitTestsServices
     }
 
     [Test]
-    public async Task GetTokenAsync_ReturnsString_WhenUserAreEquals()
+    [SetUp]
+    public async Task GetTokenAsync_ReturnsString_WhenNotNull()
     {
         // Arrange    
-        var user = new UserModel
+        var user = new User.UserModel
         {
             UserName = "Admin",
             Password = "Admin"
         };
 
-        //IOptions<Jwt> someOptions = Options.Create<Jwt>(new Jwt());
         var someOptions = Options.Create(new Jwt(){Key = "MostSecretPasswordInTheWorldEver",Issuer = "CoffeeMachine" });
         var tokenService = new TokenService();
         var userRepository = new UserRepository();
@@ -130,14 +134,13 @@ public class UnitTestsServices
         Assert.IsNotNull(result);
     }
 
-    private static CoffeeContext GetTestApplicationContext()
+    private static CoffeeContext GetTestApplicationContextNew()
     {
         var contextOptions = new DbContextOptionsBuilder<CoffeeContext>()
-            .UseInMemoryDatabase("CoffeeMachineTest")
+            .UseInMemoryDatabase("CoffeeMachineUnitTestServices" + Guid.NewGuid().ToString())
             .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
             .Options;
         var coffee—ontext = new CoffeeContext(contextOptions);
-        
 
         return coffee—ontext;
     }
