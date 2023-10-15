@@ -4,7 +4,6 @@ using CoffeeMachine.Settings;
 
 using Microsoft.Extensions.Options;
 
-using static CoffeeMachine.Auth.User;
 
 namespace CoffeeMachine.Services;
 
@@ -40,7 +39,7 @@ public class GetTokenService : IGetTokenService
     }
 
     /// <inheritdoc />
-    public async Task<string> GetTokenAsync(UserModel userModel)
+    public async Task<string> GetTokenAsync(User.UserModel userModel)
     {
         var userDto = await _userRepository.GetUserAsync(userModel);
 

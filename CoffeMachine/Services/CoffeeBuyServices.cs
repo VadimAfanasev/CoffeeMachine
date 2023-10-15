@@ -1,9 +1,8 @@
-﻿using CoffeeMachine.Common.Interfaces;
+﻿using CoffeeMachine.Common;
+using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Dto;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services.Interfaces;
-
-using static CoffeeMachine.Common.EnumBanknotes;
 
 namespace CoffeeMachine.Services;
 
@@ -57,7 +56,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         if (!_db.Coffees.Any(c => c.Name == coffeeType))
             throw new InvalidDataException("Invalid coffee type");
 
-        if (!moneys.All(c => Enum.IsDefined(typeof(Banknotes), c)))
+        if (!moneys.All(c => Enum.IsDefined(typeof(EnumBanknotes.Banknotes), c)))
             throw new InvalidDataException("Invalid banknotes type");
 
         var moneysUint = SumUintArray(moneys);
@@ -107,8 +106,8 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     {
         var coffeePrice = _db.Coffees
             .Where(c => c.Name == coffeeType)
-            .Select(x => x.Price).ToList();
+            .Select(x => x.Price).FirstOrDefault();
 
-        return coffeePrice[0];
+        return coffeePrice;
     }
 }

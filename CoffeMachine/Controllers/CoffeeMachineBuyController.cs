@@ -42,7 +42,7 @@ public class CoffeeMachineBuyController : ControllerBase
     /// <response code="200"> Success </response>
     /// <response code="400"> Incorrect data entered </response>
     /// <response code="404"> Entity not found in the system </response>
-    [HttpPost("order/{coffeeType}")]
+    [HttpGet("order/{coffeeType}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
