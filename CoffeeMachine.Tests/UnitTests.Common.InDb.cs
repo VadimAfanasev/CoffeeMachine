@@ -1,7 +1,9 @@
+using CoffeeMachine.Tests.Infrastructure;
+
 namespace CoffeeMachine.Tests;
 
 [TestFixture]
-public class IntegrationTestsCommon
+public class UnitTestsCommonInDb
 {
     [Test]
     [SetUp]
@@ -18,8 +20,8 @@ public class IntegrationTestsCommon
         await decrementAvailableNotes.DecrementAvailableNoteAsync(money);
 
         // Assert
-        var before—hange = appContextOld.MoneyInMachines.Sum(c => c.Count);
-        var after—hange = appContext.MoneyInMachines.Sum(c => c.Count);
+        var before—hange = appContextOld.MoneyInMachinesDb.Sum(c => c.Count);
+        var after—hange = appContext.MoneyInMachinesDb.Sum(c => c.Count);
 
         Assert.That(before—hange, Is.Not.EqualTo(after—hange));
         Assert.That(before—hange - after—hange, Is.EqualTo(2));
@@ -40,8 +42,8 @@ public class IntegrationTestsCommon
         await incrementAvailableNotes.IncrementAvailableNoteAsync(money);
 
         // Assert
-        var before—hange = appContextOld.MoneyInMachines.Sum(c => c.Count);
-        var after—hange = appContext.MoneyInMachines.Sum(c => c.Count);
+        var before—hange = appContextOld.MoneyInMachinesDb.Sum(c => c.Count);
+        var after—hange = appContext.MoneyInMachinesDb.Sum(c => c.Count);
 
         Assert.That(before—hange, Is.Not.EqualTo(after—hange));
         Assert.That(after—hange - before—hange, Is.EqualTo(3));
@@ -63,31 +65,19 @@ public class IntegrationTestsCommon
         await incrementCoffeeBalance.IncrementCoffeeBalanceAsync(coffeeName, coffeePrice);
 
         // Assert
-        var before—hange = appContextOld.Coffees.Sum(c => c.Balance);
-        var after—hange = appContext.Coffees.Sum(c => c.Balance);
+        var before—hange = appContextOld.CoffeesDb.Sum(c => c.Balance);
+        var after—hange = appContext.CoffeesDb.Sum(c => c.Balance);
 
         Assert.That(before—hange, Is.Not.EqualTo(after—hange));
         Assert.That(after—hange - before—hange, Is.EqualTo(850u));
     }
     private static CoffeeContext GetTestApplicationContext()
     {
-        var contextOptions = new DbContextOptionsBuilder<CoffeeContext>()
-            .UseInMemoryDatabase("CoffeeMachineUnitTestServices" + Guid.NewGuid().ToString())
-            .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
-            .Options;
-        var coffee—ontext = new CoffeeContext(contextOptions);
-
-        return coffee—ontext;
+        return TestDbBaseContext.GetTestInitAppContext();
     }
 
     private static CoffeeContext GetTestApplicationContextForNothingReturnsMethods()
     {
-        var contextOptions = new DbContextOptionsBuilder<CoffeeContext>()
-            .UseInMemoryDatabase("CoffeeMachineUnitTestServices" + Guid.NewGuid().ToString())
-            .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
-            .Options;
-        var coffee—ontext = new CoffeeContext(contextOptions);
-
-        return coffee—ontext;
+        return TestDbBaseContext.GetTestInitAppContext();
     }
 }

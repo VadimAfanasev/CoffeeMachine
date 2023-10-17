@@ -6,39 +6,28 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CoffeeMachine.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class InitialData_AlterTable_Coffee_DefaultData : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "CoffeeBalances",
-                columns: table => new
-                {
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Balance = table.Column<long>(type: "bigint", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_CoffeeBalances", x => x.Name);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Coffees",
+                name: "CoffeesDb",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Balance = table.Column<long>(type: "bigint", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Price = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Coffees", x => x.Id);
+                    table.PrimaryKey("PK_CoffeesDb", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "MoneyInMachines",
+                name: "MoneyInMachinesDb",
                 columns: table => new
                 {
                     Nominal = table.Column<long>(type: "bigint", nullable: false)
@@ -47,7 +36,31 @@ namespace CoffeeMachine.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_MoneyInMachines", x => x.Nominal);
+                    table.PrimaryKey("PK_MoneyInMachinesDb", x => x.Nominal);
+                });
+
+            migrationBuilder.InsertData(
+                table: "CoffeesDb",
+                columns: new[] { "Balance", "Name", "Price" },
+                values: new object[,]
+                {
+                    { 0u, "Cappuccino", 600u },
+                    { 0u, "Latte", 850u },
+                    { 0u, "Americano", 900u }
+                });
+
+            migrationBuilder.InsertData(
+                table: "MoneyInMachinesDb",
+                columns: new[] { "Nominal", "Count" },
+                values: new object[,]
+                {
+                    { 50u, 10u },
+                    { 100u, 10u },
+                    { 200u, 10u },
+                    { 500u, 10u },
+                    { 1000u, 10u },
+                    { 2000u, 10u },
+                    { 5000u, 10u }
                 });
         }
 
@@ -55,13 +68,10 @@ namespace CoffeeMachine.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CoffeeBalances");
+                name: "CoffeesDb");
 
             migrationBuilder.DropTable(
-                name: "Coffees");
-
-            migrationBuilder.DropTable(
-                name: "MoneyInMachines");
+                name: "MoneyInMachinesDb");
         }
     }
 }

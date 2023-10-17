@@ -14,10 +14,10 @@ public class UserRepository : IUserRepository
     };
 
     /// <inheritdoc />
-    public async Task<User.UserDto> GetUserAsync(User.UserModel userModel)
+    public Task<User.UserDto> GetUserAsync(User.UserModel userModel)
     {
-        return await Task.Run(() =>
-        {
+        //return await Task.Run(() =>
+        //{
             var userDto = Users.FirstOrDefault(u =>
                 string.Equals(u.UserName, userModel.UserName) &&
                 string.Equals(u.Password, userModel.Password));
@@ -25,7 +25,6 @@ public class UserRepository : IUserRepository
             if (userDto == null)
                 throw new Exception("User not found");
 
-            return userDto;
-        });
+            return Task.FromResult(userDto);
     }
 }

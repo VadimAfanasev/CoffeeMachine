@@ -1,3 +1,5 @@
+using CoffeeMachine.Tests.Infrastructure;
+
 namespace CoffeeMachine.Tests;
 
 [TestFixture]
@@ -136,12 +138,6 @@ public class UnitTestsServices
 
     private static CoffeeContext GetTestApplicationContextNew()
     {
-        var contextOptions = new DbContextOptionsBuilder<CoffeeContext>()
-            .UseInMemoryDatabase("CoffeeMachineUnitTestServices" + Guid.NewGuid().ToString())
-            .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
-            .Options;
-        var coffee—ontext = new CoffeeContext(contextOptions);
-
-        return coffee—ontext;
+        return TestDbBaseContext.GetTestInitAppContext();
     }
 }

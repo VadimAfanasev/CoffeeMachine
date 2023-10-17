@@ -1,9 +1,9 @@
-
+using CoffeeMachine.Tests.Infrastructure;
 
 namespace CoffeeMachine.Tests;
 
 [TestFixture]
-public class IntegrationTestsControllers
+public class UnitTestsControllersInDb
 {
     [Test]
     [SetUp]
@@ -32,9 +32,6 @@ public class IntegrationTestsControllers
         // Assert
         Assert.IsNotNull(change);
         Assert.IsInstanceOf<OkObjectResult>(change.Result);
-        //change.Value.Change.Should().BeEquivalentTo(expected.Change);
-        //change.Should().BeEquivalentTo(expected);
-        //Assert.That(change, Is.EqualTo(expected));
     }
 
     [Test]
@@ -64,20 +61,8 @@ public class IntegrationTestsControllers
         Assert.IsInstanceOf<OkObjectResult>(assert);
     }
 
-
-
-
-
-
-
     private static CoffeeContext GetTestApplicationContextNew()
     {
-        var contextOptions = new DbContextOptionsBuilder<CoffeeContext>()
-            .UseInMemoryDatabase("CoffeeMachineUnitTestServices" + Guid.NewGuid())
-            .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
-            .Options;
-        var coffee—ontext = new CoffeeContext(contextOptions);
-
-        return coffee—ontext;
+        return TestDbBaseContext.GetTestInitAppContext();
     }
 }

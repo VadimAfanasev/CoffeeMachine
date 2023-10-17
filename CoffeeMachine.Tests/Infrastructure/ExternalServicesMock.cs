@@ -6,31 +6,11 @@ namespace CoffeeMachine.Tests.Infrastructure;
 
 public class ExternalServicesMock
 {
-    //public Mock<CoffeeMachineBuyController> CoffeeMachineClient { get; }
-
-    //public ExternalServicesMock()
-    //{
-    //    CoffeeMachineClient = new Mock<CoffeeMachineBuyController>();
-    //}
-
-    //public IEnumerable<(Type, object)> GetMocks()
-    //{
-    //    return GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance)
-    //        .Select(x =>
-    //        {
-    //            var underlyingType = x.PropertyType.GetGenericArguments()[0];
-    //            var value = x.GetValue(this) as Mock;
-
-    //            return (underlyingType, value.Object);
-    //        })
-    //        .ToArray();
-    //}
-
-    public Mock<ICoffeeBuyServices> CoffeeMachineApiClient { get; }
+    public Mock<ICoffeeBuyServices> CoffeeBuyApiClient { get; }
 
     public ExternalServicesMock()
     {
-        CoffeeMachineApiClient = new Mock<ICoffeeBuyServices>();
+        CoffeeBuyApiClient = new Mock<ICoffeeBuyServices>();
     }
 
     public IEnumerable<(Type, object)> GetMocks()
@@ -39,9 +19,9 @@ public class ExternalServicesMock
             .Select(x =>
             {
                 var underlyingType = x.PropertyType.GetGenericArguments()[0];
-                var value = x.GetValue(this);
+                var value = x.GetValue(this) as Mock;
 
-                return (underlyingType, value);
+                return (underlyingType, value.Object);
             })
             .ToArray();
     }

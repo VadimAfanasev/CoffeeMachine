@@ -32,14 +32,9 @@ public class InputMoneyServices : IInputMoneyServices
     /// <inheritdoc />
     public async Task<string> InputingAsync(List<MoneyDto> inputMoney)
     {
-        //if (!inputMoney.All(c => _banknotes.Contains(c.Nominal)))
-        //    throw new ArgumentException("Invalid banknotes type");
-
-        foreach (var money in inputMoney)
-        {
-            if (!_db.MoneyInMachines.Any(m => m.Nominal == money.Nominal))
-                throw new ArgumentException("Invalid banknotes type");
-        }
+        var moneyList = inputMoney.Select(a => a.Nominal).Distinct().ToArray();
+        if (!_db.MoneyInMachinesDb.Any(m => moneyList.Contains(m.Nominal)))
+            throw new ArgumentException("Invalid banknotes type");
 
         var result = await _incrementMoneyInMachine.IncrementMoneyAsync(inputMoney);
 

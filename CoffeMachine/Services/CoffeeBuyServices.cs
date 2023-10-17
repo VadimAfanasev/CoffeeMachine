@@ -53,7 +53,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     /// <inheritdoc />
     public async Task<OrderCoffeeDto> BuyingCoffeeAsync(string coffeeType, uint[] moneys)
     {
-        if (!_db.Coffees.Any(c => c.Name == coffeeType))
+        if (!_db.CoffeesDb.Any(c => c.Name == coffeeType))
             throw new InvalidDataException("Invalid coffee type");
 
         if (!moneys.All(c => Enum.IsDefined(typeof(EnumBanknotes.Banknotes), c)))
@@ -104,7 +104,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     /// <inheritdoc />
     public uint GetCoffeePrice(string coffeeType)
     {
-        var coffeePrice = _db.Coffees
+        var coffeePrice = _db.CoffeesDb
             .Where(c => c.Name == coffeeType)
             .Select(x => x.Price).FirstOrDefault();
 

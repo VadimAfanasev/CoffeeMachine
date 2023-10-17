@@ -29,7 +29,7 @@ public class DecrementAvailableNotes : IDecrementAvailableNotes
     {
         foreach (var note in change)
         {
-            var money = await _db.MoneyInMachines.FirstOrDefaultAsync(c => c.Nominal == note);
+            var money = await _db.MoneyInMachinesDb.FirstOrDefaultAsync(c => c.Nominal == note);
             if (money != null)
                 money.Count--;
             else

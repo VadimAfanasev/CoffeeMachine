@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj": {}
+    "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj": {}
   },
   "projects": {
-    "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj": {
+    "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj",
+        "projectUniqueName": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj",
         "projectName": "CoffeeMachine.Tests",
-        "projectPath": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj",
-        "packagesPath": "C:\\Users\\Вадим\\.nuget\\packages\\",
-        "outputPath": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeeMachine.Tests\\obj\\",
+        "projectPath": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj",
+        "packagesPath": "C:\\Users\\AfanasievVA\\.nuget\\packages\\",
+        "outputPath": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeeMachine.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Вадим\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AfanasievVA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj": {
-                "projectPath": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj"
+              "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj": {
+                "projectPath": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj"
               }
             }
           }
@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[34.0.2, )"
             },
+            "Docker.DotNet": {
+              "target": "Package",
+              "version": "[3.125.15, )"
+            },
             "FluentAssertions": {
               "target": "Package",
               "version": "[6.12.0, )"
@@ -67,6 +71,10 @@
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.7.2, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.19.4, )"
             },
             "Moq": {
               "target": "Package",
@@ -109,24 +117,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj": {
+    "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+        "projectUniqueName": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
         "projectName": "CoffeeMachine",
-        "projectPath": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
-        "packagesPath": "C:\\Users\\Вадим\\.nuget\\packages\\",
-        "outputPath": "F:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\obj\\",
+        "projectPath": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+        "packagesPath": "C:\\Users\\AfanasievVA\\.nuget\\packages\\",
+        "outputPath": "E:\\Программирование\\CoffeMachine\\CoffeMachine\\CoffeMachine\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Вадим\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AfanasievVA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -135,7 +143,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -157,6 +164,10 @@
             "Autofac": {
               "target": "Package",
               "version": "[7.1.0, )"
+            },
+            "Docker.DotNet": {
+              "target": "Package",
+              "version": "[3.125.15, )"
             },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -183,6 +194,10 @@
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[7.0.2, )"
+            },
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
+              "target": "Package",
+              "version": "[1.19.4, )"
             },
             "NUnit": {
               "target": "Package",
@@ -244,7 +259,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

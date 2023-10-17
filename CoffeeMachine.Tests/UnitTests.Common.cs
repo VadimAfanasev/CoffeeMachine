@@ -1,3 +1,5 @@
+using CoffeeMachine.Tests.Infrastructure;
+
 namespace CoffeeMachine.Tests;
 
 [TestFixture]
@@ -11,7 +13,7 @@ public class UnitTestsCommon
         const uint amount = 2500;
         var expected = new List<uint> { 2000u, 500u };
 
-        var appContext = GetTestApplicationContextNew();
+        var appContext = GetTestInitAppContext();
         var calculateChange = new CalculateChange(appContext);
 
         // Act
@@ -34,7 +36,7 @@ public class UnitTestsCommon
             new MoneyDto() { Nominal = 100, Count = 2 },
         };
 
-        var appContext = GetTestApplicationContextNew();
+        var appContext = GetTestInitAppContext();
         var incrementMoneyInMachine = new IncrementMoneyInMachine(appContext);
 
         // Act
@@ -44,14 +46,9 @@ public class UnitTestsCommon
         expected.Should().BeEquivalentTo(result);
     }
 
-    private static CoffeeContext GetTestApplicationContextNew()
-    {
-        var contextOptions = new DbContextOptionsBuilder<CoffeeContext>()
-            .UseInMemoryDatabase("CoffeeMachineUnitTestServices" + Guid.NewGuid().ToString())
-            .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
-            .Options;
-        var coffee—ontext = new CoffeeContext(contextOptions);
 
-        return coffee—ontext;
+    private static CoffeeContext GetTestInitAppContext()
+    {
+        return TestDbBaseContext.GetTestInitAppContext();
     }
 }

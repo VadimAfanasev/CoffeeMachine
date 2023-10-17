@@ -2,20 +2,15 @@
 using CoffeeMachine.Models.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace CoffeeMachine.Migrations
 {
     [DbContext(typeof(CoffeeContext))]
-    [Migration("20231008133124_AlterTable_Coffee_AddColumn_Balance")]
-    partial class AlterTable_Coffee_AddColumn_Balance
+    partial class CoffeeContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +39,7 @@ namespace CoffeeMachine.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Coffees");
+                    b.ToTable("CoffeesDb");
                 });
 
             modelBuilder.Entity("CoffeeMachine.Models.MoneyInMachine", b =>
@@ -60,7 +55,7 @@ namespace CoffeeMachine.Migrations
 
                     b.HasKey("Nominal");
 
-                    b.ToTable("MoneyInMachines");
+                    b.ToTable("MoneyInMachinesDb");
                 });
 #pragma warning restore 612, 618
         }

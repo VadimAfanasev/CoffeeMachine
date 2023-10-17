@@ -27,7 +27,7 @@ public class IncrementCoffeeBalances : IIncrementCoffeeBalances
     /// <inheritdoc />
     public async Task IncrementCoffeeBalanceAsync(string coffeeType, uint coffeePrice)
     {
-        var coffeeName = await _db.Coffees.FirstOrDefaultAsync(c => c.Name == coffeeType);
+        var coffeeName = await _db.CoffeesDb.FirstOrDefaultAsync(c => c.Name == coffeeType);
 
         if (coffeeName != null)
             coffeeName.Balance += coffeePrice;

@@ -295,3 +295,4 @@ C:\Users\AfanasievVA\source\repos\CoffeMachine\CoffeMachine\CoffeMachine\obj\Deb
 C:\Users\AfanasievVA\source\repos\CoffeMachine\CoffeMachine\CoffeMachine\obj\Debug\net7.0\CoffeeMachine.pdb
 C:\Users\AfanasievVA\source\repos\CoffeMachine\CoffeMachine\CoffeMachine\obj\Debug\net7.0\CoffeeMachine.genruntimeconfig.cache
 C:\Users\AfanasievVA\source\repos\CoffeMachine\CoffeMachine\CoffeMachine\obj\Debug\net7.0\ref\CoffeeMachine.dll
+E:\Программирование\CoffeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Docker.DotNet.dll

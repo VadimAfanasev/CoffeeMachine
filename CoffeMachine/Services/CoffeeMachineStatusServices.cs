@@ -28,7 +28,7 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     public async Task<List<BalanceCoffeeDto>> GetBalanceCoffeeAsync()
     {
         var balanceCoffee = new List<BalanceCoffeeDto>();
-        var coffeeBalances = await _db.Coffees.ToListAsync();
+        var coffeeBalances = await _db.CoffeesDb.ToListAsync();
 
         uint totalBalance = 0;
 
@@ -61,7 +61,7 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     public async Task<List<MoneyDto>> GetBalanceMoneyAsync()
     {
         var balanceMoney = new List<MoneyDto>();
-        var moneyBalances = await _db.MoneyInMachines.ToListAsync();
+        var moneyBalances = await _db.MoneyInMachinesDb.ToListAsync();
 
         foreach (var balance in moneyBalances)
         {

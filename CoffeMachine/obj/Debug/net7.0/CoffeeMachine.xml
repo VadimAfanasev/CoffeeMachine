@@ -467,100 +467,16 @@
             <param name="httpStatusCode"> </param>
             <param name="message"> </param>
         </member>
-        <member name="T:CoffeeMachine.Migrations.initial">
+        <member name="T:CoffeeMachine.Migrations.InitialData_AlterTable_Coffee_DefaultData">
             <inheritdoc />
         </member>
-        <member name="M:CoffeeMachine.Migrations.initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:CoffeeMachine.Migrations.InitialData_AlterTable_Coffee_DefaultData.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:CoffeeMachine.Migrations.initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+        <member name="M:CoffeeMachine.Migrations.InitialData_AlterTable_Coffee_DefaultData.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
             <inheritdoc />
         </member>
-        <member name="M:CoffeeMachine.Migrations.initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:CoffeeMachine.Migrations.FixedName">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.FixedName.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.FixedName.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.FixedName.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:CoffeeMachine.Migrations.FixedEx">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.FixedEx.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.FixedEx.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.FixedEx.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:CoffeeMachine.Migrations.FixedExPt2">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.FixedExPt2.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.FixedExPt2.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.FixedExPt2.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_CoffeeName">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_CoffeeName.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_CoffeeName.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_CoffeeName.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_Name">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_Name.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_Name.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_CoffeeBalance_EditColumn_Name.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balance">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balance.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balance.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balance.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="T:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balances">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balances.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balances.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
-            <inheritdoc />
-        </member>
-        <member name="M:CoffeeMachine.Migrations.AlterTable_Coffee_AddColumn_Balances.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:CoffeeMachine.Migrations.InitialData_AlterTable_Coffee_DefaultData.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
         <member name="T:CoffeeMachine.Models.Coffee">
@@ -598,12 +514,12 @@
             Create a class constructor with parameters
             </summary>
         </member>
-        <member name="P:CoffeeMachine.Models.Data.CoffeeContext.Coffees">
+        <member name="P:CoffeeMachine.Models.Data.CoffeeContext.CoffeesDb">
             <summary>
             Creating a coffee table in a coffee machine
             </summary>
         </member>
-        <member name="P:CoffeeMachine.Models.Data.CoffeeContext.MoneyInMachines">
+        <member name="P:CoffeeMachine.Models.Data.CoffeeContext.MoneyInMachinesDb">
             <summary>
             Creating a money table in a coffee machine
             </summary>

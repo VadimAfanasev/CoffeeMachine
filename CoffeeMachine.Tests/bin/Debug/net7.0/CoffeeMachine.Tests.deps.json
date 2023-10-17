@@ -37,10 +37,12 @@
         "dependencies": {
           "Bogus": "34.0.2",
           "CoffeeMachine": "1.0.0",
+          "Docker.DotNet": "3.125.15",
           "FluentAssertions": "6.12.0",
           "Microsoft.AspNetCore.Mvc.Testing": "7.0.12",
           "Microsoft.EntityFrameworkCore.InMemory": "7.0.12",
           "Microsoft.NET.Test.Sdk": "17.7.2",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.19.4",
           "Moq": "4.20.69",
           "NUnit": "3.13.3",
           "NUnit.Analyzers": "3.8.0",
@@ -183,7 +185,7 @@
           "mscorlib": "4.0.0.0",
           "netstandard": "2.1.0.0",
           "System.AppContext": "7.0.0.0",
-          "System.Buffers": "7.0.0.0",
+          "System.Buffers.Reference": "7.0.0.0",
           "System.Collections.Concurrent": "7.0.0.0",
           "System.Collections": "7.0.0.0",
           "System.Collections.Immutable": "7.0.0.0",
@@ -430,6 +432,22 @@
         }
       },
       "coverlet.collector/6.0.0": {},
+      "Docker.DotNet/3.125.15": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.3",
+          "System.Buffers": "4.5.1",
+          "System.Threading.Tasks.Extensions": "4.5.4"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Docker.DotNet.dll": {
+            "assemblyVersion": "3.125.0.0",
+            "fileVersion": "3.125.15.1"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.1/Docker.DotNet.dll": {}
+        }
+      },
       "FluentAssertions/6.12.0": {
         "dependencies": {
           "System.Configuration.ConfigurationManager": "6.0.1"
@@ -1292,6 +1310,7 @@
           "lib/netcoreapp3.1/testhost.dll": {}
         }
       },
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.19.4": {},
       "Microsoft.Win32.SystemEvents/6.0.0": {
         "runtime": {
           "lib/net6.0/Microsoft.Win32.SystemEvents.dll": {
@@ -1584,6 +1603,7 @@
           "lib/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll": {}
         }
       },
+      "System.Buffers/4.5.1": {},
       "System.Configuration.ConfigurationManager/6.0.1": {
         "dependencies": {
           "System.Security.Cryptography.ProtectedData": "6.0.0",
@@ -1762,11 +1782,13 @@
       "CoffeeMachine/1.0.0": {
         "dependencies": {
           "Autofac": "7.1.0",
+          "Docker.DotNet": "3.125.15",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.11",
           "Microsoft.AspNetCore.OpenApi": "7.0.1",
           "Microsoft.EntityFrameworkCore": "7.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.11",
           "Microsoft.IdentityModel.Tokens": "7.0.2",
+          "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "1.19.4",
           "NUnit": "3.13.3",
           "NUnit3TestAdapter": "4.5.0",
           "Newtonsoft.Json": "13.0.3",
@@ -2607,7 +2629,7 @@
         },
         "compileOnly": true
       },
-      "System.Buffers/7.0.0.0": {
+      "System.Buffers.Reference/7.0.0.0": {
         "compile": {
           "System.Buffers.dll": {}
         },
@@ -3611,6 +3633,13 @@
       "path": "coverlet.collector/6.0.0",
       "hashPath": "coverlet.collector.6.0.0.nupkg.sha512"
     },
+    "Docker.DotNet/3.125.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-XN8FKxVv8Mjmwu104/Hl9lM61pLY675s70gzwSj8KR5pwblo8HfWLcCuinh9kYsqujBkMH4HVRCEcRuU6al4BQ==",
+      "path": "docker.dotnet/3.125.15",
+      "hashPath": "docker.dotnet.3.125.15.nupkg.sha512"
+    },
     "FluentAssertions/6.12.0": {
       "type": "package",
       "serviceable": true,
@@ -4017,6 +4046,13 @@
       "path": "microsoft.testplatform.testhost/17.7.2",
       "hashPath": "microsoft.testplatform.testhost.17.7.2.nupkg.sha512"
     },
+    "Microsoft.VisualStudio.Azure.Containers.Tools.Targets/1.19.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-aKxpRAUIxDrnSnyr7xJWGixOBgsB7Z4oHpWRkpRzzq04kfze4mN7944gRc4X9H2U5KG3A/btF74kavkO8KXqCg==",
+      "path": "microsoft.visualstudio.azure.containers.tools.targets/1.19.4",
+      "hashPath": "microsoft.visualstudio.azure.containers.tools.targets.1.19.4.nupkg.sha512"
+    },
     "Microsoft.Win32.SystemEvents/6.0.0": {
       "type": "package",
       "serviceable": true,
@@ -4177,6 +4213,13 @@
       "sha512": "sha512-OvbvxX+wL8skxTBttcBsVxdh73Fag4xwqEU2edh4JMn7Ws/xJHnY/JB1e9RoCb6XpDxUF3hD9A0Z1lEUx40Pfw==",
       "path": "swashbuckle.aspnetcore.swaggerui/6.5.0",
       "hashPath": "swashbuckle.aspnetcore.swaggerui.6.5.0.nupkg.sha512"
+    },
+    "System.Buffers/4.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg==",
+      "path": "system.buffers/4.5.1",
+      "hashPath": "system.buffers.4.5.1.nupkg.sha512"
     },
     "System.Configuration.ConfigurationManager/6.0.1": {
       "type": "package",
@@ -5029,7 +5072,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "System.Buffers/7.0.0.0": {
+    "System.Buffers.Reference/7.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

@@ -29,7 +29,7 @@ public class CalculateChange : ICalculateChange
     {
         var change = new List<uint>();
 
-        var sortedNotes = await _db.MoneyInMachines.OrderByDescending(n => n.Nominal).ToListAsync();
+        var sortedNotes = await _db.MoneyInMachinesDb.OrderByDescending(n => n.Nominal).ToListAsync();
 
         foreach (var note in sortedNotes)
         {
