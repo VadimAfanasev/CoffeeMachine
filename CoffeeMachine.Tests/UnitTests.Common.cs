@@ -46,7 +46,6 @@ public class UnitTestsCommon
         expected.Should().BeEquivalentTo(result);
     }
 
-
     private static CoffeeContext GetTestInitAppContext()
     {
         return TestDbBaseContext.GetTestInitAppContext();
