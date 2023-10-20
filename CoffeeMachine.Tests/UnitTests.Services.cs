@@ -20,14 +20,10 @@ public class UnitTestsServices
         var appContext = GetTestApplicationContextNew();
 
 
-        var calculateChange = new CalculateChange(appContext);
-        var decrementAvailableNotes = new DecrementAvailableNotes(appContext);
-        var incrementAvailableNotes = new IncrementAvailableNotes(appContext);
-        var incrementCoffeeBalances = new IncrementCoffeeBalances(appContext);
+        var calculateChange = new ChangeCalculationService(appContext);
+        var moneyService = new DepositService(appContext);
 
-        var coffeeBuyService = new CoffeeBuyServices(appContext, calculateChange, decrementAvailableNotes,
-            incrementAvailableNotes,
-            incrementCoffeeBalances);
+        var coffeeBuyService = new CoffeeBuyServices(appContext, moneyService, calculateChange);
 
         // Act
         var result = await coffeeBuyService.BuyingCoffeeAsync(coffeeType, moneys);
@@ -101,7 +97,7 @@ public class UnitTestsServices
         };
 
         var appContext = GetTestApplicationContextNew();
-        var incrementMoneyInMachine = new IncrementMoneyInMachine(appContext);
+        var incrementMoneyInMachine = new IncrementMoneyInMachineService(appContext);
 
         var balanceCoffeeService = new InputMoneyServices(appContext, incrementMoneyInMachine);
 
@@ -117,7 +113,7 @@ public class UnitTestsServices
     public async Task GetTokenAsync_ReturnsString_WhenNotNull()
     {
         // Arrange    
-        var user = new User.UserModel
+        var user = new UserModel
         {
             UserName = "Admin",
             Password = "Admin"

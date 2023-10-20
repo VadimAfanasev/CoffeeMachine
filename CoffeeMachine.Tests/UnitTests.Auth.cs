@@ -11,7 +11,7 @@ public class UnitTestsAuth
         var buildToken = new TokenService();
         string key = "MostSecretPasswordInTheWorldEver";
         string issuer = "CoffeeMachine";
-        var user = new User.UserDto("Admin", "Admin");
+        var user = new UserDto("Admin", "Admin");
 
         // Act
         var result = buildToken.BuildToken(key, issuer, user);
@@ -26,8 +26,8 @@ public class UnitTestsAuth
     {
         // Arrange
         var userRepository = new UserRepository();
-        var user = new User.UserModel {UserName = "Admin", Password = "Admin"};
-        var expected = new User.UserDto("Admin", "Admin");
+        var user = new UserModel {UserName = "Admin", Password = "Admin"};
+        var expected = new UserDto("Admin", "Admin");
 
         // Act
         var result = await userRepository.GetUserAsync(user);

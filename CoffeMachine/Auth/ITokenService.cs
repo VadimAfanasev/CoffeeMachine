@@ -8,9 +8,9 @@ public interface ITokenService
     /// <summary>
     /// The method in which the token is created
     /// </summary>
-    /// <param name="key"> </param>
-    /// <param name="issuer"> </param>
-    /// <param name="user"> </param>
+    /// <param name="key"> Key for token assembly </param>
+    /// <param name="issuer"> Issuer for token assembly </param>
+    /// <param name="user"> User for authentication </param>
     /// <returns> token </returns>
-    string BuildToken(string key, string issuer, User.UserDto user);
+    string BuildToken(string key, string issuer, UserDto user);
 }

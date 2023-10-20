@@ -1,34 +1,27 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace CoffeeMachine.Auth;
+﻿namespace CoffeeMachine.Auth;
 
 /// <summary>
-/// Class describing the user
+/// Identifying the user Dto
 /// </summary>
-public class User
+public class UserDto
 {
     /// <summary>
-    /// Identifying the user Dto
+    /// UserName for entries in UserDto
     /// </summary>
-    /// <param name="UserName"> </param>
-    /// <param name="Password"> </param>
-    public record UserDto(string UserName, string Password);
+    public string UserName { get; set; }
+    /// <summary>
+    /// Password for entries in UserDto
+    /// </summary>
+    public string Password { get; set; }
 
     /// <summary>
-    /// Identifying the UserModel
+    /// Dto for user data records
     /// </summary>
-    public record UserModel
+    /// <param name="userName"> UserName for entries in UserDto </param>
+    /// <param name="password"> Password for entries in UserDto </param>
+    public UserDto(string userName, string password)
     {
-        /// <summary>
-        /// Validity check password
-        /// </summary>
-        [Required]
-        public string Password { get; set; }
-
-        /// <summary>
-        /// Username for validation
-        /// </summary>
-        [Required]
-        public string UserName { get; set; }
+        UserName = userName;
+        Password = password;
     }
 }

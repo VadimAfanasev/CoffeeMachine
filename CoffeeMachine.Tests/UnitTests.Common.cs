@@ -14,7 +14,7 @@ public class UnitTestsCommon
         var expected = new List<uint> { 2000u, 500u };
 
         var appContext = GetTestInitAppContext();
-        var calculateChange = new CalculateChange(appContext);
+        var calculateChange = new ChangeCalculationService(appContext);
 
         // Act
         var result = await calculateChange.CalculateAsync(amount);
@@ -37,7 +37,7 @@ public class UnitTestsCommon
         };
 
         var appContext = GetTestInitAppContext();
-        var incrementMoneyInMachine = new IncrementMoneyInMachine(appContext);
+        var incrementMoneyInMachine = new IncrementMoneyInMachineService(appContext);
 
         // Act
         var result = await incrementMoneyInMachine.IncrementMoneyAsync(inputMoney);
@@ -45,6 +45,7 @@ public class UnitTestsCommon
         // Assert
         expected.Should().BeEquivalentTo(result);
     }
+
 
     private static CoffeeContext GetTestInitAppContext()
     {

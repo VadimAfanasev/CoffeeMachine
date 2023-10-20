@@ -1,4 +1,4 @@
-﻿using static CoffeeMachine.Auth.User;
+﻿using CoffeeMachine.Auth;
 
 namespace CoffeeMachine.Services.Interfaces;
 
@@ -10,7 +10,7 @@ public interface IGetTokenService
     /// <summary>
     /// Method that implements receiving a token
     /// </summary>
-    /// <param name="userModel"> </param>
+    /// <param name="userModel"> Model of user for getting token </param>
     /// <returns> string </returns>
     /// <response code="401"> Invalid User </response>
     Task<string> GetTokenAsync(UserModel userModel);

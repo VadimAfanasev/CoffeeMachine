@@ -15,9 +15,8 @@ public class CoffeeContext : DbContext
         if (Database.IsRelational())
         {
             Database.Migrate();
-        }
-
-        SaveChanges();
+            SaveChanges();
+        } 
     }
 
     /// <summary>

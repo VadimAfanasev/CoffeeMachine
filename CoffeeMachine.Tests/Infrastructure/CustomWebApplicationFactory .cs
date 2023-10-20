@@ -14,20 +14,49 @@ public class CustomWebApplicationFactory : WebApplicationFactory<CoffeeMachineBu
     public CustomWebApplicationFactory(ExternalServicesMock externalServicesMock)
     {
         _externalServicesMock = externalServicesMock;
+        _dbID = Guid.NewGuid();
     }
     public string DefaultUserId { get; set; } = "1";
+    private Guid _dbID;
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("IntegrationTesting");
         base.ConfigureWebHost(builder);
         builder.ConfigureServices(services =>
         {
+            var descriptor = services.SingleOrDefault(
+                d => d.ServiceType ==
+                    typeof(DbContextOptions<CoffeeContext>));
+            if (descriptor != null)
+                services.Remove(descriptor);
+
+            var dbDescriptor = services.SingleOrDefault(
+                d => d.ServiceType ==
+                    typeof(CoffeeContext));
+            if (dbDescriptor != null)
+                services.Remove(dbDescriptor);
+
             services.AddDbContext<CoffeeContext>(options =>
             {
-                options.UseInMemoryDatabase("CoffeeMachineIntegrationTestServices" + Guid.NewGuid())
+                options.UseInMemoryDatabase("CoffeeMachineIntegrationTestServices" + _dbID)
                     .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning));
             });
-            
+            var sp = services.BuildServiceProvider();
+            using (var scope = sp.CreateScope())
+            using (var appContext = scope.ServiceProvider.GetRequiredService<CoffeeContext>())
+            {
+                try
+                {
+                    appContext.Database.EnsureCreated();
+                    TestDbBaseContext.GetTestInitAppContext(appContext);
+                }
+                catch (Exception ex)
+                {
+                    //Log errors or do anything you think it's needed
+                    throw;
+                }
+            }
+
         });
         builder.ConfigureTestServices(services =>
         {

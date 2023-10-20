@@ -14,10 +14,18 @@ public class TokenService : ITokenService
     /// <summary>
     /// Token lifetime
     /// </summary>
-    private readonly TimeSpan _expiryDuration = new TimeSpan(0, 30, 0);
+    private readonly TimeSpan _expiryDuration;
+
+    /// <summary>
+    /// Constructor of class in which the token creation method is implemented 
+    /// </summary>
+    public TokenService()
+    {
+        _expiryDuration = new TimeSpan(0, 30, 0);
+    }
 
     /// <inheritdoc />
-    public string BuildToken(string key, string issuer, User.UserDto user)
+    public string BuildToken(string key, string issuer, UserDto user)
     {
         var claims = new[]
         {

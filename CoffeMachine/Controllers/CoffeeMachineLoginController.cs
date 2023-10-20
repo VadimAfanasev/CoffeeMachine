@@ -5,8 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CoffeeMachine.Controllers;
 
-using static User;
-
 /// <summary>
 /// The class that implements the authentication request
 /// </summary>
@@ -22,7 +20,7 @@ public class CoffeeMachineLoginController : ControllerBase
     /// <summary>
     /// Constructor of the class that implements the authentication request
     /// </summary>
-    /// <param name="getTokenService"> </param>
+    /// <param name="getTokenService"> Service for getting token </param>
     public CoffeeMachineLoginController(IGetTokenService getTokenService)
     {
         _getTokenService = getTokenService;
@@ -31,7 +29,7 @@ public class CoffeeMachineLoginController : ControllerBase
     /// <summary>
     /// Method for obtaining a token
     /// </summary>
-    /// <param name="userModel"> </param>
+    /// <param name="userModel"> Data of user for login in system </param>
     /// <returns> token </returns>
     [HttpPost("login")]
     public async Task<ActionResult> Login([FromBody] UserModel userModel)

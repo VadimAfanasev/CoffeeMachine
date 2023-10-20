@@ -33,7 +33,7 @@ public class ExceptionHandlingMiddleware
     /// <summary>
     /// Implementing an error handler
     /// </summary>
-    /// <param name="httpContext"> </param>
+    /// <param name="httpContext"> Http context </param>
     public async Task InvokeAsync(HttpContext httpContext)
     {
         try
@@ -61,9 +61,9 @@ public class ExceptionHandlingMiddleware
     /// <summary>
     /// Method to which control is transferred after an error occurs
     /// </summary>
-    /// <param name="context"> </param>
-    /// <param name="httpStatusCode"> </param>
-    /// <param name="message"> </param>
+    /// <param name="context"> Http context </param>
+    /// <param name="httpStatusCode"> Http Status Code </param>
+    /// <param name="message"> Error message </param>
     private async Task HandleExceptionAsync(HttpContext context, HttpStatusCode httpStatusCode,
         string message)
     {

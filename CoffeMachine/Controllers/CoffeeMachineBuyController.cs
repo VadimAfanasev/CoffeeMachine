@@ -20,7 +20,7 @@ public class CoffeeMachineBuyController : ControllerBase
     /// <summary>
     /// Constructor of a class that implements request for buying coffee
     /// </summary>
-    /// <param name="coffeeBuyService"> </param>
+    /// <param name="coffeeBuyService"> Service for buying coffee </param>
     public CoffeeMachineBuyController(ICoffeeBuyServices coffeeBuyService)
     {
         _coffeeBuyService = coffeeBuyService;

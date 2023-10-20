@@ -1,0 +1,11 @@
+[2023-10-20 17:28:47.395 +07:00  INF]  Saved 0 entities to in-memory store.
+[2023-10-20 17:28:47.401 +07:00  INF]  Saved 10 entities to in-memory store.
+[2023-10-20 17:28:47.413 +07:00  INF]  User profile is available. Using 'C:\Users\AfanasievVA\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2023-10-20 17:28:47.420 +07:00  INF]  Request starting HTTP/1.1 GET http://localhost/api/moneyinmachine/ - -
+[2023-10-20 17:28:47.422 +07:00  WRN]  Failed to determine the https port for redirect.
+[2023-10-20 17:28:47.424 +07:00  INF]  Executing endpoint 'CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine)'
+[2023-10-20 17:28:47.468 +07:00  INF]  Route matched with {action = "GetMoneyInMachine", controller = "CoffeeMachineAdministrator"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMoneyInMachineAsync() on controller CoffeeMachine.Controllers.CoffeeMachineAdministratorController (CoffeeMachine).
+[2023-10-20 17:28:47.478 +07:00  INF]  Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[CoffeeMachine.Dto.MoneyDto, CoffeeMachine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-10-20 17:28:47.479 +07:00  INF]  Executed action CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine) in 11.5244ms
+[2023-10-20 17:28:47.479 +07:00  INF]  Executed endpoint 'CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine)'
+[2023-10-20 17:28:47.480 +07:00  INF]  Request finished HTTP/1.1 GET http://localhost/api/moneyinmachine/ - - - 200 - application/json;+charset=utf-8 60.0534ms

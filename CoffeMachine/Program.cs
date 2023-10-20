@@ -14,6 +14,13 @@ using Serilog;
 using System.Reflection;
 using System.Text;
 
+using CoffeeMachine.HealthChecks;
+
+using HealthChecks.UI.Client;
+
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+
 var builder = WebApplication.CreateBuilder(args);
 
 var logger = new LoggerConfiguration()
@@ -70,14 +77,15 @@ builder.Services.AddSwaggerGen(config =>
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<CoffeeContext>(options => options.UseNpgsql(connection));
 
+builder.Services.AddHealthChecks()
+    .AddCheck<DatabaseHealthChekcs>("Database", HealthStatus.Unhealthy);
+
 builder.Services.AddScoped<ICoffeeBuyServices, CoffeeBuyServices>();
-builder.Services.AddScoped<ICalculateChange, CalculateChange>();
-builder.Services.AddScoped<IDecrementAvailableNotes, DecrementAvailableNotes>();
-builder.Services.AddScoped<IIncrementAvailableNotes, IncrementAvailableNotes>();
-builder.Services.AddScoped<IIncrementCoffeeBalances, IncrementCoffeeBalances>();
+builder.Services.AddScoped<IChangeCalculation, ChangeCalculationService>();
 builder.Services.AddScoped<IInputMoneyServices, InputMoneyServices>();
-builder.Services.AddScoped<IIncrementMoneyInMachine, IncrementMoneyInMachine>();
+builder.Services.AddScoped<IIncrementMoneyInMachine, IncrementMoneyInMachineService>();
 builder.Services.AddScoped<ICoffeeMachineStatusServices, CoffeeMachineStatusServices>();
+builder.Services.AddScoped<IDepositService, DepositService>();
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddSingleton<ITokenService, TokenService>();
@@ -117,5 +125,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHealthChecks("/health", new HealthCheckOptions
+{
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
 
 app.Run();

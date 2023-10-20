@@ -23,6 +23,8 @@ public class InputMoneyServices : IInputMoneyServices
     /// <summary>
     /// Constructor of the class in which we deposit money into the coffee machine
     /// </summary>
+    /// <param name="db"> Context database </param>
+    /// <param name="incrementMoneyInMachine"> Methods for incrementing money in machine </param>
     public InputMoneyServices(CoffeeContext db, IIncrementMoneyInMachine incrementMoneyInMachine)
     {
         _db = db;

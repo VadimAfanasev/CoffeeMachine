@@ -9,13 +9,13 @@
             The interface in which we describe the method for creating a token
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Auth.ITokenService.BuildToken(System.String,System.String,CoffeeMachine.Auth.User.UserDto)">
+        <member name="M:CoffeeMachine.Auth.ITokenService.BuildToken(System.String,System.String,CoffeeMachine.Auth.UserDto)">
             <summary>
             The method in which the token is created
             </summary>
-            <param name="key"> </param>
-            <param name="issuer"> </param>
-            <param name="user"> </param>
+            <param name="key"> Key for token assembly </param>
+            <param name="issuer"> Issuer for token assembly </param>
+            <param name="user"> User for authentication </param>
             <returns> token </returns>
         </member>
         <member name="T:CoffeeMachine.Auth.IUserRepository">
@@ -23,13 +23,13 @@
             An interface that describes obtaining a valid user
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Auth.IUserRepository.GetUserAsync(CoffeeMachine.Auth.User.UserModel)">
+        <member name="M:CoffeeMachine.Auth.IUserRepository.GetUserAsync(CoffeeMachine.Auth.UserModel)">
             <summary>
             The method by which we obtain a valid user for authentication
             </summary>
-            <param name="userModel"> </param>
+            <param name="userModel"> Model to search for a user in the database </param>
             <returns> UserDto </returns>
-            <exception cref="T:System.Exception"> </exception>
+            <exception cref="T:System.Exception"> User not found </exception>
         </member>
         <member name="T:CoffeeMachine.Auth.TokenService">
             <summary>
@@ -41,45 +41,47 @@
             Token lifetime
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Auth.TokenService.BuildToken(System.String,System.String,CoffeeMachine.Auth.User.UserDto)">
+        <member name="M:CoffeeMachine.Auth.TokenService.#ctor">
+            <summary>
+            Constructor of class in which the token creation method is implemented 
+            </summary>
+        </member>
+        <member name="M:CoffeeMachine.Auth.TokenService.BuildToken(System.String,System.String,CoffeeMachine.Auth.UserDto)">
             <inheritdoc />
         </member>
-        <member name="T:CoffeeMachine.Auth.User">
-            <summary>
-            Class describing the user
-            </summary>
-        </member>
-        <member name="T:CoffeeMachine.Auth.User.UserDto">
+        <member name="T:CoffeeMachine.Auth.UserDto">
             <summary>
             Identifying the user Dto
             </summary>
-            <param name="UserName"> </param>
-            <param name="Password"> </param>
         </member>
-        <member name="M:CoffeeMachine.Auth.User.UserDto.#ctor(System.String,System.String)">
+        <member name="P:CoffeeMachine.Auth.UserDto.UserName">
             <summary>
-            Identifying the user Dto
+            UserName for entries in UserDto
             </summary>
-            <param name="UserName"> </param>
-            <param name="Password"> </param>
         </member>
-        <member name="P:CoffeeMachine.Auth.User.UserDto.UserName">
-            <summary> </summary>
+        <member name="P:CoffeeMachine.Auth.UserDto.Password">
+            <summary>
+            Password for entries in UserDto
+            </summary>
         </member>
-        <member name="P:CoffeeMachine.Auth.User.UserDto.Password">
-            <summary> </summary>
+        <member name="M:CoffeeMachine.Auth.UserDto.#ctor(System.String,System.String)">
+            <summary>
+            Dto for user data records
+            </summary>
+            <param name="userName"> UserName for entries in UserDto </param>
+            <param name="password"> Password for entries in UserDto </param>
         </member>
-        <member name="T:CoffeeMachine.Auth.User.UserModel">
+        <member name="T:CoffeeMachine.Auth.UserModel">
             <summary>
             Identifying the UserModel
             </summary>
         </member>
-        <member name="P:CoffeeMachine.Auth.User.UserModel.Password">
+        <member name="P:CoffeeMachine.Auth.UserModel.Password">
             <summary>
             Validity check password
             </summary>
         </member>
-        <member name="P:CoffeeMachine.Auth.User.UserModel.UserName">
+        <member name="P:CoffeeMachine.Auth.UserModel.UserName">
             <summary>
             Username for validation
             </summary>
@@ -94,45 +96,48 @@
             List of valid users
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Auth.UserRepository.GetUserAsync(CoffeeMachine.Auth.User.UserModel)">
+        <member name="M:CoffeeMachine.Auth.UserRepository.GetUserAsync(CoffeeMachine.Auth.UserModel)">
             <inheritdoc />
         </member>
-        <member name="T:CoffeeMachine.Common.CalculateChange">
+        <member name="T:CoffeeMachine.Common.ChangeCalculationService">
             <summary>
             A class that implements methods for calculating change after buying coffee
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Common.CalculateChange._db">
+        <member name="F:CoffeeMachine.Common.ChangeCalculationService._db">
             <summary>
             Injecting the database context CoffeeContext
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Common.CalculateChange.#ctor(CoffeeMachine.Models.Data.CoffeeContext)">
+        <member name="M:CoffeeMachine.Common.ChangeCalculationService.#ctor(CoffeeMachine.Models.Data.CoffeeContext)">
             <summary>
             Constructor of the class in which we calculate change
             </summary>
-            <param name="db"> </param>
+            <param name="db"> Context database </param>
         </member>
-        <member name="M:CoffeeMachine.Common.CalculateChange.CalculateAsync(System.UInt32)">
+        <member name="M:CoffeeMachine.Common.ChangeCalculationService.CalculateAsync(System.UInt32)">
             <inheritdoc />
         </member>
-        <member name="T:CoffeeMachine.Common.DecrementAvailableNotes">
+        <member name="T:CoffeeMachine.Common.DepositService">
             <summary>
-            A class in which banknotes issued as change are subtracted from the database
+            Class for dealing with money when buying coffee
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Common.DecrementAvailableNotes._db">
+        <member name="F:CoffeeMachine.Common.DepositService._db">
             <summary>
             Injecting the database context CoffeeContext
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Common.DecrementAvailableNotes.#ctor(CoffeeMachine.Models.Data.CoffeeContext)">
+        <member name="M:CoffeeMachine.Common.DepositService.#ctor(CoffeeMachine.Models.Data.CoffeeContext)">
             <summary>
-            Constructor of the class in which issued banknotes are subtracted from the database
+            Class constructor for dealing with money when buying coffee
             </summary>
-            <param name="db"> </param>
+            <param name="db"> Context database </param>
         </member>
-        <member name="M:CoffeeMachine.Common.DecrementAvailableNotes.DecrementAvailableNoteAsync(System.Collections.Generic.List{System.UInt32})">
+        <member name="M:CoffeeMachine.Common.DepositService.IncrementAvailableNotesAsync(System.UInt32[])">
+            <inheritdoc />
+        </member>
+        <member name="M:CoffeeMachine.Common.DepositService.IncrementCoffeeBalanceAsync(System.String,System.UInt32)">
             <inheritdoc />
         </member>
         <member name="T:CoffeeMachine.Common.EnumBanknotes">
@@ -145,111 +150,75 @@
             List of banknote denominations available for calculation
             </summary>
         </member>
-        <member name="T:CoffeeMachine.Common.IncrementAvailableNotes">
+        <member name="F:CoffeeMachine.Common.EnumBanknotes.Banknotes.FiveThousand">
             <summary>
-            The class in which we implement adding money contributed by the user to the database
+            5000 banknote
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Common.IncrementAvailableNotes._db">
+        <member name="F:CoffeeMachine.Common.EnumBanknotes.Banknotes.TwoThousand">
             <summary>
-            Injecting the database context CoffeeContext
+            2000 banknote
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Common.IncrementAvailableNotes.#ctor(CoffeeMachine.Models.Data.CoffeeContext)">
+        <member name="F:CoffeeMachine.Common.EnumBanknotes.Banknotes.OneThousand">
             <summary>
-            Constructor of the class in which we implement adding money to the database
-            </summary>
-            <param name="db"> </param>
-        </member>
-        <member name="M:CoffeeMachine.Common.IncrementAvailableNotes.IncrementAvailableNoteAsync(System.UInt32[])">
-            <inheritdoc />
-        </member>
-        <member name="T:CoffeeMachine.Common.IncrementCoffeeBalances">
-            <summary>
-            A class in which we implement adding coffee purchased by the user to the database
+            1000 banknote
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Common.IncrementCoffeeBalances._db">
+        <member name="F:CoffeeMachine.Common.EnumBanknotes.Banknotes.FiveHundred">
             <summary>
-            Injecting the database context CoffeeContext
+            500 banknote
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Common.IncrementCoffeeBalances.#ctor(CoffeeMachine.Models.Data.CoffeeContext)">
-            <summary>
-            Constructor of the class in which we implement adding purchased coffee to the database
-            </summary>
-            <param name="db"> </param>
-        </member>
-        <member name="M:CoffeeMachine.Common.IncrementCoffeeBalances.IncrementCoffeeBalanceAsync(System.String,System.UInt32)">
-            <inheritdoc />
-        </member>
-        <member name="T:CoffeeMachine.Common.IncrementMoneyInMachine">
+        <member name="T:CoffeeMachine.Common.IncrementMoneyInMachineService">
             <summary>
             The class in which we implement adding money to the coffee machine by the administrator
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Common.IncrementMoneyInMachine._db">
+        <member name="F:CoffeeMachine.Common.IncrementMoneyInMachineService._db">
             <summary>
             Injecting database context
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Common.IncrementMoneyInMachine.#ctor(CoffeeMachine.Models.Data.CoffeeContext)">
+        <member name="M:CoffeeMachine.Common.IncrementMoneyInMachineService.#ctor(CoffeeMachine.Models.Data.CoffeeContext)">
             <summary>
             Constructor of the class in which we implement adding money to the coffee machine
             </summary>
-            <param name="db"> </param>
+            <param name="db"> Context database </param>
         </member>
-        <member name="M:CoffeeMachine.Common.IncrementMoneyInMachine.IncrementMoneyAsync(System.Collections.Generic.List{CoffeeMachine.Dto.MoneyDto})">
+        <member name="M:CoffeeMachine.Common.IncrementMoneyInMachineService.IncrementMoneyAsync(System.Collections.Generic.List{CoffeeMachine.Dto.MoneyDto})">
             <inheritdoc />
         </member>
-        <member name="T:CoffeeMachine.Common.Interfaces.ICalculateChange">
+        <member name="T:CoffeeMachine.Common.Interfaces.IChangeCalculation">
             <summary>
             An interface that describes the method for calculating change
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Common.Interfaces.ICalculateChange.CalculateAsync(System.UInt32)">
+        <member name="M:CoffeeMachine.Common.Interfaces.IChangeCalculation.CalculateAsync(System.UInt32)">
             <summary>
             Method for calculating change
             </summary>
-            <param name="amount"> </param>
+            <param name="amount"> The amount of money for which change will be calculated </param>
             <returns> The List of <paramref name="amount" /> </returns>
         </member>
-        <member name="T:CoffeeMachine.Common.Interfaces.IDecrementAvailableNotes">
+        <member name="T:CoffeeMachine.Common.Interfaces.IDepositService">
             <summary>
-            An interface that implements methods for deducting banknotes issued as change from the database
+            Interface that describes methods for working with money in the machine
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Common.Interfaces.IDecrementAvailableNotes.DecrementAvailableNoteAsync(System.Collections.Generic.List{System.UInt32})">
+        <member name="M:CoffeeMachine.Common.Interfaces.IDepositService.IncrementAvailableNotesAsync(System.UInt32[])">
             <summary>
-            Method for deducting banknotes issued as change from the database
+            Method in which money is deposited into the coffee machine
             </summary>
-            <param name="change"> </param>
-            <exception cref="T:System.Exception"> </exception>
+            <param name="inputMoney">Money that will be deposited into the machine</param>
         </member>
-        <member name="T:CoffeeMachine.Common.Interfaces.IIncrementAvailableNotes">
-            <summary>
-            An interface in which we implement a method for adding user-deposited bills
-            </summary>
-        </member>
-        <member name="M:CoffeeMachine.Common.Interfaces.IIncrementAvailableNotes.IncrementAvailableNoteAsync(System.UInt32[])">
-            <summary>
-            Adding money contributed by the user to the table
-            </summary>
-            <param name="inputMoney"> </param>
-            <exception cref="T:System.Exception"> </exception>
-        </member>
-        <member name="T:CoffeeMachine.Common.Interfaces.IIncrementCoffeeBalances">
-            <summary>
-            An interface in which we describe adding the amount of purchased coffee to the database
-            </summary>
-        </member>
-        <member name="M:CoffeeMachine.Common.Interfaces.IIncrementCoffeeBalances.IncrementCoffeeBalanceAsync(System.String,System.UInt32)">
+        <member name="M:CoffeeMachine.Common.Interfaces.IDepositService.IncrementCoffeeBalanceAsync(System.String,System.UInt32)">
             <summary>
             A method in which we add the amount of purchased coffee to the database
             </summary>
-            <param name="coffeeType"> </param>
-            <param name="coffeePrice"> </param>
-            <exception cref="T:System.Exception"> </exception>
+            <param name="coffeeType"> Type of coffee </param>
+            <param name="coffeePrice"> Price of coffee</param>
+            <exception cref="T:System.Exception"> No coffee with this name in the system </exception>
         </member>
         <member name="T:CoffeeMachine.Common.Interfaces.IIncrementMoneyInMachine">
             <summary>
@@ -260,8 +229,8 @@
             <summary>
             Method for the administrator to deposit money into the coffee machine
             </summary>
-            <param name="inputMoney"> </param>
-            <exception cref="T:System.Exception"> </exception>
+            <param name="inputMoney"> Money deposited into the machine </param>
+            <exception cref="T:System.Exception"> Error associated with incorrectly entered amount into the machine </exception>
         </member>
         <member name="T:CoffeeMachine.Controllers.CoffeeMachineAdministratorController">
             <summary>
@@ -282,8 +251,8 @@
             <summary>
             Constructor of the class that obtaining the status of the coffee machine
             </summary>
-            <param name="inputMoneyService"> </param>
-            <param name="coffeeMachineStatusService"> </param>
+            <param name="inputMoneyService"> Service for inputting money in machine</param>
+            <param name="coffeeMachineStatusService"> Service for getting machine status </param>
         </member>
         <member name="M:CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetCoffeeBalanceAsync">
             <summary>
@@ -329,7 +298,7 @@
             <summary>
             Constructor of a class that implements request for buying coffee
             </summary>
-            <param name="coffeeBuyService"> </param>
+            <param name="coffeeBuyService"> Service for buying coffee </param>
         </member>
         <member name="M:CoffeeMachine.Controllers.CoffeeMachineBuyController.PlaceOrder(System.String,System.UInt32[])">
             <summary>
@@ -363,13 +332,13 @@
             <summary>
             Constructor of the class that implements the authentication request
             </summary>
-            <param name="getTokenService"> </param>
+            <param name="getTokenService"> Service for getting token </param>
         </member>
-        <member name="M:CoffeeMachine.Controllers.CoffeeMachineLoginController.Login(CoffeeMachine.Auth.User.UserModel)">
+        <member name="M:CoffeeMachine.Controllers.CoffeeMachineLoginController.Login(CoffeeMachine.Auth.UserModel)">
             <summary>
             Method for obtaining a token
             </summary>
-            <param name="userModel"> </param>
+            <param name="userModel"> Data of user for login in system </param>
             <returns> token </returns>
         </member>
         <member name="T:CoffeeMachine.Dto.BalanceCoffeeDto">
@@ -457,15 +426,15 @@
             <summary>
             Implementing an error handler
             </summary>
-            <param name="httpContext"> </param>
+            <param name="httpContext"> Http context </param>
         </member>
         <member name="M:CoffeeMachine.Middlewares.ExceptionHandlingMiddleware.HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Net.HttpStatusCode,System.String)">
             <summary>
             Method to which control is transferred after an error occurs
             </summary>
-            <param name="context"> </param>
-            <param name="httpStatusCode"> </param>
-            <param name="message"> </param>
+            <param name="context"> Http context </param>
+            <param name="httpStatusCode"> Http Status Code </param>
+            <param name="message"> Error message </param>
         </member>
         <member name="T:CoffeeMachine.Migrations.InitialData_AlterTable_Coffee_DefaultData">
             <inheritdoc />
@@ -544,7 +513,7 @@
             The class in which the purchase of coffee is implemented
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Services.CoffeeBuyServices._calculateChange">
+        <member name="F:CoffeeMachine.Services.CoffeeBuyServices._changeCalculation">
             <summary>
             Injecting of change calculation methods
             </summary>
@@ -554,22 +523,12 @@
             Injecting the database context CoffeeContext
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Services.CoffeeBuyServices._decrementAvailableNote">
+        <member name="F:CoffeeMachine.Services.CoffeeBuyServices._depositService">
             <summary>
-            Implementation of methods for deducting change from the database
+            Injecting of manipulation with money methods
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Services.CoffeeBuyServices._incrementAvailableNote">
-            <summary>
-            Implementation of methods for entering change into the database
-            </summary>
-        </member>
-        <member name="F:CoffeeMachine.Services.CoffeeBuyServices._incrementCoffeeBalances">
-            <summary>
-            Implementation of methods for entering purchased coffee into the database
-            </summary>
-        </member>
-        <member name="M:CoffeeMachine.Services.CoffeeBuyServices.#ctor(CoffeeMachine.Models.Data.CoffeeContext,CoffeeMachine.Common.Interfaces.ICalculateChange,CoffeeMachine.Common.Interfaces.IDecrementAvailableNotes,CoffeeMachine.Common.Interfaces.IIncrementAvailableNotes,CoffeeMachine.Common.Interfaces.IIncrementCoffeeBalances)">
+        <member name="M:CoffeeMachine.Services.CoffeeBuyServices.#ctor(CoffeeMachine.Models.Data.CoffeeContext,CoffeeMachine.Common.Interfaces.IDepositService,CoffeeMachine.Common.Interfaces.IChangeCalculation)">
             <summary>
             Constructor of the class in which coffee is purchased
             </summary>
@@ -600,6 +559,7 @@
             <summary>
             Constructor of a class in which we get information about the coffee machine
             </summary>
+            <param name="db"> Context database </param>
         </member>
         <member name="M:CoffeeMachine.Services.CoffeeMachineStatusServices.GetBalanceCoffeeAsync">
             <inheritdoc />
@@ -631,8 +591,11 @@
             <summary>
             Constructor of the class in which we receive the token
             </summary>
+            <param name="tokenService"> Token Service </param>
+            <param name="userRepository"> User repository </param>
+            <param name="jwtOptions"> JWT options </param>
         </member>
-        <member name="M:CoffeeMachine.Services.GetTokenService.GetTokenAsync(CoffeeMachine.Auth.User.UserModel)">
+        <member name="M:CoffeeMachine.Services.GetTokenService.GetTokenAsync(CoffeeMachine.Auth.UserModel)">
             <inheritdoc />
         </member>
         <member name="T:CoffeeMachine.Services.InputMoneyServices">
@@ -654,6 +617,8 @@
             <summary>
             Constructor of the class in which we deposit money into the coffee machine
             </summary>
+            <param name="db"> Context database </param>
+            <param name="incrementMoneyInMachine"> Methods for incrementing money in machine </param>
         </member>
         <member name="M:CoffeeMachine.Services.InputMoneyServices.InputingAsync(System.Collections.Generic.List{CoffeeMachine.Dto.MoneyDto})">
             <inheritdoc />
@@ -667,33 +632,12 @@
             <summary>
             The method by which coffee is purchased
             </summary>
-            <param name="coffeeType"> </param>
-            <param name="moneys"> </param>
+            <param name="coffeeType"> Type of coffee </param>
+            <param name="moneys"> Input moneys </param>
             <returns> OrderCoffeeDto </returns>
             <response code="200"> Success </response>
             <response code="400"> Incorrect data entered </response>
             <response code="404"> Entity not found in the system </response>
-        </member>
-        <member name="M:CoffeeMachine.Services.Interfaces.ICoffeeBuyServices.SumUintArray(System.UInt32[])">
-            <summary>
-            Method for getting the amount of an array of entered money
-            </summary>
-            <param name="moneys"> </param>
-            <returns> uint </returns>
-        </member>
-        <member name="M:CoffeeMachine.Services.Interfaces.ICoffeeBuyServices.ChangeToDto(System.Collections.Generic.List{System.UInt32})">
-            <summary>
-            Transfer the user's change to the Dto
-            </summary>
-            <param name="change"> </param>
-            <returns> OrderCoffeeDto </returns>
-        </member>
-        <member name="M:CoffeeMachine.Services.Interfaces.ICoffeeBuyServices.GetCoffeePrice(System.String)">
-            <summary>
-            Calculating the cost of coffee
-            </summary>
-            <param name="coffeeType"> </param>
-            <returns> uint </returns>
         </member>
         <member name="T:CoffeeMachine.Services.Interfaces.ICoffeeMachineStatusServices">
             <summary>
@@ -704,26 +648,26 @@
             <summary>
             Getting the coffee balance from the machine
             </summary>
-            <returns> </returns>
-            <exception cref="T:System.Exception"> </exception>
+            <returns> List of BalanceCoffeeDto </returns>
+            <exception cref="T:System.Exception"> Entity not found in the system </exception>
         </member>
         <member name="M:CoffeeMachine.Services.Interfaces.ICoffeeMachineStatusServices.GetBalanceMoneyAsync">
             <summary>
             We get a list of funds available in the machine
             </summary>
-            <returns> </returns>
-            <exception cref="T:System.Exception"> </exception>
+            <returns> List of MoneyDto </returns>
+            <exception cref="T:System.Exception"> Entity not found in the system </exception>
         </member>
         <member name="T:CoffeeMachine.Services.Interfaces.IGetTokenService">
             <summary>
             Interface describing receiving a token
             </summary>
         </member>
-        <member name="M:CoffeeMachine.Services.Interfaces.IGetTokenService.GetTokenAsync(CoffeeMachine.Auth.User.UserModel)">
+        <member name="M:CoffeeMachine.Services.Interfaces.IGetTokenService.GetTokenAsync(CoffeeMachine.Auth.UserModel)">
             <summary>
             Method that implements receiving a token
             </summary>
-            <param name="userModel"> </param>
+            <param name="userModel"> Model of user for getting token </param>
             <returns> string </returns>
             <response code="401"> Invalid User </response>
         </member>
@@ -736,8 +680,28 @@
             <summary>
             Depositing funds into a coffee machine
             </summary>
-            <param name="inputMoney"> </param>
+            <param name="inputMoney"> Input money in machine </param>
             <response code="400"> Incorrect data entered </response>
+        </member>
+        <member name="T:CoffeeMachine.Settings.Jwt">
+            <summary>
+            Class in which described JWT token 
+            </summary>
+        </member>
+        <member name="P:CoffeeMachine.Settings.Jwt.Key">
+            <summary>
+            Key for getting token
+            </summary>
+        </member>
+        <member name="P:CoffeeMachine.Settings.Jwt.Issuer">
+            <summary>
+            Issuer for getting token
+            </summary>
+        </member>
+        <member name="P:CoffeeMachine.Settings.Jwt.Audience">
+            <summary>
+            Audience for getting token
+            </summary>
         </member>
     </members>
 </doc>

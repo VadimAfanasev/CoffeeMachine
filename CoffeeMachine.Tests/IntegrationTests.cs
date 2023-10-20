@@ -1,4 +1,5 @@
-﻿using CoffeeMachine.Tests.Infrastructure;
+﻿using Azure;
+using CoffeeMachine.Tests.Infrastructure;
 using Newtonsoft.Json;
 using System.Net;
 using System.Net.Http.Headers;
@@ -67,10 +68,66 @@ public class IntegrationTests : CustomBaseTest
     }
 
     [Test]
+    public async Task OrderCoffeeTest_ReturnsOrderCoffeeDto_ManyOrdersCheckDb()
+    {
+        // Arrange
+        const string coffeeName = "Cappuccino";
+        var response = new HttpResponseMessage();
+        string balanceDatabase = "";
+
+        var endlessСycle = true;
+        int iteration = 0;
+
+        var client = GetClient();
+
+        var inputMoney = new List<MoneyDto>
+        {
+            new MoneyDto() { Nominal = 5000, Count = 100 },
+            new MoneyDto() { Nominal = 2000, Count = 100 },
+            new MoneyDto() { Nominal = 1000, Count = 100 },
+            new MoneyDto() { Nominal = 500, Count = 100 },
+            new MoneyDto() { Nominal = 200, Count = 100 },
+            new MoneyDto() { Nominal = 100, Count = 100 },
+            new MoneyDto() { Nominal = 50, Count = 100 }
+        };
+        var inputMoneyJson = JsonContent.Create(inputMoney);
+        await client.PutAsync("api/inputing", inputMoneyJson);
+
+
+        // Act
+        while (endlessСycle)
+        {
+            var generator = new RandomCombinationGenerator();
+            uint[] combination = generator.GenerateRandomCombination();
+            var content = JsonContent.Create(combination);
+            var contentNew = new uint[] { 5000 };
+            var contentNumber = JsonContent.Create(contentNew);
+
+            iteration++;
+            if (iteration == 100)
+                endlessСycle = false;
+            response = await client.PostAsync($"api/order/{coffeeName}", contentNumber);
+            var balance = await client.GetAsync("api/moneyinmachine");
+
+            balanceDatabase = await balance.Content.ReadAsStringAsync();
+
+            if (response.Content.ReadAsStringAsync().Result.Contains("400"))
+            {
+                endlessСycle = false;
+            }
+        }
+
+        var responseContent = await response.Content.ReadAsStringAsync();
+        var balanceDatabaseNew = balanceDatabase;
+        // Assert    
+        responseContent.Should().Contain("Cannot provide change");
+    }
+
+    [Test]
     public async Task LoginTest_ReturnsString_WhenStatusCodeOk()
     {
         // Arrange
-        var user = new User.UserModel
+        var user = new UserModel
         {
             UserName = "Admin",
             Password = "Admin"
@@ -92,7 +149,7 @@ public class IntegrationTests : CustomBaseTest
     public async Task LoginTest_ReturnsString_WhenStatusCodeNotFound()
     {
         // Arrange
-        var user = new User.UserModel
+        var user = new UserModel
         {
             UserName = "AnyUser",
             Password = "AnyUser"
@@ -117,8 +174,9 @@ public class IntegrationTests : CustomBaseTest
         const string expected = "Money deposited";
         var inputMoney = new List<MoneyDto>
         {
-            new MoneyDto() { Nominal = 2000, Count = 2 },
-            new MoneyDto() { Nominal = 500, Count = 2 }
+            new MoneyDto() { Nominal = 2000, Count = 10 },
+            new MoneyDto() { Nominal = 1000, Count = 10 },
+            new MoneyDto() { Nominal = 500, Count = 10 }
         };
         var content = JsonContent.Create(inputMoney);
 
@@ -184,5 +242,6 @@ public class IntegrationTests : CustomBaseTest
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
+
 }
 

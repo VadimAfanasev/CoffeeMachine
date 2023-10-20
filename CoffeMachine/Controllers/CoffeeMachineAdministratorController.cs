@@ -26,8 +26,8 @@ public class CoffeeMachineAdministratorController : ControllerBase
     /// <summary>
     /// Constructor of the class that obtaining the status of the coffee machine
     /// </summary>
-    /// <param name="inputMoneyService"> </param>
-    /// <param name="coffeeMachineStatusService"> </param>
+    /// <param name="inputMoneyService"> Service for inputting money in machine</param>
+    /// <param name="coffeeMachineStatusService"> Service for getting machine status </param>
     public CoffeeMachineAdministratorController(IInputMoneyServices inputMoneyService,
         ICoffeeMachineStatusServices coffeeMachineStatusService)
     {
@@ -80,7 +80,7 @@ public class CoffeeMachineAdministratorController : ControllerBase
     /// <response code="200"> Success </response>
     /// <response code="400"> Invalid banknotes type </response>
     [Authorize]
-    [HttpPut("inputing/")]
+    [HttpPut("inputing")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult> InputMoneyAsync([FromBody] List<MoneyDto> inputMoney)

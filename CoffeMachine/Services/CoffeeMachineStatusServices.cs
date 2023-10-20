@@ -19,6 +19,7 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     /// <summary>
     /// Constructor of a class in which we get information about the coffee machine
     /// </summary>
+    /// <param name="db"> Context database </param>
     public CoffeeMachineStatusServices(CoffeeContext db)
     {
         _db = db;

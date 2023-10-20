@@ -1,0 +1,156 @@
+[2023-10-18 23:46:46.868 +07:00  INF]  User profile is available. Using 'C:\Users\Вадим\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+[2023-10-18 23:46:47.435 +07:00  INF]  Now listening on: http://localhost:5026
+[2023-10-18 23:46:47.440 +07:00  INF]  Application started. Press Ctrl+C to shut down.
+[2023-10-18 23:46:47.441 +07:00  INF]  Hosting environment: Development
+[2023-10-18 23:46:47.441 +07:00  INF]  Content root path: C:\Users\Вадим\Desktop\CoffeMachine\CoffeMachine\CoffeMachine
+[2023-10-18 23:46:51.184 +07:00  INF]  Request starting HTTP/1.1 GET http://localhost:5026/swagger - -
+[2023-10-18 23:46:51.587 +07:00  INF]  Request finished HTTP/1.1 GET http://localhost:5026/swagger - - - 301 0 - 410.3306ms
+[2023-10-18 23:46:51.600 +07:00  INF]  Request starting HTTP/1.1 GET http://localhost:5026/swagger/index.html - -
+[2023-10-18 17:24:28.575 +00:00  WRN]  Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+[2023-10-18 17:24:28.668 +00:00  INF]  User profile is available. Using '/root/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+[2023-10-18 17:24:28.695 +00:00  INF]  Creating key {d86c3782-d33b-4355-b9ac-12dc1415e662} with creation date 2023-10-18 17:24:28Z, activation date 2023-10-18 17:24:28Z, and expiration date 2024-01-16 17:24:28Z.
+[2023-10-18 17:24:28.726 +00:00  WRN]  No XML encryptor configured. Key {d86c3782-d33b-4355-b9ac-12dc1415e662} may be persisted to storage in unencrypted form.
+[2023-10-18 17:24:28.737 +00:00  INF]  Writing data to file '/root/.aspnet/DataProtection-Keys/key-d86c3782-d33b-4355-b9ac-12dc1415e662.xml'.
+[2023-10-18 17:24:28.827 +00:00  INF]  Now listening on: http://[::]:5110
+[2023-10-18 17:24:28.831 +00:00  INF]  Application started. Press Ctrl+C to shut down.
+[2023-10-18 17:24:28.833 +00:00  INF]  Hosting environment: Production
+[2023-10-18 17:24:28.834 +00:00  INF]  Content root path: /app
+[2023-10-18 17:24:40.910 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/ - -
+[2023-10-18 17:24:40.987 +00:00  WRN]  Failed to determine the https port for redirect.
+[2023-10-18 17:24:41.069 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/ - - - 404 0 - 163.5826ms
+[2023-10-18 17:24:46.195 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/ - -
+[2023-10-18 17:24:46.207 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/ - - - 404 0 - 11.9043ms
+[2023-10-18 17:25:26.296 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/ - -
+[2023-10-18 17:25:26.305 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/ - - - 404 0 - 8.9917ms
+[2023-10-18 17:25:27.501 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/ - -
+[2023-10-18 17:25:27.504 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/ - - - 404 0 - 3.5532ms
+[2023-10-18 17:25:28.247 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/ - -
+[2023-10-18 17:25:28.250 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/ - - - 404 0 - 2.5685ms
+[2023-10-18 17:25:28.675 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/ - -
+[2023-10-18 17:25:28.678 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/ - - - 404 0 - 2.7028ms
+[2023-10-18 17:26:41.364 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - -
+[2023-10-18 17:26:41.367 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - - - 404 0 - 2.7268ms
+[2023-10-18 17:27:06.808 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - -
+[2023-10-18 17:27:06.810 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - - - 404 0 - 2.6031ms
+[2023-10-18 17:27:10.443 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - -
+[2023-10-18 17:27:10.445 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - - - 404 0 - 2.5434ms
+[2023-10-18 17:27:35.022 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/api/cappuccino - -
+[2023-10-18 17:27:35.030 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/api/cappuccino - - - 404 0 - 8.6634ms
+[2023-10-18 17:29:32.321 +00:00  INF]  Application is shutting down...
+[2023-10-18 17:35:05.582 +00:00  WRN]  Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+[2023-10-18 17:35:05.667 +00:00  INF]  User profile is available. Using '/root/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+[2023-10-18 17:35:05.693 +00:00  INF]  Creating key {ca7de415-34fd-45a5-936a-2df767211b79} with creation date 2023-10-18 17:35:05Z, activation date 2023-10-18 17:35:05Z, and expiration date 2024-01-16 17:35:05Z.
+[2023-10-18 17:35:05.724 +00:00  WRN]  No XML encryptor configured. Key {ca7de415-34fd-45a5-936a-2df767211b79} may be persisted to storage in unencrypted form.
+[2023-10-18 17:35:05.735 +00:00  INF]  Writing data to file '/root/.aspnet/DataProtection-Keys/key-ca7de415-34fd-45a5-936a-2df767211b79.xml'.
+[2023-10-18 17:35:05.908 +00:00  INF]  Now listening on: http://[::]:5110
+[2023-10-18 17:35:05.912 +00:00  INF]  Application started. Press Ctrl+C to shut down.
+[2023-10-18 17:35:05.914 +00:00  INF]  Hosting environment: Development
+[2023-10-18 17:35:05.915 +00:00  INF]  Content root path: /app
+[2023-10-18 17:35:30.855 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/ - -
+[2023-10-18 17:35:30.998 +00:00  WRN]  Failed to determine the https port for redirect.
+[2023-10-18 17:35:31.065 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/ - - - 404 0 - 214.5815ms
+[2023-10-18 17:35:44.451 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - -
+[2023-10-18 17:35:44.732 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - - - 200 - text/html;charset=utf-8 281.0272ms
+[2023-10-18 17:35:44.754 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui.css - -
+[2023-10-18 17:35:44.754 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui-bundle.js - -
+[2023-10-18 17:35:44.757 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui-standalone-preset.js - -
+[2023-10-18 17:35:44.841 +00:00  INF]  Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+[2023-10-18 17:35:44.842 +00:00  INF]  Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+[2023-10-18 17:35:44.842 +00:00  INF]  Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+[2023-10-18 17:35:44.850 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui-bundle.js - - - 200 1061536 text/javascript 96.0368ms
+[2023-10-18 17:35:44.850 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui.css - - - 200 144929 text/css 96.3572ms
+[2023-10-18 17:35:44.850 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/swagger-ui-standalone-preset.js - - - 200 312163 text/javascript 92.8178ms
+[2023-10-18 17:35:45.294 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - -
+[2023-10-18 17:35:45.576 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - -
+[2023-10-18 17:35:45.579 +00:00  INF]  Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+[2023-10-18 17:35:45.581 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/favicon-32x32.png - - - 200 628 image/png 5.2751ms
+[2023-10-18 17:35:45.724 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 430.1382ms
+[2023-10-18 17:36:19.602 +00:00  INF]  Request starting HTTP/1.1 POST http://localhost:5110/api/login application/json 48
+[2023-10-18 17:36:19.627 +00:00  INF]  Executing endpoint 'CoffeeMachine.Controllers.CoffeeMachineLoginController.Login (CoffeeMachine)'
+[2023-10-18 17:36:19.699 +00:00  INF]  Route matched with {action = "Login", controller = "CoffeeMachineLogin"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Login(UserModel) on controller CoffeeMachine.Controllers.CoffeeMachineLoginController (CoffeeMachine).
+[2023-10-18 17:36:19.840 +00:00  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-10-18 17:36:19.855 +00:00  INF]  Executed action CoffeeMachine.Controllers.CoffeeMachineLoginController.Login (CoffeeMachine) in 144.637ms
+[2023-10-18 17:36:19.859 +00:00  INF]  Executed endpoint 'CoffeeMachine.Controllers.CoffeeMachineLoginController.Login (CoffeeMachine)'
+[2023-10-18 17:36:19.862 +00:00  INF]  Request finished HTTP/1.1 POST http://localhost:5110/api/login application/json 48 - 200 - text/plain;+charset=utf-8 258.3092ms
+[2023-10-18 17:36:35.121 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/api/moneyinmachine - -
+[2023-10-18 17:36:35.227 +00:00  INF]  Executing endpoint 'CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine)'
+[2023-10-18 17:36:35.237 +00:00  INF]  Route matched with {action = "GetMoneyInMachine", controller = "CoffeeMachineAdministrator"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMoneyInMachineAsync() on controller CoffeeMachine.Controllers.CoffeeMachineAdministratorController (CoffeeMachine).
+[2023-10-18 17:36:36.933 +00:00  INF]  Executed action CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine) in 1694.1968ms
+[2023-10-18 17:36:36.935 +00:00  INF]  Executed endpoint 'CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine)'
+[2023-10-18 17:36:36.938 +00:00  ERR]  Failed to connect to [::1]:5432
+[2023-10-18 17:36:36.955 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/api/moneyinmachine - - - 404 - application/json;+charset=utf-8 1833.5180ms
+[2023-10-18 17:36:56.812 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/api/coffeebalance - -
+[2023-10-18 17:36:56.822 +00:00  INF]  Executing endpoint 'CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetCoffeeBalanceAsync (CoffeeMachine)'
+[2023-10-18 17:36:56.832 +00:00  INF]  Route matched with {action = "GetCoffeeBalance", controller = "CoffeeMachineAdministrator"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetCoffeeBalanceAsync() on controller CoffeeMachine.Controllers.CoffeeMachineAdministratorController (CoffeeMachine).
+[2023-10-18 17:36:56.878 +00:00  INF]  Executed action CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetCoffeeBalanceAsync (CoffeeMachine) in 44.8987ms
+[2023-10-18 17:36:56.879 +00:00  INF]  Executed endpoint 'CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetCoffeeBalanceAsync (CoffeeMachine)'
+[2023-10-18 17:36:56.880 +00:00  ERR]  Failed to connect to [::1]:5432
+[2023-10-18 17:36:56.882 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/api/coffeebalance - - - 404 - application/json;+charset=utf-8 70.6635ms
+[2023-10-18 17:40:22.214 +00:00  INF]  Application is shutting down...
+[2023-10-18 17:43:03.041 +00:00  WRN]  Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+[2023-10-18 17:43:03.123 +00:00  INF]  User profile is available. Using '/root/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+[2023-10-18 17:43:03.149 +00:00  INF]  Creating key {84f7b0f1-b51c-455d-bd30-71900e7c7d8e} with creation date 2023-10-18 17:43:03Z, activation date 2023-10-18 17:43:03Z, and expiration date 2024-01-16 17:43:03Z.
+[2023-10-18 17:43:03.178 +00:00  WRN]  No XML encryptor configured. Key {84f7b0f1-b51c-455d-bd30-71900e7c7d8e} may be persisted to storage in unencrypted form.
+[2023-10-18 17:43:03.188 +00:00  INF]  Writing data to file '/root/.aspnet/DataProtection-Keys/key-84f7b0f1-b51c-455d-bd30-71900e7c7d8e.xml'.
+[2023-10-18 17:43:03.313 +00:00  INF]  Now listening on: http://[::]:5110
+[2023-10-18 17:43:03.317 +00:00  INF]  Application started. Press Ctrl+C to shut down.
+[2023-10-18 17:43:03.319 +00:00  INF]  Hosting environment: Development
+[2023-10-18 17:43:03.320 +00:00  INF]  Content root path: /app
+[2023-10-18 17:43:08.439 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/ - -
+[2023-10-18 17:43:08.587 +00:00  WRN]  Failed to determine the https port for redirect.
+[2023-10-18 17:43:08.655 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/ - - - 404 0 - 227.4951ms
+[2023-10-18 17:43:11.486 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - -
+[2023-10-18 17:43:11.719 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - - - 200 - text/html;charset=utf-8 232.1757ms
+[2023-10-18 17:43:12.085 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - -
+[2023-10-18 17:43:12.435 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 349.7520ms
+[2023-10-18 17:43:31.427 +00:00  INF]  Request starting HTTP/1.1 POST http://localhost:5110/api/login application/json 48
+[2023-10-18 17:43:31.450 +00:00  INF]  Executing endpoint 'CoffeeMachine.Controllers.CoffeeMachineLoginController.Login (CoffeeMachine)'
+[2023-10-18 17:43:31.526 +00:00  INF]  Route matched with {action = "Login", controller = "CoffeeMachineLogin"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Login(UserModel) on controller CoffeeMachine.Controllers.CoffeeMachineLoginController (CoffeeMachine).
+[2023-10-18 17:43:31.697 +00:00  INF]  Executing OkObjectResult, writing value of type 'System.String'.
+[2023-10-18 17:43:31.713 +00:00  INF]  Executed action CoffeeMachine.Controllers.CoffeeMachineLoginController.Login (CoffeeMachine) in 174.1923ms
+[2023-10-18 17:43:31.718 +00:00  INF]  Executed endpoint 'CoffeeMachine.Controllers.CoffeeMachineLoginController.Login (CoffeeMachine)'
+[2023-10-18 17:43:31.721 +00:00  INF]  Request finished HTTP/1.1 POST http://localhost:5110/api/login application/json 48 - 200 - text/plain;+charset=utf-8 291.7911ms
+[2023-10-18 17:43:46.931 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/api/moneyinmachine - -
+[2023-10-18 17:43:47.042 +00:00  INF]  Executing endpoint 'CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine)'
+[2023-10-18 17:43:47.055 +00:00  INF]  Route matched with {action = "GetMoneyInMachine", controller = "CoffeeMachineAdministrator"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMoneyInMachineAsync() on controller CoffeeMachine.Controllers.CoffeeMachineAdministratorController (CoffeeMachine).
+[2023-10-18 17:43:48.932 +00:00  INF]  Executed action CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine) in 1876.5111ms
+[2023-10-18 17:43:48.934 +00:00  INF]  Executed endpoint 'CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine)'
+[2023-10-18 17:43:48.938 +00:00  ERR]  28000: � pg_hba.conf ��� ������ ��� ���������� "172.28.112.1", ������������ "postgres", ���� "TestDBNew", ��� ����������
+[2023-10-18 17:43:48.955 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/api/moneyinmachine - - - 404 - application/json;+charset=utf-8 2023.7041ms
+[2023-10-18 17:47:44.206 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/api/moneyinmachine - -
+[2023-10-18 17:47:44.223 +00:00  INF]  Executing endpoint 'CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine)'
+[2023-10-18 17:47:44.224 +00:00  INF]  Route matched with {action = "GetMoneyInMachine", controller = "CoffeeMachineAdministrator"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetMoneyInMachineAsync() on controller CoffeeMachine.Controllers.CoffeeMachineAdministratorController (CoffeeMachine).
+[2023-10-18 17:47:45.268 +00:00  INF]  Executed DbCommand (88ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+[2023-10-18 17:47:45.410 +00:00  INF]  Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1 FROM pg_catalog.pg_class c
+    JOIN pg_catalog.pg_namespace n ON n.oid=c.relnamespace
+    WHERE n.nspname='public' AND
+          c.relname='__EFMigrationsHistory'
+)
+[2023-10-18 17:47:45.485 +00:00  INF]  Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+[2023-10-18 17:47:45.528 +00:00  INF]  No migrations were applied. The database is already up to date.
+[2023-10-18 17:47:46.019 +00:00  INF]  Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT m."Nominal", m."Count"
+FROM "MoneyInMachinesDb" AS m
+[2023-10-18 17:47:46.153 +00:00  INF]  Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[CoffeeMachine.Dto.MoneyDto, CoffeeMachine, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+[2023-10-18 17:47:46.175 +00:00  INF]  Executed action CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine) in 1949.3636ms
+[2023-10-18 17:47:46.177 +00:00  INF]  Executed endpoint 'CoffeeMachine.Controllers.CoffeeMachineAdministratorController.GetMoneyInMachineAsync (CoffeeMachine)'
+[2023-10-18 17:47:46.203 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/api/moneyinmachine - - - 200 - application/json;+charset=utf-8 1996.3828ms
+[2023-10-18 17:48:33.239 +00:00  INF]  Application is shutting down...
+[2023-10-18 17:48:36.115 +00:00  WRN]  Storing keys in a directory '/root/.aspnet/DataProtection-Keys' that may not be persisted outside of the container. Protected data will be unavailable when container is destroyed.
+[2023-10-18 17:48:36.214 +00:00  INF]  User profile is available. Using '/root/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+[2023-10-18 17:48:36.413 +00:00  INF]  Now listening on: http://[::]:5110
+[2023-10-18 17:48:36.417 +00:00  INF]  Application started. Press Ctrl+C to shut down.
+[2023-10-18 17:48:36.418 +00:00  INF]  Hosting environment: Development
+[2023-10-18 17:48:36.419 +00:00  INF]  Content root path: /app
+[2023-10-18 17:48:39.742 +00:00  INF]  Application is shutting down...

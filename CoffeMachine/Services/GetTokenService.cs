@@ -30,6 +30,9 @@ public class GetTokenService : IGetTokenService
     /// <summary>
     /// Constructor of the class in which we receive the token
     /// </summary>
+    /// <param name="tokenService"> Token Service </param>
+    /// <param name="userRepository"> User repository </param>
+    /// <param name="jwtOptions"> JWT options </param>
     public GetTokenService(ITokenService tokenService, IUserRepository userRepository,
         IOptions<Jwt> jwtOptions)
     {
@@ -39,7 +42,7 @@ public class GetTokenService : IGetTokenService
     }
 
     /// <inheritdoc />
-    public async Task<string> GetTokenAsync(User.UserModel userModel)
+    public async Task<string> GetTokenAsync(UserModel userModel)
     {
         var userDto = await _userRepository.GetUserAsync(userModel);
 
