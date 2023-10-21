@@ -148,8 +148,6 @@
           "Microsoft.Extensions.Configuration.Xml": "7.0.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions.Reference": "7.0.0.0",
           "Microsoft.Extensions.DependencyInjection.Reference": "7.0.0.0",
-          "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.Reference": "7.0.0.0",
-          "Microsoft.Extensions.Diagnostics.HealthChecks.Reference": "7.0.0.0",
           "Microsoft.Extensions.Features": "7.0.0.0",
           "Microsoft.Extensions.FileProviders.Abstractions.Reference": "7.0.0.0",
           "Microsoft.Extensions.FileProviders.Composite": "7.0.0.0",
@@ -994,6 +992,9 @@
             "assemblyVersion": "7.0.0.0",
             "fileVersion": "7.0.923.32110"
           }
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Diagnostics.HealthChecks.dll": {}
         }
       },
       "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions/7.0.9": {
@@ -1002,6 +1003,9 @@
             "assemblyVersion": "7.0.0.0",
             "fileVersion": "7.0.923.32110"
           }
+        },
+        "compile": {
+          "lib/net7.0/Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll": {}
         }
       },
       "Microsoft.Extensions.FileProviders.Abstractions/7.0.0": {
@@ -2697,18 +2701,6 @@
       "Microsoft.Extensions.DependencyInjection.Reference/7.0.0.0": {
         "compile": {
           "Microsoft.Extensions.DependencyInjection.dll": {}
-        },
-        "compileOnly": true
-      },
-      "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.Reference/7.0.0.0": {
-        "compile": {
-          "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.dll": {}
-        },
-        "compileOnly": true
-      },
-      "Microsoft.Extensions.Diagnostics.HealthChecks.Reference/7.0.0.0": {
-        "compile": {
-          "Microsoft.Extensions.Diagnostics.HealthChecks.dll": {}
         },
         "compileOnly": true
       },
@@ -5331,16 +5323,6 @@
       "sha512": ""
     },
     "Microsoft.Extensions.DependencyInjection.Reference/7.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions.Reference/7.0.0.0": {
-      "type": "referenceassembly",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.Extensions.Diagnostics.HealthChecks.Reference/7.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

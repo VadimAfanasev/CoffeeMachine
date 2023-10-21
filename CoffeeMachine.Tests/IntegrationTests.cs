@@ -100,13 +100,13 @@ public class IntegrationTests : CustomBaseTest
             var generator = new RandomCombinationGenerator();
             uint[] combination = generator.GenerateRandomCombination();
             var content = JsonContent.Create(combination);
-            var contentNew = new uint[] { 5000 };
-            var contentNumber = JsonContent.Create(contentNew);
+            //var contentNew = new uint[] { 5000 };
+            //var contentNumber = JsonContent.Create(contentNew);
 
             iteration++;
             if (iteration == 100)
                 endlessСycle = false;
-            response = await client.PostAsync($"api/order/{coffeeName}", contentNumber);
+            response = await client.PostAsync($"api/order/{coffeeName}", content);
             var balance = await client.GetAsync("api/moneyinmachine");
 
             balanceDatabase = await balance.Content.ReadAsStringAsync();
