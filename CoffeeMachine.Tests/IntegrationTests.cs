@@ -100,8 +100,6 @@ public class IntegrationTests : CustomBaseTest
             var generator = new RandomCombinationGenerator();
             uint[] combination = generator.GenerateRandomCombination();
             var content = JsonContent.Create(combination);
-            //var contentNew = new uint[] { 5000 };
-            //var contentNumber = JsonContent.Create(contentNew);
 
             iteration++;
             if (iteration == 100)
