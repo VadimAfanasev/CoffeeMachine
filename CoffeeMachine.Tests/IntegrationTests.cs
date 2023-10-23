@@ -1,4 +1,5 @@
-﻿using Azure;
+﻿using Bogus;
+using CoffeeMachine.Common.Enums;
 using CoffeeMachine.Tests.Infrastructure;
 using Newtonsoft.Json;
 using System.Net;
@@ -14,9 +15,9 @@ public class IntegrationTests : CustomBaseTest
     public async Task OrderCoffeeTest_ReturnsOrderCoffeeDto_WhenDtoAreEqual()
     {
         // Arrange
-        var inputMoney = new uint[] { 2000, 500 };
-        const string coffeeName = "Cappuccino";
-        var expected = new OrderCoffeeDto() { Change = new List<uint> { 1000, 500, 200, 200 } };
+        var inputMoney = new uint[] { (uint)InputBuyerBanknotesEnums.TwoThousand, (uint)InputBuyerBanknotesEnums.FiveHundred };
+        const string coffeeName = CoffeeNames.cappuccino;
+        var expected = new OrderCoffeeDto { Change = new List<uint> { 1000, 500, 200, 200 } };
 
         var client = GetClient();
         var content = JsonContent.Create(inputMoney);
@@ -35,7 +36,7 @@ public class IntegrationTests : CustomBaseTest
     public async Task OrderCoffeeTest_ReturnsException_InvalidCoffeeName()
     {
         // Arrange
-        var inputMoney = new uint[] { 2000, 500 };
+        var inputMoney = new uint[] { (uint)InputBuyerBanknotesEnums.TwoThousand, (uint)InputBuyerBanknotesEnums.FiveHundred };
         const string invalidCoffeeName = "InvalidCoffeeName";
 
         var client = GetClient();
@@ -53,8 +54,8 @@ public class IntegrationTests : CustomBaseTest
     public async Task OrderCoffeeTest_ReturnsOrderCoffeeDto_InvalidMoneyAmount()
     {
         // Arrange
-        var inputMoney = new uint[] { 500 };
-        const string coffeeName = "Cappuccino";
+        var inputMoney = new uint[] { (uint)InputBuyerBanknotesEnums.FiveHundred };
+        const string coffeeName = CoffeeNames.cappuccino;
 
         var client = GetClient();
         var content = JsonContent.Create(inputMoney);
@@ -71,12 +72,12 @@ public class IntegrationTests : CustomBaseTest
     public async Task OrderCoffeeTest_ReturnsOrderCoffeeDto_ManyOrdersCheckDb()
     {
         // Arrange
-        const string coffeeName = "Cappuccino";
+        const string coffeeName = CoffeeNames.cappuccino;
         var response = new HttpResponseMessage();
-        string balanceDatabase = "";
+        var balanceDatabase = "";
 
         var endlessСycle = true;
-        int iteration = 0;
+        var iteration = 0;
 
         var client = GetClient();
 
@@ -98,7 +99,7 @@ public class IntegrationTests : CustomBaseTest
         while (endlessСycle)
         {
             var generator = new RandomCombinationGenerator();
-            uint[] combination = generator.GenerateRandomCombination();
+            var combination = generator.GenerateRandomCombination();
             var content = JsonContent.Create(combination);
 
             iteration++;
@@ -120,6 +121,49 @@ public class IntegrationTests : CustomBaseTest
         // Assert    
         responseContent.Should().Contain("Cannot provide change");
     }
+
+    [Test]
+    public async Task OrderCoffeeWithBogusTest_ReturnsOrderCoffeeDto_ManyOrdersCheckDb()
+    {
+        // Arrange
+        var response = new HttpResponseMessage();
+        var faker = new Faker();
+        var endlessCycle = true;
+        var iteration = 0;
+
+        var client = GetClient();
+        
+        //Реализую заполнение БД через Bogus
+        var inputMoneyInDbJson = JsonContent.Create(TestDataBogus.GenerateInputMoneyInDb(faker));
+        await client.PutAsync("api/inputing", inputMoneyInDbJson);
+
+        // Act
+        while (endlessCycle)
+        {
+            iteration++;
+            if (iteration == 100)
+                endlessCycle = false;
+
+            //Реализую получение случайного названия и случайной внесенной суммы
+            var coffeeName = TestDataBogus.GenerateCoffeeName();
+            var inputMoney = JsonContent.Create(TestDataBogus.GenerateInputMoney());
+
+            response = await client.PostAsync($"api/order/{coffeeName}", inputMoney);
+            var balance = await client.GetAsync("api/moneyinmachine");
+
+
+            if (response.Content.ReadAsStringAsync().Result.Contains("400"))
+            {
+                endlessCycle = false;
+            }
+        }
+
+        var responseContent = await response.Content.ReadAsStringAsync();
+
+        // Assert    
+        responseContent.Should().Contain("Cannot provide change");
+    }
+
 
     [Test]
     public async Task LoginTest_ReturnsString_WhenStatusCodeOk()
@@ -172,9 +216,9 @@ public class IntegrationTests : CustomBaseTest
         const string expected = "Money deposited";
         var inputMoney = new List<MoneyDto>
         {
-            new MoneyDto() { Nominal = 2000, Count = 10 },
-            new MoneyDto() { Nominal = 1000, Count = 10 },
-            new MoneyDto() { Nominal = 500, Count = 10 }
+            new() { Nominal = (uint)InputBuyerBanknotesEnums.TwoThousand, Count = 10 },
+            new() { Nominal = (uint)InputBuyerBanknotesEnums.OneThousand, Count = 10 },
+            new() { Nominal = (uint)InputBuyerBanknotesEnums.FiveHundred, Count = 10 }
         };
         var content = JsonContent.Create(inputMoney);
 
@@ -197,7 +241,7 @@ public class IntegrationTests : CustomBaseTest
         // Arrange
         var inputMoney = new List<MoneyDto>
         {
-            new MoneyDto() { Nominal = 400, Count = 5 }
+            new() { Nominal = 400, Count = 5 }
         };
         var content = JsonContent.Create(inputMoney);
 
@@ -220,7 +264,6 @@ public class IntegrationTests : CustomBaseTest
 
         // Act
         var response = await client.GetAsync("api/coffeebalance");
-        var responseContent = await response.Content.ReadAsStringAsync();
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);
@@ -235,7 +278,6 @@ public class IntegrationTests : CustomBaseTest
 
         // Act
         var response = await client.GetAsync("api/moneyinmachine/");
-        var responseContent = await response.Content.ReadAsStringAsync();
 
         // Assert
         response.StatusCode.Should().Be(HttpStatusCode.OK);

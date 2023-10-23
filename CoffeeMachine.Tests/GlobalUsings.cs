@@ -6,7 +6,6 @@ global using CoffeeMachine.Models.Data;
 global using CoffeeMachine.Services;
 global using CoffeeMachine.Settings;
 global using FluentAssertions;
-global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Diagnostics;
 global using Microsoft.Extensions.Options;

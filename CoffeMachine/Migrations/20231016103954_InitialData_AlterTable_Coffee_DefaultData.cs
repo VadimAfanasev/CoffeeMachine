@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using CoffeeMachine.Common;
+using CoffeeMachine.Common.Enums;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
@@ -44,9 +46,9 @@ namespace CoffeeMachine.Migrations
                 columns: new[] { "Balance", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 0u, "Cappuccino", 600u },
-                    { 0u, "Latte", 850u },
-                    { 0u, "Americano", 900u }
+                    { 0u, CoffeeNames.cappuccino, 600u },
+                    { 0u, CoffeeNames.latte, 850u },
+                    { 0u, CoffeeNames.americano, 900u }
                 });
 
             migrationBuilder.InsertData(
@@ -54,13 +56,13 @@ namespace CoffeeMachine.Migrations
                 columns: new[] { "Nominal", "Count" },
                 values: new object[,]
                 {
-                    { 50u, 10u },
-                    { 100u, 10u },
-                    { 200u, 10u },
-                    { 500u, 10u },
-                    { 1000u, 10u },
-                    { 2000u, 10u },
-                    { 5000u, 10u }
+                    { (uint)InputAdminBanknotesEnums.Fifty, 10u },
+                    { (uint)InputAdminBanknotesEnums.OneHundred, 10u },
+                    { (uint)InputAdminBanknotesEnums.TwoHundred, 10u },
+                    { (uint)InputAdminBanknotesEnums.FiveHundred, 10u },
+                    { (uint)InputAdminBanknotesEnums.OneThousand, 10u },
+                    { (uint)InputAdminBanknotesEnums.TwoThousand, 10u },
+                    { (uint)InputAdminBanknotesEnums.FiveThousand, 10u }
                 });
         }
 

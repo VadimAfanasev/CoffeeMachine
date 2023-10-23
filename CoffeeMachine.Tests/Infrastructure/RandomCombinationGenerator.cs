@@ -1,28 +1,27 @@
-﻿namespace CoffeeMachine.Tests.Infrastructure
+﻿using CoffeeMachine.Common.Enums;
+
+namespace CoffeeMachine.Tests.Infrastructure;
+
+public class RandomCombinationGenerator
 {
-    public class RandomCombinationGenerator
+    private static Random random = new Random(Seed:5);
+
+
+    public uint[] GenerateRandomCombination()
     {
-        private static Random random = new Random(Seed:5);
+        List<uint> numbers = new List<uint> { (uint)InputBuyerBanknotesEnums.OneThousand, 
+            (uint)InputBuyerBanknotesEnums.TwoThousand, (uint)InputBuyerBanknotesEnums.FiveThousand };
 
+        int count = random.Next(1, 3);
+        List<uint> combination = new List<uint>();
 
-        public uint[] GenerateRandomCombination()
+        for (int i = 0; i < count; i++)
         {
-            List<uint> numbers = new List<uint> { 500, 1000, 2000, 5000 };
-            List<uint> combination = new List<uint>();
-
-            int count = random.Next(1, numbers.Count + 1);
-            for (int i = 0; i < count; i++)
-            {
-                int randomIndex = random.Next(0, numbers.Count);
-                combination.Add(numbers[randomIndex]);
-            }
-
-            if (combination.Sum(c=>c) > 500 )
-            {
-                return combination.ToArray();
-            }
-            else return new uint[] { 1000 };
-
+            int randomIndex = random.Next(0, numbers.Count);
+            combination.Add(numbers[randomIndex]);
         }
+
+        return combination.ToArray();
+
     }
 }

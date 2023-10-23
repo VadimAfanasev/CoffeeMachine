@@ -140,32 +140,67 @@
         <member name="M:CoffeeMachine.Common.DepositService.IncrementCoffeeBalanceAsync(System.String,System.UInt32)">
             <inheritdoc />
         </member>
-        <member name="T:CoffeeMachine.Common.EnumBanknotes">
+        <member name="T:CoffeeMachine.Common.Enums.InputAdminBanknotesEnums">
             <summary>
-            Class listing banknotes available for insertion into the machine
+            List of banknote denominations available for change
             </summary>
         </member>
-        <member name="T:CoffeeMachine.Common.EnumBanknotes.Banknotes">
-            <summary>
-            List of banknote denominations available for calculation
-            </summary>
-        </member>
-        <member name="F:CoffeeMachine.Common.EnumBanknotes.Banknotes.FiveThousand">
+        <member name="F:CoffeeMachine.Common.Enums.InputAdminBanknotesEnums.FiveThousand">
             <summary>
             5000 banknote
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Common.EnumBanknotes.Banknotes.TwoThousand">
+        <member name="F:CoffeeMachine.Common.Enums.InputAdminBanknotesEnums.TwoThousand">
             <summary>
             2000 banknote
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Common.EnumBanknotes.Banknotes.OneThousand">
+        <member name="F:CoffeeMachine.Common.Enums.InputAdminBanknotesEnums.OneThousand">
             <summary>
             1000 banknote
             </summary>
         </member>
-        <member name="F:CoffeeMachine.Common.EnumBanknotes.Banknotes.FiveHundred">
+        <member name="F:CoffeeMachine.Common.Enums.InputAdminBanknotesEnums.FiveHundred">
+            <summary>
+            500 banknote
+            </summary>
+        </member>
+        <member name="F:CoffeeMachine.Common.Enums.InputAdminBanknotesEnums.TwoHundred">
+            <summary>
+            200 banknote
+            </summary>
+        </member>
+        <member name="F:CoffeeMachine.Common.Enums.InputAdminBanknotesEnums.OneHundred">
+            <summary>
+            100 banknote
+            </summary>
+        </member>
+        <member name="F:CoffeeMachine.Common.Enums.InputAdminBanknotesEnums.Fifty">
+            <summary>
+            50 banknote
+            </summary>
+        </member>
+        <member name="T:CoffeeMachine.Common.Enums.InputBuyerBanknotesEnums">
+            <summary>
+            List of banknote denominations available for purchase
+            </summary>
+        </member>
+        <member name="F:CoffeeMachine.Common.Enums.InputBuyerBanknotesEnums.FiveThousand">
+            <summary>
+            5000 banknote
+            </summary>
+        </member>
+        <member name="F:CoffeeMachine.Common.Enums.InputBuyerBanknotesEnums.TwoThousand">
+            <summary>
+            2000 banknote
+            </summary>
+        </member>
+        <member name="F:CoffeeMachine.Common.Enums.InputBuyerBanknotesEnums.OneThousand">
+            <summary>
+            1000 banknote
+            </summary>
+        </member>
+        <member name="F:CoffeeMachine.Common.Enums.InputBuyerBanknotesEnums.FiveHundred">
             <summary>
             500 banknote
             </summary>
@@ -339,7 +374,9 @@
             Method for obtaining a token
             </summary>
             <param name="userModel"> Data of user for login in system </param>
-            <returns> token </returns>
+            <returns> Token </returns>
+            <response code="200"> Success </response>
+            <response code="401"> Invalid User </response>
         </member>
         <member name="T:CoffeeMachine.Dto.BalanceCoffeeDto">
             <summary>
@@ -375,7 +412,7 @@
             <summary>
             Serializing an entity to a string
             </summary>
-            <returns> string </returns>
+            <returns> String </returns>
         </member>
         <member name="T:CoffeeMachine.Dto.MoneyDto">
             <summary>
@@ -401,6 +438,30 @@
             <summary>
             List of banknotes for change Dto
             </summary>
+        </member>
+        <member name="T:CoffeeMachine.HealthChecks.DatabaseHealthChecks">
+            <summary>
+            Database status monitoring functionality
+            </summary>
+        </member>
+        <member name="F:CoffeeMachine.HealthChecks.DatabaseHealthChecks._connectionString">
+            <summary>
+            Connection string
+            </summary>
+        </member>
+        <member name="M:CoffeeMachine.HealthChecks.DatabaseHealthChecks.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor of a class that describes the functionality for monitoring the state of the database
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:CoffeeMachine.HealthChecks.DatabaseHealthChecks.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext,System.Threading.CancellationToken)">
+            <summary>
+            A method that implements monitoring the state of the database
+            </summary>
+            <param name="context"> Health check context </param>
+            <param name="cancellationToken">  </param>
+            <returns> Health check result </returns>
         </member>
         <member name="T:CoffeeMachine.Middlewares.ExceptionHandlingMiddleware">
             <summary>
@@ -537,13 +598,25 @@
             <inheritdoc />
         </member>
         <member name="M:CoffeeMachine.Services.CoffeeBuyServices.SumUintArray(System.UInt32[])">
-            <inheritdoc />
+            <summary>
+            Method for getting the amount of an array of entered money
+            </summary>
+            <param name="moneys"> </param>
+            <returns> uint </returns>
         </member>
         <member name="M:CoffeeMachine.Services.CoffeeBuyServices.ChangeToDto(System.Collections.Generic.List{System.UInt32})">
-            <inheritdoc />
+            <summary>
+            Transfer the user's change to the Dto
+            </summary>
+            <param name="change"> </param>
+            <returns> OrderCoffeeDto </returns>
         </member>
         <member name="M:CoffeeMachine.Services.CoffeeBuyServices.GetCoffeePrice(System.String)">
-            <inheritdoc />
+            <summary>
+            Calculating the cost of coffee
+            </summary>
+            <param name="coffeeType"> </param>
+            <returns> uint </returns>
         </member>
         <member name="T:CoffeeMachine.Services.CoffeeMachineStatusServices">
             <summary>

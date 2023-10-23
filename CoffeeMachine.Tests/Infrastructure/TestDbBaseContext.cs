@@ -1,4 +1,5 @@
-﻿using CoffeeMachine.Models;
+﻿using CoffeeMachine.Common.Enums;
+using CoffeeMachine.Models;
 
 namespace CoffeeMachine.Tests.Infrastructure;
 
@@ -10,9 +11,9 @@ internal class TestDbBaseContext
 
         var coffeePrice = new Dictionary<string, uint>
         {
-            { "Cappuccino", 600 },
-            { "Latte", 850 },
-            { "Americano", 900 }
+            { CoffeeNames.cappuccino, 600 },
+            { CoffeeNames.latte, 850 },
+            { CoffeeNames.americano, 900 }
         };
         dbTest.CoffeesDb.AddRange(coffeePrice.Select(s => new Coffee
         {
@@ -23,13 +24,13 @@ internal class TestDbBaseContext
 
         var availableNotes = new Dictionary<uint, uint>
         {
-            { 50, 10 },
-            { 100, 10 },
-            { 200, 10},
-            { 500, 10 },
-            { 1000, 10 },
-            { 2000, 10 },
-            { 5000, 10 }
+            { (uint)InputAdminBanknotesEnums.Fifty, 10u },
+            { (uint)InputAdminBanknotesEnums.OneHundred, 10u },
+            { (uint)InputAdminBanknotesEnums.TwoHundred, 10u },
+            { (uint)InputAdminBanknotesEnums.FiveHundred, 10u },
+            { (uint)InputAdminBanknotesEnums.OneThousand, 10u },
+            { (uint)InputAdminBanknotesEnums.TwoThousand, 10u },
+            { (uint)InputAdminBanknotesEnums.FiveThousand, 10u }
         };
         dbTest.MoneyInMachinesDb.AddRange(availableNotes.Select(c => new MoneyInMachine
         {

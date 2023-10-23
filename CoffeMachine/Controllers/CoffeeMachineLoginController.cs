@@ -30,7 +30,9 @@ public class CoffeeMachineLoginController : ControllerBase
     /// Method for obtaining a token
     /// </summary>
     /// <param name="userModel"> Data of user for login in system </param>
-    /// <returns> token </returns>
+    /// <returns> Token </returns>
+    /// <response code="200"> Success </response>
+    /// <response code="401"> Invalid User </response>
     [HttpPost("login")]
     public async Task<ActionResult> Login([FromBody] UserModel userModel)
     {

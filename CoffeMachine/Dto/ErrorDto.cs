@@ -20,7 +20,7 @@ public class ErrorDto
     /// <summary>
     /// Serializing an entity to a string
     /// </summary>
-    /// <returns> string </returns>
+    /// <returns> String </returns>
     public override string ToString()
     {
         return JsonSerializer.Serialize(this);

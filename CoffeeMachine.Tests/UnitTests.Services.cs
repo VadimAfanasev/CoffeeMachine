@@ -1,3 +1,5 @@
+using Bogus;
+using CoffeeMachine.Common.Enums;
 using CoffeeMachine.Tests.Infrastructure;
 
 namespace CoffeeMachine.Tests;
@@ -10,7 +12,7 @@ public class UnitTestsServices
     public async Task BuyingCoffeeAsync_ReturnsOrderCoffeeDto_WhenAmountIsExact()
     {
         // Arrange 
-        var moneys = new uint[] { 2000, 500 };
+        var moneys = new uint[] { (uint)InputBuyerBanknotesEnums.TwoThousand, (uint)InputBuyerBanknotesEnums.FiveHundred };
         const string coffeeType = "Cappuccino";
         var expected = new OrderCoffeeDto
         {
@@ -62,16 +64,13 @@ public class UnitTestsServices
     public async Task GetBalanceMoneyAsync_ReturnsMoneyDto_WhenAmountIsExact()
     {
         // Arrange
-        var expected = new List<MoneyDto>
+        var expected = new List<MoneyDto>();
+
+        foreach (InputAdminBanknotesEnums nominal in Enum.GetValues(typeof(InputAdminBanknotesEnums)))
         {
-            new MoneyDto() { Nominal = 50, Count = 10 },
-            new MoneyDto() { Nominal = 100, Count = 10 },
-            new MoneyDto() { Nominal = 200, Count = 10 },
-            new MoneyDto() { Nominal = 500, Count = 10 },
-            new MoneyDto() { Nominal = 1000, Count = 10 },
-            new MoneyDto() { Nominal = 2000, Count = 10 },
-            new MoneyDto() { Nominal = 5000, Count = 10 }
-        };
+            var moneyDto = new MoneyDto { Count = 10, Nominal = (uint)nominal };
+            expected.Add(moneyDto);
+        }
 
         var appContext = GetTestApplicationContextNew();
 
@@ -92,8 +91,8 @@ public class UnitTestsServices
         const string expected = "Money deposited";
         var inputMoney = new List<MoneyDto>
         {
-            new MoneyDto() { Nominal = 50, Count = 2 },
-            new MoneyDto() { Nominal = 100, Count = 2 },
+            new MoneyDto() { Nominal = (uint)InputAdminBanknotesEnums.Fifty, Count = 2 },
+            new MoneyDto() { Nominal = (uint)InputAdminBanknotesEnums.OneHundred, Count = 2 },
         };
 
         var appContext = GetTestApplicationContextNew();

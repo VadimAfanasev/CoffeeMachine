@@ -3,12 +3,11 @@
 public class CustomBaseTest
 {
     private CustomWebApplicationFactory _webApplicationFactory;
-    public ExternalServicesMock ExternalServicesMock { get; private set;}
+    private ExternalServicesMock ExternalServicesMock { get; set;}
 
     public CustomBaseTest()
     {
         ExternalServicesMock = new ExternalServicesMock();
-        //_webApplicationFactory = new CustomWebApplicationFactory(ExternalServicesMock);
     }
 
     [SetUp]

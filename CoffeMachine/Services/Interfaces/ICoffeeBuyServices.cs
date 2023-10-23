@@ -17,25 +17,4 @@ public interface ICoffeeBuyServices
     /// <response code="400"> Incorrect data entered </response>
     /// <response code="404"> Entity not found in the system </response>
     Task<OrderCoffeeDto> BuyingCoffeeAsync(string coffeeType, uint[] moneys);
-
-    ///// <summary>
-    ///// Method for getting the amount of an array of entered money
-    ///// </summary>
-    ///// <param name="moneys"> </param>
-    ///// <returns> uint </returns>
-    //uint SumUintArray(uint[] moneys);
-
-    ///// <summary>
-    ///// Transfer the user's change to the Dto
-    ///// </summary>
-    ///// <param name="change"> </param>
-    ///// <returns> OrderCoffeeDto </returns>
-    //OrderCoffeeDto ChangeToDto(List<uint> change);
-
-    ///// <summary>
-    ///// Calculating the cost of coffee
-    ///// </summary>
-    ///// <param name="coffeeType"> </param>
-    ///// <returns> uint </returns>
-    //uint GetCoffeePrice(string coffeeType);
 }

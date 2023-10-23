@@ -8,11 +8,11 @@ public class UserDto
     /// <summary>
     /// UserName for entries in UserDto
     /// </summary>
-    public string UserName { get; set; }
+    public string UserName { get; }
     /// <summary>
     /// Password for entries in UserDto
     /// </summary>
-    public string Password { get; set; }
+    public string Password { get; }
 
     /// <summary>
     /// Dto for user data records

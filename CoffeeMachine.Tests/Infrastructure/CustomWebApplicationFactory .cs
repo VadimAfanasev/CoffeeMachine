@@ -63,7 +63,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<CoffeeMachineBu
             services.Configure<TestAuthHandlerOptions>(options => options.DefaultUserId = DefaultUserId);
 
             services.AddAuthentication(TestAuthHandler.AuthenticationScheme)
-                .AddScheme<TestAuthHandlerOptions, TestAuthHandler>(TestAuthHandler.AuthenticationScheme, options => { });
+                .AddScheme<TestAuthHandlerOptions, TestAuthHandler>(TestAuthHandler.AuthenticationScheme,
+                    options => { });
         });
     }
 }

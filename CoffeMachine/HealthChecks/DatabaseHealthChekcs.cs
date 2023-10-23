@@ -1,42 +1,56 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
+﻿using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 using Npgsql;
 
-namespace CoffeeMachine.HealthChecks
+namespace CoffeeMachine.HealthChecks;
+
+/// <summary>
+/// Database status monitoring functionality
+/// </summary>
+public class DatabaseHealthChecks : IHealthCheck
 {
-    public class DatabaseHealthChekcs : IHealthCheck
+    /// <summary>
+    /// Connection string
+    /// </summary>
+    private readonly string _connectionString;
+
+    /// <summary>
+    /// Constructor of a class that describes the functionality for monitoring the state of the database
+    /// </summary>
+    /// <param name="configuration"></param>
+    public DatabaseHealthChecks(IConfiguration configuration)
     {
-        private readonly string _connectionString;
+        _connectionString = configuration.GetConnectionString("DefaultConnection");
+    }
 
-        public DatabaseHealthChekcs(IConfiguration configuration)
+    /// <summary>
+    /// A method that implements monitoring the state of the database
+    /// </summary>
+    /// <param name="context"> Health check context </param>
+    /// <param name="cancellationToken">  </param>
+    /// <returns> Health check result </returns>
+    public async Task<HealthCheckResult> CheckHealthAsync(
+        HealthCheckContext context,
+        CancellationToken cancellationToken = default)
+    {
+        try
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            await using var connection = new NpgsqlConnection(_connectionString);
+
+            await connection.OpenAsync(cancellationToken);
+
+            await using var command = connection.CreateCommand();
+            command.CommandText = "SELECT 1";
+
+            await command.ExecuteScalarAsync(cancellationToken);
+
+            return HealthCheckResult.Healthy();
         }
-
-        public async Task<HealthCheckResult> CheckHealthAsync(
-            HealthCheckContext context,
-            CancellationToken cancellationToken = default)
+        catch (Exception ex)
         {
-            try
-            {
-                using var Connection = new NpgsqlConnection(_connectionString);
-
-                await Connection.OpenAsync(cancellationToken);
-
-                using var command = Connection.CreateCommand();
-                command.CommandText = "SELECT 1";
-
-                await command.ExecuteScalarAsync(cancellationToken);
-
-                return HealthCheckResult.Healthy();
-            }
-            catch (Exception ex)
-            {
-                return HealthCheckResult.Unhealthy(
-                    context.Registration.FailureStatus.ToString(),
-                    exception: ex);
-            }
+            return HealthCheckResult.Unhealthy(
+                context.Registration.FailureStatus.ToString(),
+                exception: ex);
         }
     }
 }

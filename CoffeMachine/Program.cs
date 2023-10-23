@@ -1,25 +1,22 @@
 using CoffeeMachine.Auth;
 using CoffeeMachine.Common;
 using CoffeeMachine.Common.Interfaces;
+using CoffeeMachine.HealthChecks;
 using CoffeeMachine.Middlewares;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services;
 using CoffeeMachine.Services.Interfaces;
 using CoffeeMachine.Settings;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Reflection;
 using System.Text;
-
-using CoffeeMachine.HealthChecks;
-
-using HealthChecks.UI.Client;
-
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -78,7 +75,7 @@ var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<CoffeeContext>(options => options.UseNpgsql(connection));
 
 builder.Services.AddHealthChecks()
-    .AddCheck<DatabaseHealthChekcs>("Database", HealthStatus.Unhealthy);
+    .AddCheck<DatabaseHealthChecks>("Database", HealthStatus.Unhealthy);
 
 builder.Services.AddScoped<ICoffeeBuyServices, CoffeeBuyServices>();
 builder.Services.AddScoped<IChangeCalculation, ChangeCalculationService>();

@@ -1,4 +1,4 @@
-﻿using CoffeeMachine.Common;
+﻿using CoffeeMachine.Common.Enums;
 using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Dto;
 using CoffeeMachine.Models.Data;
@@ -44,7 +44,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         if (! (await _db.CoffeesDb.AnyAsync(c => c.Name == coffeeType)))
             throw new InvalidDataException("Invalid coffee type");
 
-        if (!moneys.All(c => Enum.IsDefined(typeof(EnumBanknotes.Banknotes), c)))
+        if (!moneys.All(c => Enum.IsDefined(typeof(InputBuyerBanknotesEnums), c)))
             throw new InvalidDataException("Invalid banknotes type");
 
         var moneysUint = SumUintArray(moneys);
@@ -69,14 +69,22 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         return changeDto;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// Method for getting the amount of an array of entered money
+    /// </summary>
+    /// <param name="moneys"> </param>
+    /// <returns> uint </returns>
     private uint SumUintArray(uint[] moneys)
     {
         var sum = moneys.Sum(n => n);
         return (uint)sum;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// Transfer the user's change to the Dto
+    /// </summary>
+    /// <param name="change"> </param>
+    /// <returns> OrderCoffeeDto </returns>
     private OrderCoffeeDto ChangeToDto(List<uint> change)
     {
         var changeDto = new OrderCoffeeDto
@@ -87,7 +95,11 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         return changeDto;
     }
 
-    /// <inheritdoc />
+    /// <summary>
+    /// Calculating the cost of coffee
+    /// </summary>
+    /// <param name="coffeeType"> </param>
+    /// <returns> uint </returns>
     private uint GetCoffeePrice(string coffeeType)
     {
         var coffeePrice = _db.CoffeesDb
