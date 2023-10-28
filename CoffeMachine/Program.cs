@@ -1,4 +1,4 @@
-using CoffeeMachine.Auth;
+﻿using CoffeeMachine.Auth;
 using CoffeeMachine.Common;
 using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.HealthChecks;
@@ -6,70 +6,116 @@ using CoffeeMachine.Middlewares;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services;
 using CoffeeMachine.Services.Interfaces;
-using CoffeeMachine.Settings;
 using HealthChecks.UI.Client;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Keycloak.AuthServices.Authentication;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using Serilog.Debugging;
+using Serilog.Events;
+using Serilog.Exceptions;
+using Serilog.Formatting.Compact;
+using Serilog.Sinks.Elasticsearch;
+using Serilog.Sinks.OpenSearch;
+using System;
+using System.Globalization;
+using System.Net;
 using System.Reflection;
-using System.Text;
+
+using Elastic.Channels;
+using Elastic.Ingest.Elasticsearch;
+using Elastic.Ingest.Elasticsearch.DataStreams;
+using Elastic.Serilog.Sinks;
+
+using OpenSearch.Net;
+using Elastic.CommonSchema;
+
+using ElasticsearchSinkOptions = Serilog.Sinks.Elasticsearch.ElasticsearchSinkOptions;
+using EmitEventFailureHandling = Serilog.Sinks.Elasticsearch.EmitEventFailureHandling;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var logger = new LoggerConfiguration()
-    .ReadFrom.Configuration(builder.Configuration)
-    .Enrich.FromLogContext()
-    .CreateLogger();
+ConfigureLogging();
+builder.Host.UseSerilog();
+//2
+//builder.Logging.ClearProviders();
+//SelfLog.Enable(msg => Console.WriteLine(msg));
+//ServicePointManager.ServerCertificateValidationCallback = (source, certificate, chain, sslpolicyerrors) => true;
 
-// Add services to the container.
+//4
 builder.Logging.ClearProviders();
-builder.Logging.AddSerilog(logger);
+//SelfLog.Enable(msg => Console.WriteLine(msg));
+//ServicePointManager.ServerCertificateValidationCallback =
+//    (source, certificate, chain, sslPolicyErrors) => true;
+
 
 builder.Services.AddControllers();
 
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddOptions<Jwt>()
-    .Bind(builder.Configuration.GetSection(nameof(Jwt)))
-    .ValidateDataAnnotations();
-
-
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(config =>
-{
-    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-    config.IncludeXmlComments(xmlPath);
-    config.SwaggerDoc("v1", new OpenApiInfo { Title = "Pathnostics", Version = "v1" });
-    config.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+
+builder.Services.AddSwaggerGen(
+    options =>
     {
-        In = ParameterLocation.Header,
-        Description = "Please enter a valid token",
-        Name = "Authorization",
-        Type = SecuritySchemeType.Http,
-        BearerFormat = "JWT",
-        Scheme = "Bearer"
-    });
-    config.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
+        const string oauth2 = "OAuth2";
+        const string bearer = "Bearer";
+        var securityScheme = new OpenApiSecurityScheme
         {
-            new OpenApiSecurityScheme
+            Description = "Swagger",
+            Name = "Authorization",
+            In = ParameterLocation.Header,
+            Type = SecuritySchemeType.OAuth2,
+            Scheme = oauth2,
+            BearerFormat = "JWT",
+            Flows = new OpenApiOAuthFlows
             {
-                Reference = new OpenApiReference
+                Password = new OpenApiOAuthFlow
                 {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "Bearer"
+                    AuthorizationUrl = new Uri(builder.Configuration["Keycloak:Auth"]!),
+                    TokenUrl = new Uri(builder.Configuration["Keycloak:TokenExchange"]!)
                 }
             },
-            new string[] { }
-        }
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.SecurityScheme,
+                Id = oauth2
+            }
+        };
+        var securitySchemeBearer = new OpenApiSecurityScheme
+        {
+            In = ParameterLocation.Header,
+            Description = "Please enter a valid token",
+            Name = "Authorization",
+            Type = SecuritySchemeType.Http,
+            BearerFormat = "JWT",
+            Scheme = "Bearer",
+            Reference = new OpenApiReference
+            {
+                Type = ReferenceType.SecurityScheme,
+                Id = bearer
+            }
+        };
+
+        options.SwaggerDoc("v1", new OpenApiInfo { Title = "CoffeeMachine", Version = "v1" });
+        options.AddSecurityDefinition(oauth2, securityScheme);
+        options.AddSecurityDefinition(bearer, securitySchemeBearer);
+        options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                securityScheme, new string[] { }
+            }
+        });
+        options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        {
+            {
+                securitySchemeBearer, new string[] { }
+            }
+        });
     });
-});
 
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<CoffeeContext>(options => options.UseNpgsql(connection));
@@ -88,22 +134,101 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddSingleton<IUserRepository, UserRepository>();
 builder.Services.AddSingleton<IGetTokenService, GetTokenService>();
-builder.Services.AddAuthorization();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new()
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-        };
-    });
+
+var authenticationOptions = new KeycloakAuthenticationOptions
+{
+    AuthServerUrl = "http://localhost:8080/",
+    Realm = "CoffeeMachine",
+    Resource = "CoffeeMachine",
+    VerifyTokenAudience = false,
+    SslRequired = "none",
+};
+builder.Services.AddKeycloakAuthentication(authenticationOptions);
+
+//3
+//var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+//var configuration = new ConfigurationBuilder()
+//    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+//    .AddJsonFile(
+//        $"appsettings.{environment}.json",
+//        optional: true)
+//    .Build();
+//Log.Logger = new LoggerConfiguration()
+//    .Enrich.FromLogContext()
+//    .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"]))
+//    {
+//        AutoRegisterTemplate = true,
+//        IndexFormat = $"{"coffeemachine"}-{DateTime.UtcNow:yyyy-MM-dd}"
+//    })
+//    .Enrich.WithProperty("Environment", environment)
+//    .ReadFrom.Configuration(configuration)
+//    .CreateLogger();
+
+//4
+//var jsonFormatter = new CompactJsonFormatter();
+//var loggerConfig = new LoggerConfiguration()
+//    .Enrich.FromLogContext()
+//    .WriteTo.Map("Name", "**error**", (name, writeTo) =>
+//    {
+//        var currentDay = DateTime.Today.Day;
+//        writeTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("<opensearch endpoint>"))
+//        {
+//            CustomFormatter = jsonFormatter,
+//            TypeName = "_doc",
+//            IndexFormat = $"my-index-{currentDay}",
+//            MinimumLogEventLevel = LogEventLevel.Information,
+//            EmitEventFailure = EmitEventFailureHandling.RaiseCallback |
+//                               EmitEventFailureHandling.ThrowException,
+//            FailureCallback = e =>
+//                Console.WriteLine(
+//                    "An error occured in Serilog ElasticSearch sink: " +
+//                    $"{e.Exception.Message} | {e.Exception.InnerException?.Message}")
+//        });
+//    });
+//Log.Logger = loggerConfig.CreateLogger();
+
+//5
+//var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+//var configuration = new ConfigurationBuilder()
+//    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+//    .AddJsonFile(
+//        $"appsettings.{environment}.json",
+//        optional: true)
+//    .Build();
+//Serilog.Log.Logger = new LoggerConfiguration()
+//    .MinimumLevel.Debug()
+//    .Enrich.FromLogContext()
+//    .WriteTo.Elasticsearch(new[] { new Uri(configuration["ElasticConfiguration:Uri"]) }, opts =>
+//    {
+//        opts.DataStream = new DataStreamName("logs", "console-example", "demo");
+//        opts.BootstrapMethod = BootstrapMethod.Failure;
+//        opts.ConfigureChannel = channelOpts =>
+//        {
+
+//        };
+//    })
+//    .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"])));
+//ConfigureLogging(builder);
+//builder.Host.UseSerilog();
+
+//2
+//SelfLog.Enable(msg => Console.WriteLine(msg));
+
+//var logger = new LoggerConfiguration()
+//.WriteTo.Console()
+//    .WriteTo.Elasticsearch(new ElasticsearchSinkOptions(new Uri("http://localhost:9200"))
+//    {
+//        AutoRegisterTemplate = true,
+//        MinimumLogEventLevel = LogEventLevel.Information,
+//        FailureCallback = e => Console.WriteLine("unable to submit event " + e.MessageTemplate),
+//        EmitEventFailure = EmitEventFailureHandling.RaiseCallback | EmitEventFailureHandling.ThrowException,
+//        TypeName = "_doc",
+//        InlineFields = false
+
+//    })
+//    .CreateLogger();
+//builder.Logging.ClearProviders();
+//builder.Logging.AddSerilog(logger);
 
 var app = builder.Build();
 
@@ -111,21 +236,120 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Coffee machine");
+        options.OAuthClientId(builder.Configuration["Keycloak:ClientId"]);
+        options.OAuthClientSecret(builder.Configuration["Keycloak:ClientSecret"]);
+        options.OAuthRealm("CoffeeMachine");
+    });
 }
+
+//2
+//if (!app.Environment.IsDevelopment())
+//{
+//    app.UseExceptionHandler("/Error");
+//    app.UseHsts();
+//}
+
+//2
+//app.UseHttpsRedirection();
+//app.UseStaticFiles();
+//app.UseRouting();
+
+//4
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
 
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 
-app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
-app.MapControllers();
 
 app.MapHealthChecks("/health", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
 
+app.MapControllers();
+
 app.Run();
+
+Serilog.Log.CloseAndFlush();
+//1
+//void ConfigureLogging(WebApplicationBuilder builder)
+//{
+//    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+//    var configuration = new ConfigurationBuilder()
+//        .AddJsonFile("appsettings.json", false, true)
+//        .AddJsonFile(
+//            $"appsettings.{environment}.json",
+//            false)
+//        .Build();
+
+//    SelfLog.Enable(msg => Console.WriteLine(msg));
+
+//    //ServicePointManager.ServerCertificateValidationCallback =
+//    //    (source, certificate, chain, sslPolicyErrors) => true;
+
+//    // builder.Logging.ClearProviders();
+
+//    var logger = new LoggerConfiguration()
+//        .Enrich.FromLogContext()
+//        .Enrich.WithExceptionDetails()
+//        .WriteTo.Debug()
+//        .WriteTo.Console()
+//        .WriteTo.OpenSearch("http://localhost:9200")
+//        .WriteTo.Elasticsearch(ConfigureElasticSink(configuration, environment))
+//        .Enrich.WithProperty("Environment", environment)
+//        .ReadFrom.Configuration(configuration)
+//        .CreateLogger();
+//    builder.Logging.AddSerilog(logger);
+//}
+
+void ConfigureLogging()
+{
+    var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+    var configuration = new ConfigurationBuilder()
+        .AddJsonFile("appsettings.json", false, true)
+        .AddJsonFile(
+            $"appsettings.{environment}.json",
+            false)
+        .Build();
+
+    SelfLog.Enable(msg => Console.WriteLine(msg));
+
+    //ServicePointManager.ServerCertificateValidationCallback =
+    //    (source, certificate, chain, sslPolicyErrors) => true;
+
+    // builder.Logging.ClearProviders();
+
+    var logger = new LoggerConfiguration()
+        .Enrich.FromLogContext()
+        .Enrich.WithExceptionDetails()
+        .WriteTo.Debug()
+        .WriteTo.Console()
+        .WriteTo.OpenSearch("http://localhost:9200")
+        .WriteTo.Elasticsearch(ConfigureElasticSink(configuration, environment))
+        .Enrich.WithProperty("Environment", environment)
+        .ReadFrom.Configuration(configuration)
+        .CreateLogger();
+}
+//1
+ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration, string environment)
+{
+    return new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"]))
+    {
+        AutoRegisterTemplate = true,
+        MinimumLogEventLevel = LogEventLevel.Information,
+        IndexFormat =
+            $"coffee-machine-{DateTime.UtcNow:yyyy-MM-dd}",
+        //NumberOfReplicas = 1,
+        //NumberOfShards = 2,
+        //FailureCallback = e => Console.WriteLine("Unable to submit event " + e.MessageTemplate),
+        //EmitEventFailure = EmitEventFailureHandling.RaiseCallback | EmitEventFailureHandling.ThrowException,
+        //TypeName = "_doc",
+        //InlineFields = false
+    };
+}

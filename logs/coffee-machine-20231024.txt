@@ -1,0 +1,6 @@
+[2023-10-24 02:36:33.049 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/ - -
+[2023-10-24 02:36:33.058 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/ - - - 404 0 - 9.0123ms
+[2023-10-24 02:36:38.769 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/index.html - -
+[2023-10-24 02:36:38.771 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/index.html - - - 200 - text/html;charset=utf-8 1.3774ms
+[2023-10-24 02:36:38.847 +00:00  INF]  Request starting HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - -
+[2023-10-24 02:36:38.852 +00:00  INF]  Request finished HTTP/1.1 GET http://localhost:5110/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 5.1336ms

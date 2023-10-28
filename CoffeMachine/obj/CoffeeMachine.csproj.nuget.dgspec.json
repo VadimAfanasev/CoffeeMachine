@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.csproj": {}
+    "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj": {}
   },
   "projects": {
-    "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.csproj": {
+    "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+        "projectUniqueName": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
         "projectName": "CoffeeMachine",
-        "projectPath": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.csproj",
-        "packagesPath": "C:\\Users\\Вадим\\.nuget\\packages\\",
-        "outputPath": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\obj\\",
+        "projectPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+        "packagesPath": "C:\\Users\\AfanasievVA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Вадим\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AfanasievVA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -69,35 +68,55 @@
               "target": "Package",
               "version": "[3.125.15, )"
             },
+            "Elastic.Serilog.Sinks": {
+              "target": "Package",
+              "version": "[8.6.1, )"
+            },
+            "Keycloak.AuthServices.Authentication": {
+              "target": "Package",
+              "version": "[1.5.2, )"
+            },
+            "Keycloak.AuthServices.Authorization": {
+              "target": "Package",
+              "version": "[1.5.2, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[7.0.12, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[7.0.1, )"
+              "version": "[7.0.12, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[7.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[7.0.12, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.11, )"
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.IdentityModel.Protocols.OpenIdConnect": {
+              "target": "Package",
+              "version": "[7.0.3, )"
             },
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.3, )"
             },
             "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
-              "version": "[1.19.4, )"
+              "version": "[1.19.5, )"
             },
             "NUnit": {
               "target": "Package",
@@ -106,10 +125,6 @@
             "NUnit3TestAdapter": {
               "target": "Package",
               "version": "[4.5.0, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.3, )"
             },
             "Npgsql": {
               "target": "Package",
@@ -127,6 +142,22 @@
               "target": "Package",
               "version": "[7.0.0, )"
             },
+            "Serilog.Enrichers.Environment": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "Serilog.Exceptions": {
+              "target": "Package",
+              "version": "[8.4.0, )"
+            },
+            "Serilog.Sinks.Debug": {
+              "target": "Package",
+              "version": "[2.0.0, )"
+            },
+            "Serilog.Sinks.Elasticsearch": {
+              "target": "Package",
+              "version": "[9.0.3, )"
+            },
             "Serilog.Sinks.File": {
               "target": "Package",
               "version": "[5.0.0, )"
@@ -135,9 +166,25 @@
               "target": "Package",
               "version": "[6.5.0, )"
             },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[7.0.2, )"
+              "version": "[7.0.3, )"
+            },
+            "serilog.sinks.opensearch": {
+              "target": "Package",
+              "version": "[1.0.0, )"
             }
           },
           "imports": [
@@ -159,7 +206,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

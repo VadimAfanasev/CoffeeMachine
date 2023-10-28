@@ -42,19 +42,19 @@ public class ExceptionHandlingMiddleware
         }
         catch (ArgumentException ex)
         {
-            await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest, ex.Message);
+            await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest, ex.Message, ex);
         }
         catch (InvalidDataException ex)
         {
-            await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest, ex.Message);
+            await HandleExceptionAsync(httpContext, HttpStatusCode.BadRequest, ex.Message, ex);
         }
         catch (UnauthorizedAccessException ex)
         {
-            await HandleExceptionAsync(httpContext, HttpStatusCode.Unauthorized, ex.Message);
+            await HandleExceptionAsync(httpContext, HttpStatusCode.Unauthorized, ex.Message, ex);
         }
         catch (Exception ex)
         {
-            await HandleExceptionAsync(httpContext, HttpStatusCode.NotFound, ex.Message);
+            await HandleExceptionAsync(httpContext, HttpStatusCode.NotFound, ex.Message, ex);
         }
     }
 
@@ -65,9 +65,9 @@ public class ExceptionHandlingMiddleware
     /// <param name="httpStatusCode"> Http Status Code </param>
     /// <param name="message"> Error message </param>
     private async Task HandleExceptionAsync(HttpContext context, HttpStatusCode httpStatusCode,
-        string message)
+        string message, Exception ex)
     {
-        _logger.LogError(message);
+        _logger.LogError(ex, message);
 
         var response = context.Response;
 

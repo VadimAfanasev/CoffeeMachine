@@ -376,7 +376,7 @@
             <param name="userModel"> Data of user for login in system </param>
             <returns> Token </returns>
             <response code="200"> Success </response>
-            <response code="401"> Invalid User </response>
+            <response code="404"> User not found </response>
         </member>
         <member name="T:CoffeeMachine.Dto.BalanceCoffeeDto">
             <summary>
@@ -489,7 +489,7 @@
             </summary>
             <param name="httpContext"> Http context </param>
         </member>
-        <member name="M:CoffeeMachine.Middlewares.ExceptionHandlingMiddleware.HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Net.HttpStatusCode,System.String)">
+        <member name="M:CoffeeMachine.Middlewares.ExceptionHandlingMiddleware.HandleExceptionAsync(Microsoft.AspNetCore.Http.HttpContext,System.Net.HttpStatusCode,System.String,System.Exception)">
             <summary>
             Method to which control is transferred after an error occurs
             </summary>

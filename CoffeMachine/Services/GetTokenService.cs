@@ -2,6 +2,8 @@
 using CoffeeMachine.Services.Interfaces;
 using CoffeeMachine.Settings;
 
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
 
@@ -53,4 +55,26 @@ public class GetTokenService : IGetTokenService
 
         return token;
     }
+
+    ///// <inheritdoc />
+    //public async Task<IActionResult> GetTokenAsync(UserModel userModel)
+    //{
+    //    var authResult = await HttpContext.(OpenIdConnectDefaults.AuthenticationScheme);
+    //    if (authResult?.Succeeded != true)
+    //    {
+    //        // Handle failed authentication
+    //        return RedirectToAction("Login");
+    //    }
+
+    //    // Get the access token and refresh token
+    //    var accessToken = authResult.Properties.GetTokenValue("access_token");
+    //    var refreshToken = authResult.Properties.GetTokenValue("refresh_token");
+
+    //    // Save the tokens to the user's session or database
+    //    HttpContext.Session.SetString("access_token", accessToken);
+    //    HttpContext.Session.SetString("refresh_token", refreshToken);
+
+    //    // Redirect the user to the desired page
+    //    return RedirectToAction("Index");
+    //}
 }

@@ -32,7 +32,7 @@ public class CoffeeMachineLoginController : ControllerBase
     /// <param name="userModel"> Data of user for login in system </param>
     /// <returns> Token </returns>
     /// <response code="200"> Success </response>
-    /// <response code="401"> Invalid User </response>
+    /// <response code="404"> User not found </response>
     [HttpPost("login")]
     public async Task<ActionResult> Login([FromBody] UserModel userModel)
     {

@@ -94,6 +94,7 @@ public class IntegrationTests : CustomBaseTest
         var inputMoneyJson = JsonContent.Create(inputMoney);
         await client.PutAsync("api/inputing", inputMoneyJson);
 
+
         // Act
         while (endlessСycle)
         {
