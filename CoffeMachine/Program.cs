@@ -37,7 +37,8 @@ using EmitEventFailureHandling = Serilog.Sinks.Elasticsearch.EmitEventFailureHan
 
 var builder = WebApplication.CreateBuilder(args);
 
-ConfigureLogging();
+builder.Logging.ClearProviders();
+Serilog.Log.Logger = ConfigureLogging();
 builder.Host.UseSerilog();
 //2
 //builder.Logging.ClearProviders();
@@ -45,7 +46,6 @@ builder.Host.UseSerilog();
 //ServicePointManager.ServerCertificateValidationCallback = (source, certificate, chain, sslpolicyerrors) => true;
 
 //4
-builder.Logging.ClearProviders();
 //SelfLog.Enable(msg => Console.WriteLine(msg));
 //ServicePointManager.ServerCertificateValidationCallback =
 //    (source, certificate, chain, sslPolicyErrors) => true;
@@ -276,7 +276,7 @@ app.MapControllers();
 
 app.Run();
 
-Serilog.Log.CloseAndFlush();
+// Serilog.Log.CloseAndFlush();
 //1
 //void ConfigureLogging(WebApplicationBuilder builder)
 //{
@@ -308,7 +308,7 @@ Serilog.Log.CloseAndFlush();
 //    builder.Logging.AddSerilog(logger);
 //}
 
-void ConfigureLogging()
+Serilog.Core.Logger ConfigureLogging()
 {
     var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
     var configuration = new ConfigurationBuilder()
@@ -324,17 +324,31 @@ void ConfigureLogging()
     //    (source, certificate, chain, sslPolicyErrors) => true;
 
     // builder.Logging.ClearProviders();
+    var openSearchOptions = new OpenSearchSinkOptions(new Uri("http://localhost:9200"))
+    {
+        AutoRegisterTemplate = true,
+        MinimumLogEventLevel = LogEventLevel.Debug,
+        IndexFormat =
+            $"coffee-machine-{DateTime.UtcNow:yyyy-MM-dd}",
+        //NumberOfReplicas = 1,
+        //NumberOfShards = 2,
+        FailureCallback = e => Console.WriteLine("Unable to submit event " + e.MessageTemplate),
+        EmitEventFailure = Serilog.Sinks.OpenSearch.EmitEventFailureHandling.RaiseCallback | Serilog.Sinks.OpenSearch.EmitEventFailureHandling.ThrowException,
+        TypeName = "_doc",
+        InlineFields = false
 
+    };
     var logger = new LoggerConfiguration()
         .Enrich.FromLogContext()
         .Enrich.WithExceptionDetails()
         .WriteTo.Debug()
         .WriteTo.Console()
-        .WriteTo.OpenSearch("http://localhost:9200")
-        .WriteTo.Elasticsearch(ConfigureElasticSink(configuration, environment))
+        .WriteTo.OpenSearch(openSearchOptions)
+//        .WriteTo.Elasticsearch(ConfigureElasticSink(configuration, environment))
         .Enrich.WithProperty("Environment", environment)
         .ReadFrom.Configuration(configuration)
         .CreateLogger();
+    return logger;
 }
 //1
 ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration, string environment)
@@ -342,14 +356,14 @@ ElasticsearchSinkOptions ConfigureElasticSink(IConfigurationRoot configuration, 
     return new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"]))
     {
         AutoRegisterTemplate = true,
-        MinimumLogEventLevel = LogEventLevel.Information,
+        MinimumLogEventLevel = LogEventLevel.Debug,
         IndexFormat =
             $"coffee-machine-{DateTime.UtcNow:yyyy-MM-dd}",
         //NumberOfReplicas = 1,
         //NumberOfShards = 2,
-        //FailureCallback = e => Console.WriteLine("Unable to submit event " + e.MessageTemplate),
-        //EmitEventFailure = EmitEventFailureHandling.RaiseCallback | EmitEventFailureHandling.ThrowException,
-        //TypeName = "_doc",
-        //InlineFields = false
+        FailureCallback = e => Console.WriteLine("Unable to submit event " + e.MessageTemplate),
+        EmitEventFailure = EmitEventFailureHandling.RaiseCallback | EmitEventFailureHandling.ThrowException,
+        TypeName = "_doc",
+        InlineFields = false
     };
 }
