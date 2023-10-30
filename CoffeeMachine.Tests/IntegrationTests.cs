@@ -141,7 +141,7 @@ public class IntegrationTests : CustomBaseTest
         while (endlessCycle)
         {
             iteration++;
-            if (iteration == 100)
+            if (iteration == 120)
                 endlessCycle = false;
 
             //Реализую получение случайного названия и случайной внесенной суммы
@@ -165,49 +165,49 @@ public class IntegrationTests : CustomBaseTest
     }
 
 
-    [Test]
-    public async Task LoginTest_ReturnsString_WhenStatusCodeOk()
-    {
-        // Arrange
-        var user = new UserModel
-        {
-            UserName = "Admin",
-            Password = "Admin"
-        };
-        var content = JsonContent.Create(user);
+    //[Test]
+    //public async Task LoginTest_ReturnsString_WhenStatusCodeOk()
+    //{
+    //    // Arrange
+    //    var user = new UserModel
+    //    {
+    //        UserName = "Admin",
+    //        Password = "Admin"
+    //    };
+    //    var content = JsonContent.Create(user);
 
-        var client = GetClient();
+    //    var client = GetClient();
 
-        // Act
-        var response = await client.PostAsync($"api/login", content);
-        var responseContent = await response.Content.ReadAsStringAsync();
+    //    // Act
+    //    var response = await client.PostAsync($"api/login", content);
+    //    var responseContent = await response.Content.ReadAsStringAsync();
 
-        // Assert
-        responseContent.Should().NotContain("User not found");
-        response.StatusCode.Should().Be(HttpStatusCode.OK);
-    }
+    //    // Assert
+    //    responseContent.Should().NotContain("User not found");
+    //    response.StatusCode.Should().Be(HttpStatusCode.OK);
+    //}
 
-    [Test]
-    public async Task LoginTest_ReturnsString_WhenStatusCodeNotFound()
-    {
-        // Arrange
-        var user = new UserModel
-        {
-            UserName = "AnyUser",
-            Password = "AnyUser"
-        };
-        var content = JsonContent.Create(user);
+    //[Test]
+    //public async Task LoginTest_ReturnsString_WhenStatusCodeNotFound()
+    //{
+    //    // Arrange
+    //    var user = new UserModel
+    //    {
+    //        UserName = "AnyUser",
+    //        Password = "AnyUser"
+    //    };
+    //    var content = JsonContent.Create(user);
 
-        var client = GetClient();
+    //    var client = GetClient();
 
-        // Act
-        var response = await client.PostAsync($"api/login", content);
-        var responseContent = await response.Content.ReadAsStringAsync();
+    //    // Act
+    //    var response = await client.PostAsync($"api/login", content);
+    //    var responseContent = await response.Content.ReadAsStringAsync();
 
-        // Assert
-        responseContent.Should().Contain("User not found");
-        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
-    }
+    //    // Assert
+    //    responseContent.Should().Contain("User not found");
+    //    response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+    //}
 
     [Test]
     public async Task InputMoneyAsyncTest_ReturnsString_WhenStatusCodeOk()

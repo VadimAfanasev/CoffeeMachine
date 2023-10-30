@@ -33,7 +33,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     /// </summary>
     public CoffeeBuyServices(CoffeeContext db, IDepositService depositService, IChangeCalculation changeCalculation)
     {
-        _db = db; 
+        _db = db;
         _depositService = depositService;
         _changeCalculation = changeCalculation;
     }
@@ -41,7 +41,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     /// <inheritdoc />
     public async Task<OrderCoffeeDto> BuyingCoffeeAsync(string coffeeType, uint[] moneys)
     {
-        if (! (await _db.CoffeesDb.AnyAsync(c => c.Name == coffeeType)))
+        if (!await _db.CoffeesDb.AnyAsync(c => c.Name == coffeeType))
             throw new InvalidDataException("Invalid coffee type");
 
         if (!moneys.All(c => Enum.IsDefined(typeof(InputBuyerBanknotesEnums), c)))
@@ -67,17 +67,6 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         var changeDto = ChangeToDto(change);
 
         return changeDto;
-    }
-
-    /// <summary>
-    /// Method for getting the amount of an array of entered money
-    /// </summary>
-    /// <param name="moneys"> </param>
-    /// <returns> uint </returns>
-    private uint SumUintArray(uint[] moneys)
-    {
-        var sum = moneys.Sum(n => n);
-        return (uint)sum;
     }
 
     /// <summary>
@@ -107,5 +96,16 @@ public class CoffeeBuyServices : ICoffeeBuyServices
             .Select(x => x.Price).FirstOrDefault();
 
         return coffeePrice;
+    }
+
+    /// <summary>
+    /// Method for getting the amount of an array of entered money
+    /// </summary>
+    /// <param name="moneys"> </param>
+    /// <returns> uint </returns>
+    private uint SumUintArray(uint[] moneys)
+    {
+        var sum = moneys.Sum(n => n);
+        return (uint)sum;
     }
 }

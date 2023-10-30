@@ -1,5 +1,6 @@
 ﻿using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Models.Data;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace CoffeeMachine.Common;
@@ -7,7 +8,7 @@ namespace CoffeeMachine.Common;
 /// <summary>
 /// Class for dealing with money when buying coffee
 /// </summary>
-public class DepositService: IDepositService
+public class DepositService : IDepositService
 {
     /// <summary>
     /// Injecting the database context CoffeeContext

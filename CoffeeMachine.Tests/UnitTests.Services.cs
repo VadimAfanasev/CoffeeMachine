@@ -107,30 +107,6 @@ public class UnitTestsServices
         expected.Should().BeEquivalentTo(result);
     }
 
-    [Test]
-    [SetUp]
-    public async Task GetTokenAsync_ReturnsString_WhenNotNull()
-    {
-        // Arrange    
-        var user = new UserModel
-        {
-            UserName = "Admin",
-            Password = "Admin"
-        };
-
-        var someOptions = Options.Create(new Jwt(){Key = "MostSecretPasswordInTheWorldEver",Issuer = "CoffeeMachine" });
-        var tokenService = new TokenService();
-        var userRepository = new UserRepository();
-
-        var getToken = new GetTokenService(tokenService, userRepository, someOptions);
-
-        // Act    
-        var result = await getToken.GetTokenAsync(user);
-
-        // Assert
-        Assert.IsNotNull(result);
-    }
-
     private static CoffeeContext GetTestApplicationContextNew()
     {
         return TestDbBaseContext.GetTestInitAppContext();

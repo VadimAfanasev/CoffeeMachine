@@ -1,10 +1,8 @@
-global using CoffeeMachine.Auth;
 global using CoffeeMachine.Common;
 global using CoffeeMachine.Controllers;
 global using CoffeeMachine.Dto;
 global using CoffeeMachine.Models.Data;
 global using CoffeeMachine.Services;
-global using CoffeeMachine.Settings;
 global using FluentAssertions;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Diagnostics;

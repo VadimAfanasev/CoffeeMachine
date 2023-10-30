@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj": {}
+    "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj": {}
   },
   "projects": {
-    "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj": {
+    "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj",
+        "projectUniqueName": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj",
         "projectName": "CoffeeMachine.Tests",
-        "projectPath": "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj",
-        "packagesPath": "C:\\Users\\Вадим\\.nuget\\packages\\",
-        "outputPath": "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\obj\\",
+        "projectPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj",
+        "packagesPath": "C:\\Users\\AfanasievVA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Вадим\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AfanasievVA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -32,8 +32,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj": {
-                "projectPath": "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj"
+              "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj": {
+                "projectPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj"
               }
             }
           }
@@ -121,24 +121,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj": {
+    "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+        "projectUniqueName": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
         "projectName": "CoffeeMachine",
-        "projectPath": "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
-        "packagesPath": "C:\\Users\\Вадим\\.nuget\\packages\\",
-        "outputPath": "E:\\Программирование\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\obj\\",
+        "projectPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+        "packagesPath": "C:\\Users\\AfanasievVA\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Вадим\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\AfanasievVA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -327,7 +327,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

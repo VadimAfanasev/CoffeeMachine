@@ -17,7 +17,7 @@ public class DatabaseHealthChecks : IHealthCheck
     /// <summary>
     /// Constructor of a class that describes the functionality for monitoring the state of the database
     /// </summary>
-    /// <param name="configuration"></param>
+    /// <param name="configuration"> </param>
     public DatabaseHealthChecks(IConfiguration configuration)
     {
         _connectionString = configuration.GetConnectionString("DefaultConnection");
@@ -27,7 +27,7 @@ public class DatabaseHealthChecks : IHealthCheck
     /// A method that implements monitoring the state of the database
     /// </summary>
     /// <param name="context"> Health check context </param>
-    /// <param name="cancellationToken">  </param>
+    /// <param name="cancellationToken"> </param>
     /// <returns> Health check result </returns>
     public async Task<HealthCheckResult> CheckHealthAsync(
         HealthCheckContext context,
@@ -50,7 +50,7 @@ public class DatabaseHealthChecks : IHealthCheck
         {
             return HealthCheckResult.Unhealthy(
                 context.Registration.FailureStatus.ToString(),
-                exception: ex);
+                ex);
         }
     }
 }

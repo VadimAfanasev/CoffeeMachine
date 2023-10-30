@@ -353,31 +353,6 @@
             <response code="400"> Incorrect data entered </response>
             <response code="404"> Entity not found in the system </response>
         </member>
-        <member name="T:CoffeeMachine.Controllers.CoffeeMachineLoginController">
-            <summary>
-            The class that implements the authentication request
-            </summary>
-        </member>
-        <member name="F:CoffeeMachine.Controllers.CoffeeMachineLoginController._getTokenService">
-            <summary>
-            Get token service dependency injection
-            </summary>
-        </member>
-        <member name="M:CoffeeMachine.Controllers.CoffeeMachineLoginController.#ctor(CoffeeMachine.Services.Interfaces.IGetTokenService)">
-            <summary>
-            Constructor of the class that implements the authentication request
-            </summary>
-            <param name="getTokenService"> Service for getting token </param>
-        </member>
-        <member name="M:CoffeeMachine.Controllers.CoffeeMachineLoginController.Login(CoffeeMachine.Auth.UserModel)">
-            <summary>
-            Method for obtaining a token
-            </summary>
-            <param name="userModel"> Data of user for login in system </param>
-            <returns> Token </returns>
-            <response code="200"> Success </response>
-            <response code="404"> User not found </response>
-        </member>
         <member name="T:CoffeeMachine.Dto.BalanceCoffeeDto">
             <summary>
             Class describing the balance of coffee in a coffee machine Dto

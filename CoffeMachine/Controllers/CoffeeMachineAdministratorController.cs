@@ -1,7 +1,6 @@
 ﻿using CoffeeMachine.Dto;
 using CoffeeMachine.Services.Interfaces;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,7 +26,7 @@ public class CoffeeMachineAdministratorController : ControllerBase
     /// <summary>
     /// Constructor of the class that obtaining the status of the coffee machine
     /// </summary>
-    /// <param name="inputMoneyService"> Service for inputting money in machine</param>
+    /// <param name="inputMoneyService"> Service for inputting money in machine </param>
     /// <param name="coffeeMachineStatusService"> Service for getting machine status </param>
     public CoffeeMachineAdministratorController(IInputMoneyServices inputMoneyService,
         ICoffeeMachineStatusServices coffeeMachineStatusService)
@@ -89,27 +88,5 @@ public class CoffeeMachineAdministratorController : ControllerBase
     {
         var answer = await _inputMoneyService.InputingAsync(inputMoney);
         return Ok(answer);
-    }
-
-    [HttpGet("info")]
-    public async Task<IActionResult> LoginCallback()
-    {
-        var authResult = await HttpContext.AuthenticateAsync(OpenIdConnectDefaults.AuthenticationScheme);
-        if (authResult?.Succeeded != true)
-        {
-            // Handle failed authentication
-            return Unauthorized();
-        }
-
-        // Get the access token and refresh token
-        var accessToken = authResult.Properties.GetTokenValue("access_token");
-        var refreshToken = authResult.Properties.GetTokenValue("refresh_token");
-
-        // Save the tokens to the user's session or database
-        HttpContext.Session.SetString("access_token", accessToken);
-        HttpContext.Session.SetString("refresh_token", refreshToken);
-
-        // Redirect the user to the desired page
-        return Ok();
     }
 }

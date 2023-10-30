@@ -28,7 +28,7 @@ public class IncrementMoneyInMachineService : IIncrementMoneyInMachine
     /// <inheritdoc />
     public async Task<string> IncrementMoneyAsync(List<MoneyDto> inputMoney)
     {
-        foreach(var banknote in inputMoney.GroupBy(m => m.Nominal)) 
+        foreach (var banknote in inputMoney.GroupBy(m => m.Nominal))
         {
             var money = await _db.MoneyInMachinesDb.FirstOrDefaultAsync(c => c.Nominal == banknote.Key);
 
@@ -36,8 +36,7 @@ public class IncrementMoneyInMachineService : IIncrementMoneyInMachine
                 money.Count += Convert.ToUInt32(banknote.Sum(b => b.Count));
             else
                 throw new Exception("Entity not found in the system");
-
-        } 
+        }
 
         await _db.SaveChangesAsync();
 

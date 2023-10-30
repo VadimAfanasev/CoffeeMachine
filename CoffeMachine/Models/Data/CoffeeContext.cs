@@ -16,7 +16,7 @@ public class CoffeeContext : DbContext
         {
             Database.Migrate();
             SaveChanges();
-        } 
+        }
     }
 
     /// <summary>

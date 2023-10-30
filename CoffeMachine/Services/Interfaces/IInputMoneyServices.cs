@@ -1,7 +1,5 @@
 ﻿using CoffeeMachine.Dto;
 
-using Microsoft.AspNetCore.Mvc;
-
 namespace CoffeeMachine.Services.Interfaces;
 
 /// <summary>

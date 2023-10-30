@@ -14,6 +14,7 @@
           "AspNetCore.HealthChecks.UI.InMemory.Storage": "7.0.0",
           "Autofac": "7.1.0",
           "Docker.DotNet": "3.125.15",
+          "Elastic.Serilog.Sinks": "8.6.1",
           "Keycloak.AuthServices.Authentication": "1.5.2",
           "Keycloak.AuthServices.Authorization": "1.5.2",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "7.0.12",
@@ -166,6 +167,17 @@
           }
         }
       },
+      "Ben.Demystifier/0.4.1": {
+        "dependencies": {
+          "System.Reflection.Metadata": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Ben.Demystifier.dll": {
+            "assemblyVersion": "0.4.0.0",
+            "fileVersion": "0.4.0.2"
+          }
+        }
+      },
       "Docker.DotNet/3.125.15": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
@@ -176,6 +188,100 @@
           "lib/netstandard2.1/Docker.DotNet.dll": {
             "assemblyVersion": "3.125.0.0",
             "fileVersion": "3.125.15.1"
+          }
+        }
+      },
+      "Elastic.Channels/0.5.5": {
+        "dependencies": {
+          "System.Threading.Channels": "4.7.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Elastic.Channels.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.5.5.0"
+          }
+        }
+      },
+      "Elastic.CommonSchema/8.6.1": {
+        "dependencies": {
+          "Ben.Demystifier": "0.4.1",
+          "System.Diagnostics.DiagnosticSource": "6.0.0",
+          "System.Text.Json": "7.0.3"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Elastic.CommonSchema.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.6.1.0"
+          }
+        }
+      },
+      "Elastic.CommonSchema.Serilog/8.6.1": {
+        "dependencies": {
+          "Elastic.CommonSchema": "8.6.1",
+          "Microsoft.AspNetCore.Http.Abstractions": "2.1.0",
+          "Microsoft.AspNetCore.Http.Extensions": "2.1.0",
+          "Serilog": "3.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Elastic.CommonSchema.Serilog.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.6.1.0"
+          }
+        }
+      },
+      "Elastic.Ingest.Elasticsearch/0.5.5": {
+        "dependencies": {
+          "Elastic.Ingest.Transport": "0.5.5"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Elastic.Ingest.Elasticsearch.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.5.5.0"
+          }
+        }
+      },
+      "Elastic.Ingest.Elasticsearch.CommonSchema/8.6.1": {
+        "dependencies": {
+          "Elastic.CommonSchema": "8.6.1",
+          "Elastic.Ingest.Elasticsearch": "0.5.5"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Elastic.Ingest.Elasticsearch.CommonSchema.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.6.1.0"
+          }
+        }
+      },
+      "Elastic.Ingest.Transport/0.5.5": {
+        "dependencies": {
+          "Elastic.Channels": "0.5.5",
+          "Elastic.Transport": "0.4.13",
+          "System.Threading.Channels": "4.7.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Elastic.Ingest.Transport.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.5.5.0"
+          }
+        }
+      },
+      "Elastic.Serilog.Sinks/8.6.1": {
+        "dependencies": {
+          "Elastic.CommonSchema.Serilog": "8.6.1",
+          "Elastic.Ingest.Elasticsearch.CommonSchema": "8.6.1"
+        },
+        "runtime": {
+          "lib/netstandard2.1/Elastic.Serilog.Sinks.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.6.1.0"
+          }
+        }
+      },
+      "Elastic.Transport/0.4.13": {
+        "runtime": {
+          "lib/net6.0/Elastic.Transport.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.4.13.0"
           }
         }
       },
@@ -320,6 +426,25 @@
             "assemblyVersion": "7.0.12.0",
             "fileVersion": "7.0.1223.47922"
           }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Abstractions/2.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "2.1.0",
+          "System.Text.Encodings.Web": "7.0.0"
+        }
+      },
+      "Microsoft.AspNetCore.Http.Extensions/2.1.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Abstractions": "2.1.0",
+          "Microsoft.Extensions.FileProviders.Abstractions": "7.0.0",
+          "Microsoft.Net.Http.Headers": "2.1.0",
+          "System.Buffers": "4.5.1"
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "7.0.0"
         }
       },
       "Microsoft.AspNetCore.OpenApi/7.0.12": {
@@ -714,6 +839,12 @@
             "assemblyVersion": "7.0.3.0",
             "fileVersion": "7.0.3.41017"
           }
+        }
+      },
+      "Microsoft.Net.Http.Headers/2.1.0": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "7.0.0",
+          "System.Buffers": "4.5.1"
         }
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
@@ -1153,6 +1284,7 @@
         }
       },
       "System.Numerics.Vectors/4.5.0": {},
+      "System.Reflection.Metadata/5.0.0": {},
       "System.Reflection.TypeExtensions/4.7.0": {},
       "System.Runtime.Caching/6.0.0": {
         "dependencies": {
@@ -1220,6 +1352,7 @@
           "System.Text.Encodings.Web": "7.0.0"
         }
       },
+      "System.Threading.Channels/4.7.1": {},
       "System.Threading.Tasks.Extensions/4.5.4": {},
       "System.Windows.Extensions/6.0.0": {
         "dependencies": {
@@ -1319,12 +1452,75 @@
       "path": "azure.identity/1.7.0",
       "hashPath": "azure.identity.1.7.0.nupkg.sha512"
     },
+    "Ben.Demystifier/0.4.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-axFeEMfmEORy3ipAzOXG/lE+KcNptRbei3F0C4kQCdeiQtW+qJW90K5iIovITGrdLt8AjhNCwk5qLSX9/rFpoA==",
+      "path": "ben.demystifier/0.4.1",
+      "hashPath": "ben.demystifier.0.4.1.nupkg.sha512"
+    },
     "Docker.DotNet/3.125.15": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-XN8FKxVv8Mjmwu104/Hl9lM61pLY675s70gzwSj8KR5pwblo8HfWLcCuinh9kYsqujBkMH4HVRCEcRuU6al4BQ==",
       "path": "docker.dotnet/3.125.15",
       "hashPath": "docker.dotnet.3.125.15.nupkg.sha512"
+    },
+    "Elastic.Channels/0.5.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-f9b7XhrSLikwSUQoYMdhwSeQdnPnWSgdBCkV3gF56X85ScHwQweBEy1T2G5SXTR9oDLz3LSm1avPq/Vo6ZqSzA==",
+      "path": "elastic.channels/0.5.5",
+      "hashPath": "elastic.channels.0.5.5.nupkg.sha512"
+    },
+    "Elastic.CommonSchema/8.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9D0ozeMVQRta1KHvef7rk52UGd4ugOHQZULLXMWdgbFNU8QbVk/H29i0oFfFaoWyTsvlCAxWOJQcUYuwYC2qTA==",
+      "path": "elastic.commonschema/8.6.1",
+      "hashPath": "elastic.commonschema.8.6.1.nupkg.sha512"
+    },
+    "Elastic.CommonSchema.Serilog/8.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-GX8sdULUGZtMRAXizQ65Z3TYwMJEd+VU0GPVt/R6q6ZVJwEmfN4bmB56ayNw7RwwiCFmjHDlP8UfYP0ii4mvdg==",
+      "path": "elastic.commonschema.serilog/8.6.1",
+      "hashPath": "elastic.commonschema.serilog.8.6.1.nupkg.sha512"
+    },
+    "Elastic.Ingest.Elasticsearch/0.5.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TPt1LMCPH2xS0KZ/6KvEmWpQHWw8t3KaAcwFFOVNXT7IuLI1+tr3L0TLx41l/LjvzNgJl6c5cWhuEgqH6ebZ1A==",
+      "path": "elastic.ingest.elasticsearch/0.5.5",
+      "hashPath": "elastic.ingest.elasticsearch.0.5.5.nupkg.sha512"
+    },
+    "Elastic.Ingest.Elasticsearch.CommonSchema/8.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gezuZwoG3t51Ao8BBVzEjWtVFSMQwL1vooXFaJOGfUmd7jK5wd2DAbCPNeciAZmW2mRRuYOmpVcv43i4t00ETA==",
+      "path": "elastic.ingest.elasticsearch.commonschema/8.6.1",
+      "hashPath": "elastic.ingest.elasticsearch.commonschema.8.6.1.nupkg.sha512"
+    },
+    "Elastic.Ingest.Transport/0.5.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hXdTG+1NiyifpG3WcD9GxUoX8ee2xie1o8ztrdbP3aBPf5YwI4K/iNhMkYyQOdWTkYNjw89mzQA3aZOsyn1f7A==",
+      "path": "elastic.ingest.transport/0.5.5",
+      "hashPath": "elastic.ingest.transport.0.5.5.nupkg.sha512"
+    },
+    "Elastic.Serilog.Sinks/8.6.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mzDpSUcYaGkv7KHXpbz8dtyxyB6gqD29igwSmORxgCh/fk6AZwysmD5+aZc3OighAVZ7c6GH06/0UOul0Dly/A==",
+      "path": "elastic.serilog.sinks/8.6.1",
+      "hashPath": "elastic.serilog.sinks.8.6.1.nupkg.sha512"
+    },
+    "Elastic.Transport/0.4.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FFk8GCyaKRofCPUacLggnSWLOVTY/9n3fKEDsA3S/fcuA7bOqTxEad2dv42+0NphUQozcWFkyXK6kINmSEAzTA==",
+      "path": "elastic.transport/0.4.13",
+      "hashPath": "elastic.transport.0.4.13.nupkg.sha512"
     },
     "Elasticsearch.Net/7.17.5": {
       "type": "package",
@@ -1409,6 +1605,27 @@
       "sha512": "sha512-H2I032oDixBTpKZouVeKNxijeqPI6JGqQMSyf21CUyHuH+yBxU2mBH5N3wiMxUdnCSIpLk4HiQlIjcuabxixtA==",
       "path": "microsoft.aspnetcore.authentication.openidconnect/7.0.12",
       "hashPath": "microsoft.aspnetcore.authentication.openidconnect.7.0.12.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Abstractions/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vbFDyKsSYBnxl3+RABtN79b0vsTcG66fDY8vD6Nqvu9uLtSej70Q5NcbGlnN6bJpZci5orSdgFTHMhBywivDPg==",
+      "path": "microsoft.aspnetcore.http.abstractions/2.1.0",
+      "hashPath": "microsoft.aspnetcore.http.abstractions.2.1.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Extensions/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-M8Gk5qrUu5nFV7yE3SZgATt/5B1a5Qs8ZnXXeO/Pqu68CEiBHJWc10sdGdO5guc3zOFdm7H966mVnpZtEX4vSA==",
+      "path": "microsoft.aspnetcore.http.extensions/2.1.0",
+      "hashPath": "microsoft.aspnetcore.http.extensions.2.1.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Features/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UmkUePxRjsQW0j5euFFscBwjvTu25b8+qIK/2fI3GvcqQ+mkwgbWNAT8b/Gkoei1m2bTWC07lSdutuRDPPLcJA==",
+      "path": "microsoft.aspnetcore.http.features/2.1.0",
+      "hashPath": "microsoft.aspnetcore.http.features.2.1.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.OpenApi/7.0.12": {
       "type": "package",
@@ -1718,6 +1935,13 @@
       "path": "microsoft.identitymodel.tokens/7.0.3",
       "hashPath": "microsoft.identitymodel.tokens.7.0.3.nupkg.sha512"
     },
+    "Microsoft.Net.Http.Headers/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-c08F7C7BGgmjrq9cr7382pBRhcimBx24YOv4M4gtzMIuVKmxGoRr5r9A2Hke9v7Nx7zKKCysk6XpuZasZX4oeg==",
+      "path": "microsoft.net.http.headers/2.1.0",
+      "hashPath": "microsoft.net.http.headers.2.1.0.nupkg.sha512"
+    },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
       "serviceable": true,
@@ -2026,6 +2250,13 @@
       "path": "system.numerics.vectors/4.5.0",
       "hashPath": "system.numerics.vectors.4.5.0.nupkg.sha512"
     },
+    "System.Reflection.Metadata/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5NecZgXktdGg34rh1OenY1rFNDCI8xSjFr+Z4OU4cU06AQHUdRnIIEeWENu3Wl4YowbzkymAIMvi3WyK9U53pQ==",
+      "path": "system.reflection.metadata/5.0.0",
+      "hashPath": "system.reflection.metadata.5.0.0.nupkg.sha512"
+    },
     "System.Reflection.TypeExtensions/4.7.0": {
       "type": "package",
       "serviceable": true,
@@ -2102,6 +2333,13 @@
       "sha512": "sha512-AyjhwXN1zTFeIibHimfJn6eAsZ7rTBib79JQpzg8WAuR/HKDu9JGNHTuu3nbbXQ/bgI+U4z6HtZmCHNXB1QXrQ==",
       "path": "system.text.json/7.0.3",
       "hashPath": "system.text.json.7.0.3.nupkg.sha512"
+    },
+    "System.Threading.Channels/4.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-6akRtHK/wab3246t4p5v3HQrtQk8LboOt5T4dtpNgsp3zvDeM4/Gx8V12t0h+c/W9/enUrilk8n6EQqdQorZAA==",
+      "path": "system.threading.channels/4.7.1",
+      "hashPath": "system.threading.channels.4.7.1.nupkg.sha512"
     },
     "System.Threading.Tasks.Extensions/4.5.4": {
       "type": "package",
