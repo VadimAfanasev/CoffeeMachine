@@ -94,7 +94,6 @@ public class IntegrationTests : CustomBaseTest
         var inputMoneyJson = JsonContent.Create(inputMoney);
         await client.PutAsync("api/inputing", inputMoneyJson);
 
-
         // Act
         while (endlessСycle)
         {
@@ -163,51 +162,6 @@ public class IntegrationTests : CustomBaseTest
         // Assert    
         responseContent.Should().Contain("Cannot provide change");
     }
-
-
-    //[Test]
-    //public async Task LoginTest_ReturnsString_WhenStatusCodeOk()
-    //{
-    //    // Arrange
-    //    var user = new UserModel
-    //    {
-    //        UserName = "Admin",
-    //        Password = "Admin"
-    //    };
-    //    var content = JsonContent.Create(user);
-
-    //    var client = GetClient();
-
-    //    // Act
-    //    var response = await client.PostAsync($"api/login", content);
-    //    var responseContent = await response.Content.ReadAsStringAsync();
-
-    //    // Assert
-    //    responseContent.Should().NotContain("User not found");
-    //    response.StatusCode.Should().Be(HttpStatusCode.OK);
-    //}
-
-    //[Test]
-    //public async Task LoginTest_ReturnsString_WhenStatusCodeNotFound()
-    //{
-    //    // Arrange
-    //    var user = new UserModel
-    //    {
-    //        UserName = "AnyUser",
-    //        Password = "AnyUser"
-    //    };
-    //    var content = JsonContent.Create(user);
-
-    //    var client = GetClient();
-
-    //    // Act
-    //    var response = await client.PostAsync($"api/login", content);
-    //    var responseContent = await response.Content.ReadAsStringAsync();
-
-    //    // Assert
-    //    responseContent.Should().Contain("User not found");
-    //    response.StatusCode.Should().Be(HttpStatusCode.NotFound);
-    //}
 
     [Test]
     public async Task InputMoneyAsyncTest_ReturnsString_WhenStatusCodeOk()
