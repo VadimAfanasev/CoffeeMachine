@@ -118,6 +118,8 @@ var authenticationOptions = new KeycloakAuthenticationOptions
 };
 builder.Services.AddKeycloakAuthentication(authenticationOptions);
 
+builder.Services.AddLazyCache();
+
 const string myOrigins = "_myOrigins";
 builder.Services.AddCors(options =>
 {

@@ -80,6 +80,10 @@
               "target": "Package",
               "version": "[1.5.2, )"
             },
+            "LazyCache.AspNetCore": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[7.0.12, )"

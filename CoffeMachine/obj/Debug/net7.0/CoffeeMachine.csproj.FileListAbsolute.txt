@@ -804,3 +804,5 @@ E:\Программирование\CoffeeMachine\CoffeMachine\CoffeMachine\bin\
 E:\Программирование\CoffeeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Elastic.Ingest.Transport.dll
 E:\Программирование\CoffeeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Elastic.Serilog.Sinks.dll
 E:\Программирование\CoffeeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\Elastic.Transport.dll
+C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\LazyCache.dll
+C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeMachine\bin\Debug\net7.0\LazyCache.AspNetCore.dll

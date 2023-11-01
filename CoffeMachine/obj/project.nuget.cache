@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "768jH+saBWePY4fV2hnwrJFngH0nKcBYlmopDY5Ceyj20MV55AuxR7IeWMwEIgkAelp3WGRDdgEJ8+LoGOm+RA==",
+  "dgSpecHash": "fBLya1oK7C0fuYBBlK7xJKNg1G/yPPCPRwY1Lhchvsk5uSeLRUB5TPBhfHqct1y+X3ZbrmORYJU19ZF+8ONiCg==",
   "success": true,
   "projectFilePath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
   "expectedPackageFiles": [
@@ -33,6 +33,8 @@
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\kubernetesclient\\11.0.44\\kubernetesclient.11.0.44.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\kubernetesclient.basic\\11.0.44\\kubernetesclient.basic.11.0.44.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\kubernetesclient.models\\11.0.44\\kubernetesclient.models.11.0.44.nupkg.sha512",
+    "C:\\Users\\AfanasievVA\\.nuget\\packages\\lazycache\\2.4.0\\lazycache.2.4.0.nupkg.sha512",
+    "C:\\Users\\AfanasievVA\\.nuget\\packages\\lazycache.aspnetcore\\2.4.0\\lazycache.aspnetcore.2.4.0.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.12\\microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\7.0.12\\microsoft.aspnetcore.authentication.openidconnect.7.0.12.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.1.0\\microsoft.aspnetcore.http.abstractions.2.1.0.nupkg.sha512",

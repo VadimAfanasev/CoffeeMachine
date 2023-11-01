@@ -2410,3 +2410,5 @@ C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests
 C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\Serilog.Sinks.Elasticsearch.dll
 C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\Serilog.Sinks.OpenSearch.dll
 C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\Serilog.Sinks.PeriodicBatching.dll
+C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\LazyCache.dll
+C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\LazyCache.AspNetCore.dll

@@ -1,6 +1,7 @@
-using Bogus;
 using CoffeeMachine.Common.Enums;
 using CoffeeMachine.Tests.Infrastructure;
+using LazyCache;
+using Moq;
 
 namespace CoffeeMachine.Tests;
 
@@ -12,7 +13,7 @@ public class UnitTestsServices
     public async Task BuyingCoffeeAsync_ReturnsOrderCoffeeDto_WhenAmountIsExact()
     {
         // Arrange 
-        var moneys = new uint[] { (uint)InputBuyerBanknotesEnums.TwoThousand, (uint)InputBuyerBanknotesEnums.FiveHundred };
+        var moneys = new[] { (uint)InputBuyerBanknotesEnums.TwoThousand, (uint)InputBuyerBanknotesEnums.FiveHundred };
         const string coffeeType = "Cappuccino";
         var expected = new OrderCoffeeDto
         {
@@ -21,11 +22,11 @@ public class UnitTestsServices
 
         var appContext = GetTestApplicationContextNew();
 
-
+        var cacheMock = new Mock<IAppCache>();
         var calculateChange = new ChangeCalculationService(appContext);
         var moneyService = new DepositService(appContext);
 
-        var coffeeBuyService = new CoffeeBuyServices(appContext, moneyService, calculateChange);
+        var coffeeBuyService = new CoffeeBuyServices(appContext, moneyService, calculateChange, cacheMock.Object);
 
         // Act
         var result = await coffeeBuyService.BuyingCoffeeAsync(coffeeType, moneys);
@@ -49,8 +50,9 @@ public class UnitTestsServices
         };
 
         var appContext = GetTestApplicationContextNew();
+        var cacheMock = new Mock<IAppCache>();
 
-        var balanceCoffeeService = new CoffeeMachineStatusServices(appContext);
+        var balanceCoffeeService = new CoffeeMachineStatusServices(appContext, cacheMock.Object);
 
         // Act
         var result = await balanceCoffeeService.GetBalanceCoffeeAsync();
@@ -73,8 +75,9 @@ public class UnitTestsServices
         }
 
         var appContext = GetTestApplicationContextNew();
+        var cacheMock = new Mock<IAppCache>();
 
-        var balanceCoffeeService = new CoffeeMachineStatusServices(appContext);
+        var balanceCoffeeService = new CoffeeMachineStatusServices(appContext, cacheMock.Object);
 
         // Act
         var result = await balanceCoffeeService.GetBalanceMoneyAsync();
@@ -97,8 +100,9 @@ public class UnitTestsServices
 
         var appContext = GetTestApplicationContextNew();
         var incrementMoneyInMachine = new IncrementMoneyInMachineService(appContext);
+        var cacheMock = new Mock<IAppCache>();
 
-        var balanceCoffeeService = new InputMoneyServices(appContext, incrementMoneyInMachine);
+        var balanceCoffeeService = new InputMoneyServices(appContext, incrementMoneyInMachine, cacheMock.Object);
 
         // Act
         var result = await balanceCoffeeService.InputingAsync(inputMoney);

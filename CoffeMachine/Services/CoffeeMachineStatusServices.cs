@@ -1,6 +1,9 @@
-﻿using CoffeeMachine.Dto;
+﻿using CoffeeMachine.Common;
+using CoffeeMachine.Dto;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services.Interfaces;
+
+using LazyCache;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -17,40 +20,58 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     private readonly CoffeeContext _db;
 
     /// <summary>
+    /// Input lazy cache dependency injection
+    /// </summary>
+    private readonly IAppCache _cache;
+
+    /// <summary>
     /// Constructor of a class in which we get information about the coffee machine
     /// </summary>
     /// <param name="db"> Context database </param>
-    public CoffeeMachineStatusServices(CoffeeContext db)
+    /// <param name="cache"> Lazy cache </param>
+    public CoffeeMachineStatusServices(CoffeeContext db, IAppCache cache)
     {
         _db = db;
+        _cache = cache;
     }
 
     /// <inheritdoc />
     public async Task<List<BalanceCoffeeDto>> GetBalanceCoffeeAsync()
     {
-        var balanceCoffee = new List<BalanceCoffeeDto>();
-        var coffeeBalances = await _db.CoffeesDb.ToListAsync();
+        var cacheKey = CacheKeys.coffeeBuy;
 
-        uint totalBalance = 0;
-
-        foreach (var balance in coffeeBalances)
-        {
-            var balanceDto = new BalanceCoffeeDto
+        var balanceCoffee = await _cache.GetOrAddAsync(
+            cacheKey,
+            async () =>
             {
-                Name = balance.Name,
-                Balance = balance.Balance
-            };
-            balanceCoffee.Add(balanceDto);
-            totalBalance += balance.Balance;
-        }
+                var balanceCoffee = new List<BalanceCoffeeDto>();
 
-        var totalBalanceDto = new BalanceCoffeeDto
-        {
-            Name = "Total",
-            Balance = totalBalance
-        };
+                var coffeeBalances = await _db.CoffeesDb.ToListAsync();
 
-        balanceCoffee.Add(totalBalanceDto);
+                uint totalBalance = 0;
+
+                foreach (var balance in coffeeBalances)
+                {
+                    var balanceDto = new BalanceCoffeeDto
+                    {
+                        Name = balance.Name,
+                        Balance = balance.Balance
+                    };
+                    balanceCoffee.Add(balanceDto);
+                    totalBalance += balance.Balance;
+                }
+
+                var totalBalanceDto = new BalanceCoffeeDto
+                {
+                    Name = "Total",
+                    Balance = totalBalance
+                };
+
+                balanceCoffee.Add(totalBalanceDto);
+
+                return balanceCoffee;
+            },
+            TimeSpan.FromMinutes(10)); // Время жизни кэша
 
         if (balanceCoffee == null)
             throw new Exception("Entity not found in the system");
@@ -61,24 +82,34 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     /// <inheritdoc />
     public async Task<List<MoneyDto>> GetBalanceMoneyAsync()
     {
-        var balanceMoney = new List<MoneyDto>();
-        var moneyBalances = await _db.MoneyInMachinesDb.ToListAsync();
+        var cacheKey = CacheKeys.inputMoney;
 
-        foreach (var balance in moneyBalances)
-        {
-            var balanceDto = new MoneyDto
+        var balanceMoney = await _cache.GetOrAddAsync(
+            cacheKey,
+            async () =>
             {
-                Nominal = balance.Nominal,
-                Count = balance.Count
-            };
-            balanceMoney.Add(balanceDto);
-        }
+                var balanceMoney = new List<MoneyDto>();
+                var moneyBalances = await _db.MoneyInMachinesDb.ToListAsync();
 
-        var sortedBalanceMoney = balanceMoney.OrderByDescending(n => n.Nominal).ToList();
+                foreach (var balance in moneyBalances)
+                {
+                    var balanceDto = new MoneyDto
+                    {
+                        Nominal = balance.Nominal,
+                        Count = balance.Count
+                    };
+                    balanceMoney.Add(balanceDto);
+                }
 
-        if (sortedBalanceMoney == null)
+                var sortedBalanceMoney = balanceMoney.OrderByDescending(n => n.Nominal).ToList();
+
+                return sortedBalanceMoney;
+            },
+            TimeSpan.FromMinutes(10)); // Время жизни кэша
+
+        if (balanceMoney == null)
             throw new Exception("Entity not found in the system");
 
-        return sortedBalanceMoney;
+        return balanceMoney;
     }
 }

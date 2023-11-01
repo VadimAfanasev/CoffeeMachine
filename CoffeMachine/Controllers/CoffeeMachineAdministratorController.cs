@@ -1,6 +1,8 @@
 ﻿using CoffeeMachine.Dto;
 using CoffeeMachine.Services.Interfaces;
 
+using LazyCache;
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

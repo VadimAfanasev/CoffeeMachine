@@ -1,8 +1,11 @@
-﻿using CoffeeMachine.Common.Enums;
+﻿using CoffeeMachine.Common;
+using CoffeeMachine.Common.Enums;
 using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Dto;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services.Interfaces;
+
+using LazyCache;
 
 using Microsoft.EntityFrameworkCore;
 
@@ -29,13 +32,19 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     private readonly IDepositService _depositService;
 
     /// <summary>
+    /// Input lazy cache dependency injection
+    /// </summary>
+    private readonly IAppCache _cache;
+
+    /// <summary>
     /// Constructor of the class in which coffee is purchased
     /// </summary>
-    public CoffeeBuyServices(CoffeeContext db, IDepositService depositService, IChangeCalculation changeCalculation)
+    public CoffeeBuyServices(CoffeeContext db, IDepositService depositService, IChangeCalculation changeCalculation, IAppCache cache)
     {
         _db = db;
         _depositService = depositService;
         _changeCalculation = changeCalculation;
+        _cache = cache;
     }
 
     /// <inheritdoc />
@@ -65,6 +74,9 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         await _depositService.IncrementCoffeeBalanceAsync(coffeeType, coffeePrice);
 
         var changeDto = ChangeToDto(change);
+
+        var cacheKey = CacheKeys.coffeeBuy;
+        _cache.Remove(cacheKey);
 
         return changeDto;
     }
@@ -107,5 +119,10 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     {
         var sum = moneys.Sum(n => n);
         return (uint)sum;
+    }
+
+    private static string GetCacheKey()
+    {
+        return "CoffeeBuy";
     }
 }
