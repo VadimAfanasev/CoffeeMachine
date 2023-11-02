@@ -38,33 +38,23 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     /// <inheritdoc />
     public async Task<List<BalanceCoffeeDto>> GetBalanceCoffeeAsync()
     {
-        var cacheKey = CacheKeys.coffeeBuy;
-
         var balanceCoffee = await _cache.GetOrAddAsync(
-            cacheKey,
+            CacheKeys.coffeeBuy,
             async () =>
             {
-                var balanceCoffee = new List<BalanceCoffeeDto>();
 
                 var coffeeBalances = await _db.CoffeesDb.ToListAsync();
-
-                uint totalBalance = 0;
-
-                foreach (var balance in coffeeBalances)
+                var balanceCoffee = coffeeBalances.Select(c => new BalanceCoffeeDto
                 {
-                    var balanceDto = new BalanceCoffeeDto
-                    {
-                        Name = balance.Name,
-                        Balance = balance.Balance
-                    };
-                    balanceCoffee.Add(balanceDto);
-                    totalBalance += balance.Balance;
-                }
-
+                    Name = c.Name,
+                    Balance = c.Balance
+                }).ToList();
+                var totalBalance = coffeeBalances.Sum(c => c.Balance);
+                
                 var totalBalanceDto = new BalanceCoffeeDto
                 {
                     Name = "Total",
-                    Balance = totalBalance
+                    Balance = (uint)totalBalance
                 };
 
                 balanceCoffee.Add(totalBalanceDto);
@@ -73,10 +63,7 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
             },
             TimeSpan.FromMinutes(10)); // Время жизни кэша
 
-        if (balanceCoffee == null)
-            throw new Exception("Entity not found in the system");
-
-        return balanceCoffee;
+        return balanceCoffee ?? throw new Exception("Entity not found in the system");
     }
 
     /// <inheritdoc />
