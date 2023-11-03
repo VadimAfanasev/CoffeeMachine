@@ -6,7 +6,6 @@ using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services.Interfaces;
 
 using LazyCache;
-
 using Microsoft.EntityFrameworkCore;
 
 namespace CoffeeMachine.Services;
