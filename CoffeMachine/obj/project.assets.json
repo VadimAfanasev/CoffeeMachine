@@ -6223,23 +6223,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Вадим\\.nuget\\packages\\": {},
+    "C:\\Users\\AfanasievVA\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+      "projectUniqueName": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
       "projectName": "CoffeeMachine",
-      "projectPath": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.csproj",
-      "packagesPath": "C:\\Users\\Вадим\\.nuget\\packages\\",
-      "outputPath": "E:\\Программирование\\Обучение\\CoffeeMachine\\CoffeMachine\\obj\\",
+      "projectPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\CoffeeMachine.csproj",
+      "packagesPath": "C:\\Users\\AfanasievVA\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeMachine\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Вадим\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\AfanasievVA\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6248,7 +6248,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -6433,7 +6432,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
