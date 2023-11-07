@@ -3,9 +3,10 @@ using CoffeeMachine.Models;
 
 namespace CoffeeMachine.Tests.Infrastructure;
 
-internal class TestDbBaseContext
+public class TestDbBaseContext
 {
-    internal static CoffeeContext GetTestInitAppContext(CoffeeContext context = null)
+    [SetUp]
+    public static CoffeeContext GetTestInitAppContext(CoffeeContext context = null)
     {
         var dbTest = context ?? GetTestApplicationContextNew();
 

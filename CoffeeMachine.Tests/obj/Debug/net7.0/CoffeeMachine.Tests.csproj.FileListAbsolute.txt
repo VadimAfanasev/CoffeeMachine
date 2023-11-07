@@ -2412,3 +2412,6 @@ C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests
 C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\Serilog.Sinks.PeriodicBatching.dll
 C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\LazyCache.dll
 C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\LazyCache.AspNetCore.dll
+C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\LazyCache.Testing.Common.dll
+C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\LazyCache.Testing.Moq.dll
+C:\Users\AfanasievVA\source\repos\CoffeeMachine\CoffeMachine\CoffeeMachine.Tests\bin\Debug\net7.0\rgvlee.Core.Common.dll

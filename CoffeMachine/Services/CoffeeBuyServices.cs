@@ -120,9 +120,4 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         var sum = moneys.Sum(n => n);
         return (uint)sum;
     }
-
-    private static string GetCacheKey()
-    {
-        return "CoffeeBuy";
-    }
 }

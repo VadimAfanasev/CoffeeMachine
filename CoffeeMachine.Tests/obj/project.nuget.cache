@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5BygyTdgNMgIjsHEkPSB+E+9TwqiRsw+hroWXCV6C6ioaAnoFl1YlfjeWffXP4IO7/CHcic2g42QfZ4snaedug==",
+  "dgSpecHash": "xZnehec1xTUuc4F9fMa7gPlqEByzy4+NOyvGrDz9T5XAXe39ZFv9Kc4m3WX+lGvoiW+Ais1Px9rNvD4MU2muYg==",
   "success": true,
   "projectFilePath": "C:\\Users\\AfanasievVA\\source\\repos\\CoffeeMachine\\CoffeMachine\\CoffeeMachine.Tests\\CoffeeMachine.Tests.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\kubernetesclient.models\\11.0.44\\kubernetesclient.models.11.0.44.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\lazycache\\2.4.0\\lazycache.2.4.0.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\lazycache.aspnetcore\\2.4.0\\lazycache.aspnetcore.2.4.0.nupkg.sha512",
+    "C:\\Users\\AfanasievVA\\.nuget\\packages\\lazycache.testing.moq\\1.3.0\\lazycache.testing.moq.1.3.0.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.12\\microsoft.aspnetcore.authentication.jwtbearer.7.0.12.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\7.0.12\\microsoft.aspnetcore.authentication.openidconnect.7.0.12.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.1.0\\microsoft.aspnetcore.http.abstractions.2.1.0.nupkg.sha512",
@@ -121,6 +122,7 @@
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\nunit3testadapter\\4.5.0\\nunit3testadapter.4.5.0.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\opensearch.net\\1.2.0\\opensearch.net.1.2.0.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\prometheus-net\\8.0.1\\prometheus-net.8.0.1.nupkg.sha512",
+    "C:\\Users\\AfanasievVA\\.nuget\\packages\\rgvlee.core\\1.2.0\\rgvlee.core.1.2.0.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\serilog\\3.0.1\\serilog.3.0.1.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\serilog.aspnetcore\\7.0.0\\serilog.aspnetcore.7.0.0.nupkg.sha512",
     "C:\\Users\\AfanasievVA\\.nuget\\packages\\serilog.enrichers.environment\\2.3.0\\serilog.enrichers.environment.2.3.0.nupkg.sha512",

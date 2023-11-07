@@ -42,13 +42,14 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
             CacheKeys.coffeeBuy,
             async () =>
             {
-
                 var coffeeBalances = await _db.CoffeesDb.ToListAsync();
+
                 var balanceCoffee = coffeeBalances.Select(c => new BalanceCoffeeDto
                 {
                     Name = c.Name,
                     Balance = c.Balance
                 }).ToList();
+
                 var totalBalance = coffeeBalances.Sum(c => c.Balance);
                 
                 var totalBalanceDto = new BalanceCoffeeDto
@@ -69,34 +70,22 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     /// <inheritdoc />
     public async Task<List<MoneyDto>> GetBalanceMoneyAsync()
     {
-        var cacheKey = CacheKeys.inputMoney;
-
         var balanceMoney = await _cache.GetOrAddAsync(
-            cacheKey,
+            CacheKeys.inputMoney,
             async () =>
             {
-                var balanceMoney = new List<MoneyDto>();
                 var moneyBalances = await _db.MoneyInMachinesDb.ToListAsync();
 
-                foreach (var balance in moneyBalances)
+                var balanceMoney = moneyBalances.Select(c => new MoneyDto
                 {
-                    var balanceDto = new MoneyDto
-                    {
-                        Nominal = balance.Nominal,
-                        Count = balance.Count
-                    };
-                    balanceMoney.Add(balanceDto);
-                }
+                    Nominal = c.Nominal,
+                    Count = c.Count
+                }).ToList();
 
-                var sortedBalanceMoney = balanceMoney.OrderByDescending(n => n.Nominal).ToList();
-
-                return sortedBalanceMoney;
+                return balanceMoney.OrderByDescending(n => n.Nominal).ToList();
             },
             TimeSpan.FromMinutes(10)); // Время жизни кэша
 
-        if (balanceMoney == null)
-            throw new Exception("Entity not found in the system");
-
-        return balanceMoney;
+        return balanceMoney ?? throw new Exception("Entity not found in the system");
     }
 }
