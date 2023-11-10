@@ -36,7 +36,6 @@ public class UnitTestsServices
         result.Should().BeEquivalentTo(expected);
     }
 
-
     [Test]
     public async Task GetBalanceCoffeeAsync_ReturnsBalanceCoffeeDto_WhenAmountIsExact()
     {
