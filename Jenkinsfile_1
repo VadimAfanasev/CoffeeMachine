@@ -1,0 +1,21 @@
+﻿pipeline {
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    checkout scm
+                }
+            }
+        }
+        stage('Build and Test') {
+            steps {
+                script {
+                    dir('CoffeeMachine.Tests') {
+                        sh 'dotnet test'
+                    }
+                }
+            }
+        }
+    }
+}
