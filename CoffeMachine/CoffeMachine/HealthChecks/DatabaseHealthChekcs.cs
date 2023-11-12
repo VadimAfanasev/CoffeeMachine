@@ -49,8 +49,7 @@ public class DatabaseHealthChecks : IHealthCheck
         catch (Exception ex)
         {
             return HealthCheckResult.Unhealthy(
-                context.Registration.FailureStatus.ToString(),
-                ex);
+                context.Registration.FailureStatus.ToString(), ex);
         }
     }
 }
