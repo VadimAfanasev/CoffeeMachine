@@ -93,11 +93,6 @@ public class CoffeeBuyServices : ICoffeeBuyServices
             Change = change
         };
 
-        //var balanceCoffee = change.Select(c => new OrderCoffeeDto
-        //{
-        //    Change = change
-        //});
-
         return changeDto;
     }
 
