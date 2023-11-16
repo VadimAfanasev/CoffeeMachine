@@ -110,6 +110,8 @@ public class CoffeeBuyServices : ICoffeeBuyServices
         return coffeePrice;
     }
 
+
+
     /// <summary>
     /// Method for getting the amount of an array of entered money
     /// </summary>
