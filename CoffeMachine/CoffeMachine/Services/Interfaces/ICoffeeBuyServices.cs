@@ -18,5 +18,3 @@ public interface ICoffeeBuyServices
     /// <response code="404"> Entity not found in the system </response>
     Task<OrderCoffeeDto> BuyingCoffeeAsync(string coffeeType, uint[] moneys);
 }
-
-/////
