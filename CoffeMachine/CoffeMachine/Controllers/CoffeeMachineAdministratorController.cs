@@ -40,6 +40,7 @@ public class CoffeeMachineAdministratorController : ControllerBase
     /// </summary>
     /// <response code="200"> Success </response>
     /// <response code="404"> Entity not found in the system </response> 
+    //[Authorize(policy: "technician")]
     [Authorize(policy: "technician")]
     [HttpGet("coffeebalance")]
     [ProducesResponseType(typeof(BalanceCoffeeDto),StatusCodes.Status200OK)]
@@ -55,8 +56,8 @@ public class CoffeeMachineAdministratorController : ControllerBase
     /// </summary>
     /// <response code="200"> Success </response>
     /// <response code="404"> Entity not found in the system </response>
+    //[Authorize(policy: "technician")]
     [Authorize(policy: "technician")]
-    //[DisableCors]
     [HttpGet("moneyinmachine")]
     [ProducesResponseType(typeof(MoneyDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

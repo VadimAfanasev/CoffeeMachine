@@ -1,4 +1,5 @@
 ﻿using Bogus;
+using CoffeeMachine.Common.Constants;
 using CoffeeMachine.Common.Enums;
 
 namespace CoffeeMachine.Tests.Infrastructure;
@@ -23,7 +24,7 @@ internal class TestDataBogus
     {
         var faker = new Faker();
         
-        var coffeeNames = new[] { CoffeeNames.cappuccino, CoffeeNames.latte, CoffeeNames.americano };
+        var coffeeNames = new[] { CoffeeNames.CAPPUCCINO, CoffeeNames.LATTE, CoffeeNames.AMERICANO };
         return faker.Random.ArrayElement(coffeeNames);
     }
 

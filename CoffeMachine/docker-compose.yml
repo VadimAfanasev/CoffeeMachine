@@ -110,7 +110,7 @@ services:
   coffee-machine-tests:
     build:
       context: .
-      dockerfile: CoffeeMachine.Tests/Dockerfile.tests
+      dockerfile: CoffeeMachine.Tests/Dockerfile
     image: coffee-machine-tests:latest
     container_name: coffee-machine-tests-HRI-583
     networks:

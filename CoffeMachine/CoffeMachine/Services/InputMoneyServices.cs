@@ -1,4 +1,4 @@
-﻿using CoffeeMachine.Common;
+﻿using CoffeeMachine.Common.Constants;
 using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Dto;
 using CoffeeMachine.Models.Data;
@@ -48,7 +48,7 @@ public class InputMoneyServices : IInputMoneyServices
 
         var result = await _incrementMoneyInMachine.IncrementMoneyAsync(inputMoney);
 
-        var cacheKey = CacheKeys.inputMoney;
+        var cacheKey = CacheKeys.INPUT_MONEY;
         _cache.Remove(cacheKey);
 
         return result;

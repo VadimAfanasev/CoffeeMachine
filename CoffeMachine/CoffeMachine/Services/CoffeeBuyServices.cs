@@ -1,4 +1,4 @@
-﻿using CoffeeMachine.Common;
+﻿using CoffeeMachine.Common.Constants;
 using CoffeeMachine.Common.Enums;
 using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Dto;
@@ -8,6 +8,11 @@ using CoffeeMachine.Services.Interfaces;
 using LazyCache;
 
 using Microsoft.EntityFrameworkCore;
+
+using CoffeeMachine.Common.Constants;
+using CoffeeMachine.Dto;
+
+
 
 namespace CoffeeMachine.Services;
 
@@ -75,7 +80,7 @@ public class CoffeeBuyServices : ICoffeeBuyServices
 
         var changeDto = ChangeToDto(change);
 
-        var cacheKey = CacheKeys.coffeeBuy;
+        var cacheKey = CacheKeys.COFFEE_BUY;
         _cache.Remove(cacheKey);
 
         return changeDto;

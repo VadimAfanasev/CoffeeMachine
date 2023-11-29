@@ -1,4 +1,5 @@
 ﻿using CoffeeMachine.Common;
+using CoffeeMachine.Common.Constants;
 using CoffeeMachine.Common.Enums;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -46,9 +47,9 @@ namespace CoffeeMachine.Migrations
                 columns: new[] { "Balance", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 0u, CoffeeNames.cappuccino, 600u },
-                    { 0u, CoffeeNames.latte, 850u },
-                    { 0u, CoffeeNames.americano, 900u }
+                    { 0u, CoffeeNames.CAPPUCCINO, 600u },
+                    { 0u, CoffeeNames.LATTE, 850u },
+                    { 0u, CoffeeNames.AMERICANO, 900u }
                 });
 
             migrationBuilder.InsertData(

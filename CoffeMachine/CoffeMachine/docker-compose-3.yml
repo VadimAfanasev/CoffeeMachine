@@ -1,27 +1,26 @@
 version: '3'
-
 services:
   jenkins-docker:
     image: docker:dind
     container_name: jenkins-docker-HRI-583
-    privileged: true
     networks:
       - jenkins
+    privileged: true
+    network_mode: service:jenkins
     environment:
       - DOCKER_TLS_CERTDIR=/certs
     volumes:
       - jenkins-docker-certs:/certs/client
       - jenkins-data:/var/jenkins_home
     ports:
-      - 2376:2376
+      - "2376:2376"
 
-  myjenkins-blueocean:
+  custom-jenkins:
     build:
       context: .
       dockerfile: Dockerfile
     image: myjenkins-blueocean:2.426.1-1
     container_name: jenkins-blueocean-HRI-583
-    restart: on-failure
     networks:
       - jenkins
     environment:
@@ -32,17 +31,17 @@ services:
       - jenkins-data:/var/jenkins_home
       - jenkins-docker-certs:/certs/client:ro
     ports:
-      - 5555:8080
-      - 50000:50000
+      - "5555:8080"
+      - "50000:50000"
 
   keycloak:
-    image: quay.io/keycloak/keycloak:13.0.0
+    image: quay.io/keycloak/keycloak:23.0.0
     container_name: keycloak-HRI-583
     ports:
-     - 8080:8080
+      - "8080:8080"
     environment:
-     - KEYCLOAK_ADMIN=admin
-     - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
 
   opensearch-node1:
     image: opensearchproject/opensearch:latest
@@ -52,13 +51,16 @@ services:
       - node.name=opensearch-node1
       - discovery.type=single-node
       - bootstrap.memory_lock=true
-      - OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m
-      - DISABLE_INSTALL_DEMO_CONFIG=true
-      - DISABLE_SECURITY_PLUGIN=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "DISABLE_INSTALL_DEMO_CONFIG=true"
+      - "DISABLE_SECURITY_PLUGIN=true"
     ulimits:
-     memlock:
-      soft: -1
-      hard: -1
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
     volumes:
       - opensearch-data:/usr/share/opensearch/data
     ports:
@@ -75,54 +77,41 @@ services:
     expose:
       - "5601"
     environment:
-      - OPENSEARCH_HOSTS=["http://opensearch-node1:9200"]
-      - DISABLE_SECURITY_DASHBOARDS_PLUGIN=true
+      - 'OPENSEARCH_HOSTS=["http://opensearch-node1:9200"]'
+      - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true"
     networks:
       - opensearch-net
-  
-  # coffee-machine:
-  #   image: mcr.microsoft.com/dotnet/aspnet:7.0
-  #   container_name: coffee-machine-HRI-583
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile-coffee-machine
-  #   environment:
-  #     - ASPNETCORE_URLS=http://*:5110
-  #     - ConnectionStrings__DefaultConnection=Server=172.26.192.1;Port=5432;Database=TestDBNew;User Id=postgres;Password=Vadim696;
-  #     - ASPNETCORE_ENVIRONMENT=Development
-  #   expose:
-  #     - "5110"
-  #   ports:
-  #     - "5110:5110"
-  #   networks:
-  #     - coffee-machine-net  
 
-  coffee-machine: 
-    build: 
-      dockerfile: CoffeMachine/Dockerfile
-    image: coffee-machine:latest 
+  coffee-machine:
+    image: your-coffee-machine-image:latest
     container_name: coffee-machine-HRI-583
-    networks:
-      - coffee-machine-net 
-    ports: 
-      - 5110:5110
-
-  coffee-machine-tests:
     build:
       context: .
-      dockerfile: CoffeeMachine.Tests/Dockerfile.tests
-    image: coffee-machine-tests:latest
-    container_name: coffee-machine-tests-HRI-583
+      dockerfile: Dockerfile-coffee-machine
+    environment:
+      - ASPNETCORE_URLS=http://*:5110
+      - ConnectionStrings__DefaultConnection=Server=172.26.192.1;Port=5432;Database=TestDBNew;User Id=postgres;Password=Vadim696;
+      - ASPNETCORE_ENVIRONMENT=Development
+    expose:
+      - "5110"
+    ports:
+      - "5110:5110"
     networks:
-      - coffee-machine-net
+      - opensearch-net
+
+  coffee-machine-tests:
+    image: your-coffee-machine-tests-image:latest
+    container_name: coffee-machine-tests-HRI-583
+    build:
+      context: .
+      dockerfile: Dockerfile-coffee-machine-tests
 
 networks:
   jenkins:
   opensearch-net:
-  coffee-machine-net:
+    driver: bridge
 
 volumes:
-  jenkins-docker-certs:
   opensearch-data:
   jenkins-data:
-  coffee-machine-data:
+  jenkins-docker-certs:

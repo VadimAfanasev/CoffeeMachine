@@ -1,4 +1,5 @@
 ﻿using Bogus;
+using CoffeeMachine.Common.Constants;
 using CoffeeMachine.Common.Enums;
 using CoffeeMachine.Tests.Infrastructure;
 using Newtonsoft.Json;
@@ -16,7 +17,7 @@ public class IntegrationTests : CustomBaseTest
     {
         // Arrange
         var inputMoney = new uint[] { (uint)InputBuyerBanknotesEnums.TwoThousand, (uint)InputBuyerBanknotesEnums.FiveHundred };
-        const string coffeeName = CoffeeNames.cappuccino;
+        const string coffeeName = CoffeeNames.CAPPUCCINO;
         var expected = new OrderCoffeeDto { Change = new List<uint> { 1000, 500, 200, 200 } };
 
         var client = GetClient();
@@ -55,7 +56,7 @@ public class IntegrationTests : CustomBaseTest
     {
         // Arrange
         var inputMoney = new uint[] { (uint)InputBuyerBanknotesEnums.FiveHundred };
-        const string coffeeName = CoffeeNames.cappuccino;
+        const string coffeeName = CoffeeNames.CAPPUCCINO;
 
         var client = GetClient();
         var content = JsonContent.Create(inputMoney);
@@ -72,7 +73,7 @@ public class IntegrationTests : CustomBaseTest
     public async Task OrderCoffeeTest_ReturnsOrderCoffeeDto_ManyOrdersCheckDb()
     {
         // Arrange
-        const string coffeeName = CoffeeNames.cappuccino;
+        const string coffeeName = CoffeeNames.CAPPUCCINO;
         var response = new HttpResponseMessage();
         var balanceDatabase = "";
 

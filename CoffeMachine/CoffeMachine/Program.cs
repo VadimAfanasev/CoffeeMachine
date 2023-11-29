@@ -1,4 +1,5 @@
 ﻿using CoffeeMachine.Common;
+using CoffeeMachine.Common.Constants;
 using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.HealthChecks;
 using CoffeeMachine.Middlewares;
@@ -40,15 +41,15 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
     options =>
     {
-        const string oauth2 = "OAuth2";
-        const string bearer = "Bearer";
+        //const string oauth2 = "OAuth2";
+        //const string bearer = "Bearer";
         var securityScheme = new OpenApiSecurityScheme
         {
             Description = "Swagger",
             Name = "Authorization",
             In = ParameterLocation.Header,
             Type = SecuritySchemeType.OAuth2,
-            Scheme = oauth2,
+            Scheme = SwaggerConstants.OAUTH2,
             BearerFormat = "JWT",
             Flows = new OpenApiOAuthFlows
             {
@@ -61,7 +62,7 @@ builder.Services.AddSwaggerGen(
             Reference = new OpenApiReference
             {
                 Type = ReferenceType.SecurityScheme,
-                Id = oauth2
+                Id = SwaggerConstants.OAUTH2
             }
         };
         var securitySchemeBearer = new OpenApiSecurityScheme
@@ -75,13 +76,13 @@ builder.Services.AddSwaggerGen(
             Reference = new OpenApiReference
             {
                 Type = ReferenceType.SecurityScheme,
-                Id = bearer
+                Id = SwaggerConstants.BEARER
             }
         };
 
         options.SwaggerDoc("v1", new OpenApiInfo { Title = "CoffeeMachine", Version = "v1" });
-        options.AddSecurityDefinition(oauth2, securityScheme);
-        options.AddSecurityDefinition(bearer, securitySchemeBearer);
+        options.AddSecurityDefinition(SwaggerConstants.OAUTH2, securityScheme);
+        options.AddSecurityDefinition(SwaggerConstants.BEARER, securitySchemeBearer);
         options.AddSecurityRequirement(new OpenApiSecurityRequirement
         {
             {
@@ -135,22 +136,22 @@ builder.Services.AddAuthorization(o =>
         .RequireAuthenticatedUser()
         .Build();
 
-    o.AddPolicy("technician", b =>
+    o.AddPolicy(PolicyConstants.TECHNICIAN_CONST, b =>
     {
-        b.RequireRealmRoles("technician");
+        b.RequireRealmRoles(PolicyConstants.TECHNICIAN_CONST);
     });
-    o.AddPolicy("administrator", b =>
+    o.AddPolicy(PolicyConstants.ADMINISTRATOR_CONST, b =>
     {
-        b.RequireRealmRoles("administrator");
+        b.RequireRealmRoles(PolicyConstants.ADMINISTRATOR_CONST);
     });
 }).AddKeycloakAuthorization(authorizationOptions);
 
 builder.Services.AddLazyCache();
 
-const string myOrigins = "_myOrigins";
+//const string myOrigins = "_myOrigins";
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(myOrigins,
+    options.AddPolicy(CorsConstants.MY_ORIGINS,
         policy =>
         {
             policy.WithOrigins("http://localhost:5026")
@@ -160,7 +161,7 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
-app.UseCors(myOrigins);
+app.UseCors(CorsConstants.MY_ORIGINS);
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

@@ -1,4 +1,5 @@
-﻿using CoffeeMachine.Common.Enums;
+﻿using CoffeeMachine.Common.Constants;
+using CoffeeMachine.Common.Enums;
 using CoffeeMachine.Models;
 
 namespace CoffeeMachine.Tests.Infrastructure;
@@ -12,9 +13,9 @@ public class TestDbBaseContext
 
         var coffeePrice = new Dictionary<string, uint>
         {
-            { CoffeeNames.cappuccino, 600 },
-            { CoffeeNames.latte, 850 },
-            { CoffeeNames.americano, 900 }
+            { CoffeeNames.CAPPUCCINO, 600 },
+            { CoffeeNames.LATTE, 850 },
+            { CoffeeNames.AMERICANO, 900 }
         };
         dbTest.CoffeesDb.AddRange(coffeePrice.Select(s => new Coffee
         {

@@ -1,4 +1,4 @@
-﻿using CoffeeMachine.Common;
+﻿using CoffeeMachine.Common.Constants;
 using CoffeeMachine.Dto;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services.Interfaces;
@@ -39,7 +39,7 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     public async Task<List<BalanceCoffeeDto>> GetBalanceCoffeeAsync()
     {
         var balanceCoffee = await _cache.GetOrAddAsync(
-            CacheKeys.coffeeBuy,
+            CacheKeys.COFFEE_BUY,
             async () =>
             {
                 var coffeeBalances = await _db.CoffeesDb.ToListAsync();
@@ -71,7 +71,7 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
     public async Task<List<MoneyDto>> GetBalanceMoneyAsync()
     {
         var balanceMoney = await _cache.GetOrAddAsync(
-            CacheKeys.inputMoney,
+            CacheKeys.INPUT_MONEY,
             async () =>
             {
                 var moneyBalances = await _db.MoneyInMachinesDb.ToListAsync();
