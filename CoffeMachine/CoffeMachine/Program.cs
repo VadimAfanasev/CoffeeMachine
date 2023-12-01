@@ -40,8 +40,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
     options =>
     {
-        //const string oauth2 = "OAuth2";
-        //const string bearer = "Bearer";
         var securityScheme = new OpenApiSecurityScheme
         {
             Description = "Swagger",
