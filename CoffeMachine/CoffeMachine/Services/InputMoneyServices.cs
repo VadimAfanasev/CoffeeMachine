@@ -3,6 +3,7 @@ using CoffeeMachine.Common.Interfaces;
 using CoffeeMachine.Dto;
 using CoffeeMachine.Models.Data;
 using CoffeeMachine.Services.Interfaces;
+
 using LazyCache;
 
 namespace CoffeeMachine.Services;
@@ -13,6 +14,11 @@ namespace CoffeeMachine.Services;
 public class InputMoneyServices : IInputMoneyServices
 {
     /// <summary>
+    /// Input lazy cache dependency injection
+    /// </summary>
+    private readonly IAppCache _cache;
+
+    /// <summary>
     /// Injecting the database context CoffeeContext
     /// </summary>
     private readonly CoffeeContext _db;
@@ -21,11 +27,6 @@ public class InputMoneyServices : IInputMoneyServices
     /// Injecting money depositing methods
     /// </summary>
     private readonly IIncrementMoneyInMachine _incrementMoneyInMachine;
-
-    /// <summary>
-    /// Input lazy cache dependency injection
-    /// </summary>
-    private readonly IAppCache _cache;
 
     /// <summary>
     /// Constructor of the class in which we deposit money into the coffee machine

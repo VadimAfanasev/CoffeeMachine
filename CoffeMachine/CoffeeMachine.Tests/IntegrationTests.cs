@@ -12,6 +12,11 @@ namespace CoffeeMachine.Tests;
 [TestFixture]
 public class IntegrationTests : CustomBaseTest
 {
+    /// <summary>
+    /// We simulate the purchase of coffee, compare the given change with the calculated change.
+    /// We check the functionality of the controller and whether the change was issued correctly
+    /// </summary>
+    /// <returns>Change DTO</returns>
     [Test]
     public async Task OrderCoffeeTest_ReturnsOrderCoffeeDto_WhenDtoAreEqual()
     {
@@ -33,6 +38,10 @@ public class IntegrationTests : CustomBaseTest
         Assert.That(actual.Change, Is.EquivalentTo(expected.Change));
     }
 
+    /// <summary>
+    /// We simulate the purchase of coffee, check how the controller works if you enter the wrong name of coffee
+    /// </summary>
+    /// <returns>Error</returns>
     [Test]
     public async Task OrderCoffeeTest_ReturnsException_InvalidCoffeeName()
     {
@@ -51,6 +60,10 @@ public class IntegrationTests : CustomBaseTest
         responseContent.Should().Contain("Invalid coffee type");
     }
 
+    /// <summary>
+    /// We simulate the purchase of coffee, check how the controller works if you enter the wrong amount of money
+    /// </summary>
+    /// <returns>Exception</returns>
     [Test]
     public async Task OrderCoffeeTest_ReturnsOrderCoffeeDto_InvalidMoneyAmount()
     {
@@ -69,6 +82,10 @@ public class IntegrationTests : CustomBaseTest
         responseContent.Should().Contain("The amount deposited is less than required");
     }
 
+    /// <summary>
+    /// We simulate multiple purchases of coffee, check how the algorithm for calculating change works
+    /// </summary>
+    /// <returns> Cannot provide change </returns>
     [Test]
     public async Task OrderCoffeeTest_ReturnsOrderCoffeeDto_ManyOrdersCheckDb()
     {
@@ -95,7 +112,6 @@ public class IntegrationTests : CustomBaseTest
         var inputMoneyJson = JsonContent.Create(inputMoney);
         await client.PutAsync("api/inputing", inputMoneyJson);
 
-
         // Act
         while (endlessСycle)
         {
@@ -118,11 +134,15 @@ public class IntegrationTests : CustomBaseTest
         }
 
         var responseContent = await response.Content.ReadAsStringAsync();
-        var balanceDatabaseNew = balanceDatabase;
+
         // Assert    
         responseContent.Should().Contain("Cannot provide change");
     }
 
+    /// <summary>
+    /// We simulate multiple purchases of coffee, enter random numbers and a random coffee name
+    /// </summary>
+    /// <returns> Cannot provide change </returns>
     [Test]
     public async Task OrderCoffeeWithBogusTest_ReturnsOrderCoffeeDto_ManyOrdersCheckDb()
     {
@@ -165,51 +185,10 @@ public class IntegrationTests : CustomBaseTest
         responseContent.Should().Contain("Cannot provide change");
     }
 
-
-    //[Test]
-    //public async Task LoginTest_ReturnsString_WhenStatusCodeOk()
-    //{
-    //    // Arrange
-    //    var user = new UserModel
-    //    {
-    //        UserName = "Admin",
-    //        Password = "Admin"
-    //    };
-    //    var content = JsonContent.Create(user);
-
-    //    var client = GetClient();
-
-    //    // Act
-    //    var response = await client.PostAsync($"api/login", content);
-    //    var responseContent = await response.Content.ReadAsStringAsync();
-
-    //    // Assert
-    //    responseContent.Should().NotContain("User not found");
-    //    response.StatusCode.Should().Be(HttpStatusCode.OK);
-    //}
-
-    //[Test]
-    //public async Task LoginTest_ReturnsString_WhenStatusCodeNotFound()
-    //{
-    //    // Arrange
-    //    var user = new UserModel
-    //    {
-    //        UserName = "AnyUser",
-    //        Password = "AnyUser"
-    //    };
-    //    var content = JsonContent.Create(user);
-
-    //    var client = GetClient();
-
-    //    // Act
-    //    var response = await client.PostAsync($"api/login", content);
-    //    var responseContent = await response.Content.ReadAsStringAsync();
-
-    //    // Assert
-    //    responseContent.Should().Contain("User not found");
-    //    response.StatusCode.Should().Be(HttpStatusCode.NotFound);
-    //}
-
+    /// <summary>
+    /// Simulating depositing funds into a coffee machine
+    /// </summary>
+    /// <returns> StatusCode Ok </returns>
     [Test]
     public async Task InputMoneyAsyncTest_ReturnsString_WhenStatusCodeOk()
     {
@@ -236,6 +215,10 @@ public class IntegrationTests : CustomBaseTest
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
+    /// <summary>
+    /// We simulate depositing funds into a coffee machine. Banknotes are incorrect
+    /// </summary>
+    /// <returns> StatusCode BadRequest </returns>
     [Test]
     public async Task InputMoneyAsyncTest_ReturnsString_WhenStatusCodeBadRequest()
     {
@@ -256,6 +239,10 @@ public class IntegrationTests : CustomBaseTest
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
     }
 
+    /// <summary>
+    /// Checking the functionality of obtaining coffee balance
+    /// </summary>
+    /// <returns> StatusCode OK</returns>
     [Test]
     public async Task GetCoffeeBalanceAsync_ReturnsBalanceCoffeeDto_WhenStatusCodeOk()
     {
@@ -270,6 +257,10 @@ public class IntegrationTests : CustomBaseTest
         response.StatusCode.Should().Be(HttpStatusCode.OK);
     }
 
+    /// <summary>
+    /// Checking the functionality of obtaining the balance of funds
+    /// </summary>
+    /// <returns> StatusCode Ok </returns>
     [Test]
     public async Task GetMoneyInMachineAsync_ReturnsMoneyDto_WhenStatusCodeOk()
     {

@@ -10,6 +10,10 @@ namespace CoffeeMachine.Tests;
 [TestFixture]
 public class UnitTestsServices
 {
+    /// <summary>
+    /// We check the process of buying coffee, check the correctness of the change given
+    /// </summary>
+    /// <returns> correct change </returns>
     [Test]
     public async Task BuyingCoffeeAsync_ReturnsOrderCoffeeDto_WhenAmountIsExact()
     {
@@ -36,7 +40,10 @@ public class UnitTestsServices
         result.Should().BeEquivalentTo(expected);
     }
 
-
+    /// <summary>
+    /// Checking the coffee balance
+    /// </summary>
+    /// <returns> result equivalent expected </returns>
     [Test]
     public async Task GetBalanceCoffeeAsync_ReturnsBalanceCoffeeDto_WhenAmountIsExact()
     {
@@ -61,6 +68,10 @@ public class UnitTestsServices
         result.Should().BeEquivalentTo(expected);
     }
 
+    /// <summary>
+    /// Checking the money balance
+    /// </summary>
+    /// <returns> result equivalent expected </returns>
     [Test]
     public async Task GetBalanceMoneyAsync_ReturnsMoneyDto_WhenAmountIsExact()
     {
@@ -85,6 +96,10 @@ public class UnitTestsServices
         result.Should().BeEquivalentTo(expected);
     }
 
+    /// <summary>
+    /// Checking the operation of depositing funds into the machine
+    /// </summary>
+    /// <returns> result equivalent expected </returns>
     [Test]
     public async Task InputingAsync_ReturnsString_WhenContentAreEqual()
     {

@@ -9,11 +9,6 @@ using LazyCache;
 
 using Microsoft.EntityFrameworkCore;
 
-using CoffeeMachine.Common.Constants;
-using CoffeeMachine.Dto;
-
-
-
 namespace CoffeeMachine.Services;
 
 /// <summary>
@@ -21,6 +16,11 @@ namespace CoffeeMachine.Services;
 /// </summary>
 public class CoffeeBuyServices : ICoffeeBuyServices
 {
+    /// <summary>
+    /// Input lazy cache dependency injection
+    /// </summary>
+    private readonly IAppCache _cache;
+
     /// <summary>
     /// Injecting of change calculation methods
     /// </summary>
@@ -37,14 +37,10 @@ public class CoffeeBuyServices : ICoffeeBuyServices
     private readonly IDepositService _depositService;
 
     /// <summary>
-    /// Input lazy cache dependency injection
-    /// </summary>
-    private readonly IAppCache _cache;
-
-    /// <summary>
     /// Constructor of the class in which coffee is purchased
     /// </summary>
-    public CoffeeBuyServices(CoffeeContext db, IDepositService depositService, IChangeCalculation changeCalculation, IAppCache cache)
+    public CoffeeBuyServices(CoffeeContext db, IDepositService depositService, IChangeCalculation changeCalculation,
+        IAppCache cache)
     {
         _db = db;
         _depositService = depositService;

@@ -15,14 +15,14 @@ namespace CoffeeMachine.Services;
 public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
 {
     /// <summary>
-    /// Injecting the database context CoffeeContext
-    /// </summary>
-    private readonly CoffeeContext _db;
-
-    /// <summary>
     /// Input lazy cache dependency injection
     /// </summary>
     private readonly IAppCache _cache;
+
+    /// <summary>
+    /// Injecting the database context CoffeeContext
+    /// </summary>
+    private readonly CoffeeContext _db;
 
     /// <summary>
     /// Constructor of a class in which we get information about the coffee machine
@@ -51,7 +51,7 @@ public class CoffeeMachineStatusServices : ICoffeeMachineStatusServices
                 }).ToList();
 
                 var totalBalance = coffeeBalances.Sum(c => c.Balance);
-                
+
                 var totalBalanceDto = new BalanceCoffeeDto
                 {
                     Name = "Total",

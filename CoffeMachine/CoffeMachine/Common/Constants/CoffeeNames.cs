@@ -9,10 +9,12 @@ public static class CoffeeNames
     /// Americano constant
     /// </summary>
     public const string AMERICANO = "Americano";
+
     /// <summary>
     /// Cappuccino constant
     /// </summary>
     public const string CAPPUCCINO = "Cappuccino";
+
     /// <summary>
     /// Latte constant
     /// </summary>

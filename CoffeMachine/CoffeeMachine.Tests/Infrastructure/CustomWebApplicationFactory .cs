@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Serilog;
@@ -19,8 +18,8 @@ internal class CustomWebApplicationFactory : WebApplicationFactory<CoffeeMachine
         _externalServicesMock = externalServicesMock;
         _dbId = Guid.NewGuid();
     }
-    public string DefaultUserId { get; set; } = "1";
-    private Guid _dbId;
+    private string DefaultUserId { get; set; } = "1";
+    private readonly Guid _dbId;
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         builder.UseEnvironment("IntegrationTesting");
@@ -76,7 +75,6 @@ internal class CustomWebApplicationFactory : WebApplicationFactory<CoffeeMachine
                 {
                     b.RequireRole("technician");
                 });
-
             });
         });
         base.ConfigureWebHost(builder);

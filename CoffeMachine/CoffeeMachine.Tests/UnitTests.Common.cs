@@ -5,6 +5,10 @@ namespace CoffeeMachine.Tests;
 [TestFixture]
 public class UnitTestsCommon
 {
+    /// <summary>
+    /// Checking the change calculated by the algorithm
+    /// </summary>
+    /// <returns> result equivalent expected </returns>
     [Test]
     [SetUp]
     public async Task CalculateAsyncTest_ReturnsChangeList_WhenAmountIsExact()
@@ -23,9 +27,13 @@ public class UnitTestsCommon
         result.Should().BeEquivalentTo(expected);
     }
 
+    /// <summary>
+    /// Checking whether money is being deposited into the account
+    /// </summary>
+    /// <returns> Money deposited </returns>
     [Test]
     [SetUp]
-    public async Task IncrementMoneyAsync_ReturnsString_WhenBalanceMoneyNotEqual()
+    public async Task IncrementMoneyAsync_ReturnsString_WhenMoneyEntered()
     {
         // Arrange
 

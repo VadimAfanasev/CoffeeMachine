@@ -43,7 +43,7 @@ public class CoffeeMachineBuyController : ControllerBase
     /// <response code="400"> Incorrect data entered </response>
     /// <response code="404"> Entity not found in the system </response>
     [HttpPost("order/{coffeeType}")]
-    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(OrderCoffeeDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<OrderCoffeeDto>> PlaceOrder(string coffeeType, [FromBody] uint[] moneys)

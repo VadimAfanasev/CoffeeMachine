@@ -78,24 +78,7 @@ services:
       - OPENSEARCH_HOSTS=["http://opensearch-node1:9200"]
       - DISABLE_SECURITY_DASHBOARDS_PLUGIN=true
     networks:
-      - opensearch-net
-  
-  # coffee-machine:
-  #   image: mcr.microsoft.com/dotnet/aspnet:7.0
-  #   container_name: coffee-machine-HRI-583
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile-coffee-machine
-  #   environment:
-  #     - ASPNETCORE_URLS=http://*:5110
-  #     - ConnectionStrings__DefaultConnection=Server=172.26.192.1;Port=5432;Database=TestDBNew;User Id=postgres;Password=Vadim696;
-  #     - ASPNETCORE_ENVIRONMENT=Development
-  #   expose:
-  #     - "5110"
-  #   ports:
-  #     - "5110:5110"
-  #   networks:
-  #     - coffee-machine-net  
+      - opensearch-net 
 
   coffee-machine: 
     build: 
