@@ -11,7 +11,7 @@ using HealthChecks.UI.Client;
 
 using Keycloak.AuthServices.Authentication;
 using Keycloak.AuthServices.Authorization;
-///
+
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
