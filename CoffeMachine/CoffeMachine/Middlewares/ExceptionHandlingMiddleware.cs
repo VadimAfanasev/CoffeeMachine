@@ -29,7 +29,6 @@ public class ExceptionHandlingMiddleware
         _logger = logger;
     }
 
-
     /// <summary>
     /// Implementing an error handler
     /// </summary>
