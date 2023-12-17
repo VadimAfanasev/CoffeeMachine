@@ -41,8 +41,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(
     options =>
     {
-        //const string oauth2 = "OAuth2";
-        //const string bearer = "Bearer";
         var securityScheme = new OpenApiSecurityScheme
         {
             Description = "Swagger",
@@ -148,7 +146,6 @@ builder.Services.AddAuthorization(o =>
 
 builder.Services.AddLazyCache();
 
-//const string myOrigins = "_myOrigins";
 builder.Services.AddCors(options =>
 {
     options.AddPolicy(CorsConstants.MY_ORIGINS,
