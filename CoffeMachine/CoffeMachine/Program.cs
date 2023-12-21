@@ -34,7 +34,7 @@ builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
 builder.Services.AddControllersWithViews();
-///
+
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen(
