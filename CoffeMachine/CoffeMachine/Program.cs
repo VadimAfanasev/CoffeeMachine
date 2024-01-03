@@ -9,7 +9,7 @@ using CoffeeMachine.Services.Interfaces;
 
 using HealthChecks.UI.Client;
 
-///
+
 using Keycloak.AuthServices.Authentication;
 using Keycloak.AuthServices.Authorization;
 
